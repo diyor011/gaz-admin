@@ -31,6 +31,7 @@ const Leadership = () => {
 
   const GetLeadership = async () => {
     try {
+      setLoading(true)
       const response = await fetch('https://uzbekneftegaz-backend.onrender.com/api/leader')
       const request = await response.json()
 
@@ -282,7 +283,12 @@ const Leadership = () => {
         </div>
 
         <div className="bg-base-100 rounded-xl shadow-sm shadow-info overflow-hidden ">
-          <table className="min-w-full  ">
+          {loading && data.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-info"></div>
+              <p className="text-gray-500 mt-4">Yuklanmoqda...</p>
+            </div>
+          ) : (<table className="min-w-full  ">
             <thead className="bg-base-100">
               <tr>
                 <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
@@ -355,7 +361,8 @@ const Leadership = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table>)}
+
         </div>
       </div>
 

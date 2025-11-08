@@ -256,7 +256,7 @@ const Departments = () => {
         <div className="bg-base-100 rounded-xl shadow-sm overflow-hidden">
           {loading && departments.length === 0 ? (
             <div className="text-center py-12">
-              <div className="animate-spin h-12 w-12 border-b-2 border-info mx-auto"></div>
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-info"></div>
               <p className="text-gray-500 mt-4">Yuklanmoqda...</p>
             </div>
           ) : departments.length === 0 ? (
