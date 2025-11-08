@@ -8,14 +8,14 @@ const Navbar = () => {
 
 
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm shadow-info">
+    <div className=''>
+      <div className="navbar bg-base-100 shadow-sm shadow-info px-8">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">
+          <a className=" ">
             <img className='w-20 h-20 py-2' src="logo.png" alt="" />
           </a>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 ">
           <div>
             <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
