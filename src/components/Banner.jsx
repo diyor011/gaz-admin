@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X, Upload } from 'lucide-react';
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function AdminBannerManagement() {
     const [banners, setBanners] = useState([]);
@@ -88,10 +89,10 @@ export default function AdminBannerManagement() {
 
     const handleSubmit = async () => {
         const token = localStorage.getItem("token");
-        if (!token) return alert("Avval tizimga kiring!");
+        if (!token) return toast.error("Avval tizimga kiring!");
       
         if (!formData.titleUz) {
-          alert("Sarlavha (Uz) mavburiy maydon");
+          toast.error("Sarlavha (Uz) mavburiy maydon");
           return;
         }
       
@@ -132,10 +133,10 @@ export default function AdminBannerManagement() {
           await getBanners();
           document.getElementById("banner_modal").close();
           setEditingId(null);
-          alert(editingId ? "Banner yangilandi ✅" : "Banner yaratildi ✅");
+          toast.success(editingId ? "Banner yangilandi ✅" : "Banner yaratildi ✅");
         } catch (err) {
           console.error("Server error:", err.message);
-          alert(err.message);
+          toast.error(err.message);
         } finally {
           setLoading(false);
         }
@@ -146,7 +147,7 @@ export default function AdminBannerManagement() {
     // 🔹 Banner o‘chirish
     const handleDelete = async (id) => {
         const token = localStorage.getItem("token");
-        if (!token) return alert("Avval tizimga kiring!");
+        if (!token) return toast.error("Avval tizimga kiring!");
 
         if (!confirm("Rostdan ham ushbu banner o‘chiriladimi?")) return;
 
@@ -163,13 +164,13 @@ export default function AdminBannerManagement() {
 
             if (response.ok) {
                 await getBanners();
-                alert("Banner muvaffaqiyatli o‘chirildi ✅");
+                toast.success("Banner muvaffaqiyatli o‘chirildi ✅");
             } else {
-                alert("Banner o‘chirishda xatolik!");
+                toast.error("Banner o‘chirishda xatolik!");
             }
         } catch (error) {
             console.error("Delete error:", error);
-            alert("Server bilan aloqa yo‘q!");
+            toast.error("Server bilan aloqa yo‘q!");
         }
     };
 
@@ -491,6 +492,7 @@ export default function AdminBannerManagement() {
                     </div>
                 </dialog>
             </div>
+            <ToastContainer />
         </div>
     );
 }
