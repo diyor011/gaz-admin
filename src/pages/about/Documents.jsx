@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Plus, Edit2, Trash2, File } from "lucide-react";
 import AddDocumentModal from '../../components/AddDocumetModal';
 import EditDocumentModal from '../../components/EditDocumentModal';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Documents = () => {
   const [loading, setLoading] = useState(false)
@@ -29,13 +30,14 @@ const Documents = () => {
       const request = await response.json()
 
       if (!response.ok) {
+        toast.error(response.status)
         throw new Error(response.status())
       }
       setData(request.data)
       setLoading(true)
     }
     catch (err) {
-      console.error(err)
+      toast.error(err)
     }
     finally {
       setLoading(false)
@@ -94,14 +96,17 @@ const Documents = () => {
       );
 
       if (!response.ok) {
+        toast.error(response.status)
         throw new Error(`Server error: ${response.status}`);
+      } else {
+        toast.success("hujat muvaffaqiyatli qoshildi")
       }
 
       await GetDocuments();
       setOpenAddModal(false);
       resetForm();
     } catch (err) {
-      console.error("Error creating leader:", err);
+      toast.error("Error creating leader:", err);
     }
   };
 
@@ -162,10 +167,10 @@ const Documents = () => {
 
         if (response.ok) {
           success = true;
-          console.log(`✅ Ishladi: `);
+          toast.success(`Hujat muvaffaqiyatli ozgardi: ✅`);
         }
       } catch (e) {
-        console.error(e)
+        toast.error(e)
       }
 
 
@@ -176,10 +181,10 @@ const Documents = () => {
       await GetDocuments();
       setOpenEditModal(false);
       resetForm();
-      alert("Hujat muvaffaqiyatli tahrirlandi!");
+      toast.success("Hujat muvaffaqiyatli tahrirlandi!");
     } catch (err) {
-      console.error("Error updating leader:", err);
-      alert(`Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`);
+      toast.error("Error updating leader:", err);
+      toast.error(`Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`);
     }
   };
 
@@ -201,14 +206,17 @@ const Documents = () => {
       );
 
       if (!response.ok) {
+        toast.error(response.status)
         const errData = await response.json();
-        console.error("Server Error:", errData);
+        toast.error("Server Error:", errData);
         return;
+      } else {
+        toast.success("Hujat muvaffaqiyatli ochirildi")
       }
 
       GetDocuments();
     } catch (err) {
-      console.error("Delete Error:", err);
+      toast.error("Delete Error:", err);
     }
   };
 
@@ -216,7 +224,11 @@ const Documents = () => {
   const handleDownload = async (file) => {
     try {
       const response = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/uploads/files/${file}`);
-      if (!response.ok) throw new Error("Файл недоступен");
+      if (!response.ok) {
+        toast.error(response.status)
+
+        throw new Error("Файл недоступен");
+      }
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -228,7 +240,7 @@ const Documents = () => {
 
       window.URL.revokeObjectURL(url);
     } catch (err) {
-      console.log("Download failed:", err);
+      toast.error("Download failed:", err);
     }
   };
 
@@ -344,6 +356,8 @@ const Documents = () => {
         setForm={setForm}
         onSubmit={handleEditSubmit}
       />
+      <ToastContainer />
+
     </div>
   )
 }

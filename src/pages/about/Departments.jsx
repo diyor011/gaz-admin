@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Plus, Edit2, Trash2, X, Upload } from "lucide-react";
 import AddDepartamentModal from '../../components/addDepartamentModal';
 import EditDepartamentModal from '../../components/EditDepartamentModal';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const Departments = () => {
   const [departments, setDepartments] = useState([])
@@ -36,7 +38,7 @@ const Departments = () => {
       const data = await response.json();
       setDepartments(data.bolimlar || []);
     } catch (err) {
-      console.error("Error fetching departments:", err);
+      toast.error("Error fetching departments:", err);
     } finally {
       setLoading(false);
     }
@@ -68,6 +70,7 @@ const Departments = () => {
     if (form.image) fd.append("image", form.image);
 
     try {
+
       await fetch(
         `https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar/update/${selectedDept._id}`,
         {
@@ -79,7 +82,7 @@ const Departments = () => {
       setOpenEditModal(false);
       getDepartments();
     } catch (err) {
-      console.error("Update Error:", err);
+      toast.error("Update Error:", err);
     }
   };
 
@@ -117,14 +120,16 @@ const Departments = () => {
 
       if (!response.ok) {
         const errData = await response.json();
-        console.error("Server Error:", errData);
+        toast.error("Server Error:", errData);
         return;
+      } else {
+        toast.success("hujjat  muvaffaqiyatli qoshildi")
       }
 
       setOpenAddModal(false);
       getDepartments();
     } catch (err) {
-      console.error("Create Error:", err);
+      toast.error("Create Error:", err);
     }
   };
   const handleSubmitEdit = async (id) => {
@@ -155,14 +160,16 @@ const Departments = () => {
 
       if (!response.ok) {
         const errData = await response.json();
-        console.error("Server Error:", errData);
+        toast.error("Server Error:", errData);
         return;
+      }else{
+        toast.success("Hujat muvaffaqiyatli tahrirlandi")
       }
 
       setOpenEditModal(false);
       getDepartments(); // yangilangan ro‘yxatni qayta yuklaydi
     } catch (err) {
-      console.error("Update Error:", err);
+      toast.error("Update Error:", err);
     } finally {
       setEditOpen(false)
     }
@@ -186,14 +193,16 @@ const Departments = () => {
 
       if (!response.ok) {
         const errData = await response.json();
-        console.error("Server Error:", errData);
+        toast.error("Server Error:", errData);
         return;
+      }else {
+        toast.success("Hujat muvaffaqiyatli uchirildi")
       }
 
       // 🔹 O‘chirish muvaffaqiyatli bo‘lsa:
       getDepartments(); // jadvalni qayta yuklash
     } catch (err) {
-      console.error("Delete Error:", err);
+      toast.error("Delete Error:", err);
     }
   };
 
@@ -329,6 +338,7 @@ const Departments = () => {
             departmentId={selectedDept?._id}
           />
 
+          <ToastContainer />
 
         </div>
 

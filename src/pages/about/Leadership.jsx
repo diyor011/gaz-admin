@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Plus, Edit2, Trash2 } from "lucide-react";
 import AddLeaderModal from '../../components/addModalLeader';
 import EditLeaderModal from '../../components/EditLeadershipModal'; // Yangi import
+import { ToastContainer, toast } from 'react-toastify';
+;
 
 const Leadership = () => {
   const [loading, setLoading] = useState(false)
@@ -36,13 +38,15 @@ const Leadership = () => {
       const request = await response.json()
 
       if (!response.ok) {
+        toast.error(response.status)
+
         throw new Error(response.status())
       }
       setData(request.leaders)
       setLoading(true)
     }
     catch (err) {
-      console.error(err)
+      toast.error(err)
     }
     finally {
       setLoading(false)
@@ -115,14 +119,18 @@ const Leadership = () => {
       );
 
       if (!response.ok) {
+        toast.error(response.status)
+
         throw new Error(`Server error: ${response.status}`);
+      } else {
+        toast.success("Rahbar muvaffaqiyatli Qoshildi")
       }
 
       await GetLeadership();
       setOpenAddModal(false);
       resetForm();
     } catch (err) {
-      console.error("Error creating leader:", err);
+      toast.error("Error creating leader:", err);
     }
   };
 
@@ -205,7 +213,6 @@ const Leadership = () => {
 
           if (response.ok) {
             success = true;
-            console.log(`✅ Ishladi: ${endpoint.method} ${endpoint.url}`);
             break;
           }
         } catch (e) {
@@ -220,10 +227,10 @@ const Leadership = () => {
       await GetLeadership();
       setOpenEditModal(false);
       resetForm();
-      alert("Rahbar muvaffaqiyatli tahrirlandi!");
+      toast.success("Rahbar muvaffaqiyatli tahrirlandi!");
     } catch (err) {
-      console.error("Error updating leader:", err);
-      alert(`Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`);
+      toast.error("Error updating leader:", err);
+      toast.error(`Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`);
     }
   };
 
@@ -245,14 +252,18 @@ const Leadership = () => {
       );
 
       if (!response.ok) {
+        toast.error(response.status)
+
         const errData = await response.json();
-        console.error("Server Error:", errData);
+        toast.error("Server Error:", errData);
         return;
+      } else {
+        toast.success("Rahbar muvaffaqiyatli ochirildi")
       }
 
       GetLeadership();
     } catch (err) {
-      console.error("Delete Error:", err);
+      toast.error("Delete Error:", err);
     }
   };
 
@@ -388,6 +399,7 @@ const Leadership = () => {
         setForm={setForm}
         onSubmit={handleEditSubmit}
       />
+      <ToastContainer />
     </div>
   )
 }

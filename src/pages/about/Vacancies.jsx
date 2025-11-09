@@ -3,6 +3,7 @@ import { Plus, Edit2, Trash2 } from "lucide-react";
 import EditDocumentModal from '../../components/EditDocumentModal';
 import AddVacansiyaModal from '../../components/AddVacansiyaModal';
 import EditVacansiyaModal from '../../components/EditVacansiyaModal';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Vacancies = () => {
   const [loading, setLoading] = useState(false)
@@ -42,7 +43,7 @@ const Vacancies = () => {
       setLoading(true)
     }
     catch (err) {
-      console.error(err)
+      toast.error(err)
     }
     finally {
       setLoading(false)
@@ -118,19 +119,19 @@ const Vacancies = () => {
 
       const data = await response.json();
       if (!response.ok) {
-        console.error("❌ Server error:", data);
-        alert("Xatolik: " + (data.message || "Server xatosi"));
+        toast.error("Xatolik: " + (data.message || "Server xatosi"));
         return;
+      }else{
+        toast.success("Vacanciya muvaffaqiyatli qoshildi")
       }
 
-      console.log("✅ Vakansiya muvaffaqiyatli yaratildi:", data);
-      alert("✅ Vakansiya muvaffaqiyatli qo‘shildi!");
+      toast.success("✅ Vakansiya muvaffaqiyatli qo‘shildi!");
       await GetDocuments();
       setOpenAddModal(false);
       resetForm();
     } catch (error) {
       console.error("❌ Xatolik:", error);
-      alert("Server bilan bog‘lanishda xatolik yuz berdi!");
+      toast.error("Server bilan bog‘lanishda xatolik yuz berdi!");
     }
   };
 
@@ -150,6 +151,8 @@ const Vacancies = () => {
       );
 
       if (!response.ok) {
+        toast.error(response.status)
+
         throw new Error(`Server error: ${response.status}`);
       }
 
@@ -157,7 +160,7 @@ const Vacancies = () => {
       setOpenAddModal(false);
       resetForm();
     } catch (err) {
-      console.error("Error creating leader:", err);
+      toast.error("Error creating leader:", err);
     }
   };
 
@@ -169,7 +172,6 @@ const Vacancies = () => {
     const dd = String(date.getDate()).padStart(2, "0");
     return `${yyyy}-${mm}-${dd}`;
   };
-  // Edit modal ochish
   const handleEditClick = (document) => {
     setForm({
       titleUz: document.title?.uz || "",
@@ -216,18 +218,17 @@ const Vacancies = () => {
 
       const data = await response.json();
       if (!response.ok) {
-        console.error("❌ Server error:", data);
-        alert("Xatolik: " + (data.message || "Server xatosi"));
+        toast.error("Xatolik: " + (data.message || "Server xatosi"));
         return;
       }
 
-      alert("✅ Vakansiya muvaffaqiyatli tahrirlandi!");
+      toast.success("✅ Vakansiya muvaffaqiyatli tahrirlandi!");
       await GetDocuments();
       setOpenEditModal(false);
       resetForm();
     } catch (err) {
-      console.error(err);
-      alert("Server bilan bog‘lanishda xatolik yuz berdi!");
+      toast.error(err);
+      toast.error("Server bilan bog‘lanishda xatolik yuz berdi!");
     }
   };
 
@@ -252,13 +253,15 @@ const Vacancies = () => {
 
       if (!response.ok) {
         const errData = await response.json();
-        console.error("Server Error:", errData);
+        toast.error("Server Error:", errData);
         return;
+      }else{
+        toast.success("Vacanciya muvaffaqiyatli Ochirildi")
       }
 
       GetDocuments();
     } catch (err) {
-      console.error("Delete Error:", err);
+      toast.error("Delete Error:", err);
     }
   };
 
@@ -369,6 +372,7 @@ const Vacancies = () => {
         setForm={setForm}
         onSubmit={handleEditSubmit}
       />
+      <ToastContainer />
     </div>
   )
 }

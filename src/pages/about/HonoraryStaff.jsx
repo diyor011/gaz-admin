@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Plus, Edit2, Trash2, X, Upload } from "lucide-react";
 import AddVeteranModal from "../../components/AddModalStaff";
 import EditVeteranModal from "../../components/EditModalStaff";
+import { toast, ToastContainer } from "react-toastify";
 
 
 export default function AdminVeteranManagement() {
@@ -90,7 +91,7 @@ export default function AdminVeteranManagement() {
       const data = await response.json();
       setVeterans(data.data || []);
     } catch (err) {
-      console.error("Error fetching veterans:", err);
+      toast.error("Error fetching veterans:", err);
     } finally {
       setLoading(false);
     }
@@ -111,14 +112,17 @@ export default function AdminVeteranManagement() {
       );
 
       if (!response.ok) {
+        toast.error(response.status)
         throw new Error(`Server error: ${response.status}`);
+      }else{
+        toast.success("Faxriy xodim muvaffaqiyatli qoshildi")
       }
 
       await getVeterans();
       setOpenAddModal(false); // modal yopiladi
 
     } catch (err) {
-      console.error("Error creating veteran:", err);
+      toast.error("Error creating veteran:", err);
     }
   };
 
@@ -132,13 +136,14 @@ export default function AdminVeteranManagement() {
       });
 
       if (!res.ok) {
+        toast.error(res.status)
         throw new Error(`Server error: ${res.status}`);
       }
 
       // Удаляем локально из стейта после успеха
       setVeterans((prev) => prev.filter((item) => item._id !== id));
     } catch (error) {
-      console.error("Error deleting veteran:", error);
+      toast.error("Error deleting veteran:", error);
       alert("Удалить не удалось. Проверяем доступы и токен.");
     }
   };
@@ -272,6 +277,7 @@ export default function AdminVeteranManagement() {
           data={selectedVeteran}
           onUpdate={handleUpdate}
         />
+      <ToastContainer />
 
 
 
