@@ -235,13 +235,13 @@ const Vacancies = () => {
 
 
   const deleteDocuments = async (id) => {
-    const isConfirm = window.confirm("Rostan ham bu rahbarni o'chirmoqchimisiz?");
+    const isConfirm = window.confirm("Rostan ham bu Vacansiya o'chirmoqchimisiz?");
     if (!isConfirm) return;
 
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzbekneftegaz-backend-production.up.railway.app/api/normative/delete/${id}`,
+        `https://uzbekneftegaz-backend-production.up.railway.app/api/vacancies/${id}`,
         {
           method: "DELETE",
           headers: {

@@ -293,7 +293,7 @@ const Documents = () => {
                   </td>
                   <td className="whitespace-nowrap">{document.decree?.uz}</td>
 
-                  <td className="px-4 py-4 max-w-xs truncate">
+                  <td className="px-4 py-4 max-w-xs truncate text-center">
                     {document.description?.uz}
                   </td>
                   <td className="px-4 py-4 text-right whitespace-nowrap">
