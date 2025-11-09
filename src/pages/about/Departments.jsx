@@ -31,7 +31,7 @@ const Departments = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://uzbekneftegaz-backend.onrender.com/api/bolimlar"
+        "https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar"
       );
       const data = await response.json();
       setDepartments(data.bolimlar || []);
@@ -69,7 +69,7 @@ const Departments = () => {
 
     try {
       await fetch(
-        `https://uzbekneftegaz-backend.onrender.com/api/bolimlar/update/${selectedDept._id}`,
+        `https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar/update/${selectedDept._id}`,
         {
           method: "PUT",
           body: fd,
@@ -93,7 +93,7 @@ const Departments = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("https://uzbekneftegaz-backend.onrender.com/api/bolimlar", {
+      const response = await fetch("https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -131,7 +131,7 @@ const Departments = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`https://uzbekneftegaz-backend.onrender.com/api/bolimlar/${id}`, {
+      const response = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -175,7 +175,7 @@ const Departments = () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `https://uzbekneftegaz-backend.onrender.com/api/bolimlar/${id}`,
+        `https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar/${id}`,
         {
           method: "DELETE",
           headers: {

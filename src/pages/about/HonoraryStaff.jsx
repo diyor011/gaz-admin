@@ -85,7 +85,7 @@ export default function AdminVeteranManagement() {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://uzbekneftegaz-backend.onrender.com/api/honorary/"
+        "https://uzbekneftegaz-backend-production.up.railway.app/api/honorary/"
       );
       const data = await response.json();
       setVeterans(data.data || []);
@@ -100,7 +100,7 @@ export default function AdminVeteranManagement() {
       const token = localStorage.getItem("token"); // ✅ Yoki redux’dan oling
 
       const response = await fetch(
-        "https://uzbekneftegaz-backend.onrender.com/api/honorary/create",
+        "https://uzbekneftegaz-backend-production.up.railway.app/api/honorary/create",
         {
           method: "POST",
           headers: {
@@ -124,7 +124,7 @@ export default function AdminVeteranManagement() {
 
   const deleteVeteran = async (id) => {
     try {
-      const res = await fetch(`https://uzbekneftegaz-backend.onrender.com/api/honorary/delete/${id}`, {
+      const res = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/api/honorary/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -225,7 +225,7 @@ export default function AdminVeteranManagement() {
                     >
                       <td className="px-6 py-4">
                         <img
-                          src={`https://uzbekneftegaz-backend.onrender.com/uploads/honorary/${v.image}`}
+                          src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/honorary/${v.image}`}
                           alt={v.fullName?.uz}
                           className="w-20 h-20 rounded-lg object-cover shadow"
                         />

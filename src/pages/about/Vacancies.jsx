@@ -32,7 +32,7 @@ const Vacancies = () => {
   const GetDocuments = async () => {
     setLoading(true)
     try {
-      const response = await fetch('https://uzbekneftegaz-backend.onrender.com/api/vacancies')
+      const response = await fetch('https://uzbekneftegaz-backend-production.up.railway.app/api/vacancies')
       const request = await response.json()
 
       if (!response.ok) {
@@ -105,7 +105,7 @@ const Vacancies = () => {
 
     try {
       const response = await fetch(
-        "https://uzbekneftegaz-backend.onrender.com/api/vacancies",
+        "https://uzbekneftegaz-backend-production.up.railway.app/api/vacancies",
         {
           method: "POST",
           headers: {
@@ -139,7 +139,7 @@ const Vacancies = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://uzbekneftegaz-backend.onrender.com/api/vacancies",
+        "https://uzbekneftegaz-backend-production.up.railway.app/api/vacancies",
         {
           method: "POST",
           headers: {
@@ -205,7 +205,7 @@ const Vacancies = () => {
     };
 
     try {
-      const response = await fetch(`https://uzbekneftegaz-backend.onrender.com/api/vacancies/${editingId}`, {
+      const response = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/api/vacancies/${editingId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -241,7 +241,7 @@ const Vacancies = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzbekneftegaz-backend.onrender.com/api/normative/delete/${id}`,
+        `https://uzbekneftegaz-backend-production.up.railway.app/api/normative/delete/${id}`,
         {
           method: "DELETE",
           headers: {

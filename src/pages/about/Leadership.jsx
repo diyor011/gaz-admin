@@ -32,7 +32,7 @@ const Leadership = () => {
   const GetLeadership = async () => {
     try {
       setLoading(true)
-      const response = await fetch('https://uzbekneftegaz-backend.onrender.com/api/leader')
+      const response = await fetch('https://uzbekneftegaz-backend-production.up.railway.app/api/leader')
       const request = await response.json()
 
       if (!response.ok) {
@@ -104,7 +104,7 @@ const Leadership = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://uzbekneftegaz-backend.onrender.com/api/leader/create",
+        "https://uzbekneftegaz-backend-production.up.railway.app/api/leader/create",
         {
           method: "POST",
           headers: {
@@ -185,10 +185,10 @@ const Leadership = () => {
 
       // Turli endpoint variantlarini sinab ko'ramiz
       const endpoints = [
-        { url: `https://uzbekneftegaz-backend.onrender.com/api/leader/${id}`, method: "PUT" },
-        { url: `https://uzbekneftegaz-backend.onrender.com/api/leader/${id}`, method: "PATCH" },
-        { url: `https://uzbekneftegaz-backend.onrender.com/api/leader/update/${id}`, method: "PUT" },
-        { url: `https://uzbekneftegaz-backend.onrender.com/api/leader/edit/${id}`, method: "PUT" },
+        { url: `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/${id}`, method: "PUT" },
+        { url: `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/${id}`, method: "PATCH" },
+        { url: `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/update/${id}`, method: "PUT" },
+        { url: `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/edit/${id}`, method: "PUT" },
       ];
 
       let success = false;
@@ -235,7 +235,7 @@ const Leadership = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzbekneftegaz-backend.onrender.com/api/leader/${id}`,
+        `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -322,7 +322,7 @@ const Leadership = () => {
                 >
                   <td className="px-4 py-2">
                     <img
-                      src={`https://uzbekneftegaz-backend.onrender.com/uploads/leaders/${leader.avatar}`}
+                      src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/leaders/${leader.avatar}`}
                       alt={leader.fullName?.uz}
                       className="w-20 h-20 rounded-lg object-cover shadow"
                     />

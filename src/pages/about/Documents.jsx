@@ -25,7 +25,7 @@ const Documents = () => {
   const GetDocuments = async () => {
     setLoading(true)
     try {
-      const response = await fetch('https://uzbekneftegaz-backend.onrender.com/api/normative/all')
+      const response = await fetch('https://uzbekneftegaz-backend-production.up.railway.app/api/normative/all')
       const request = await response.json()
 
       if (!response.ok) {
@@ -83,7 +83,7 @@ const Documents = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://uzbekneftegaz-backend.onrender.com/api/normative/create",
+        "https://uzbekneftegaz-backend-production.up.railway.app/api/normative/create",
         {
           method: "POST",
           headers: {
@@ -152,7 +152,7 @@ const Documents = () => {
       let success = false;
 
       try {
-        const response = await fetch(`https://uzbekneftegaz-backend.onrender.com/api/normative/update/${id}`, {
+        const response = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/api/normative/update/${id}`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -191,7 +191,7 @@ const Documents = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzbekneftegaz-backend.onrender.com/api/normative/delete/${id}`,
+        `https://uzbekneftegaz-backend-production.up.railway.app/api/normative/delete/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -215,7 +215,7 @@ const Documents = () => {
 
   const handleDownload = async (file) => {
     try {
-      const response = await fetch(`https://uzbekneftegaz-backend.onrender.com/uploads/files/${file}`);
+      const response = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/uploads/files/${file}`);
       if (!response.ok) throw new Error("Файл недоступен");
 
       const blob = await response.blob();

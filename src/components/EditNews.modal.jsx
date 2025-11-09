@@ -54,7 +54,7 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
   const getImagePreview = (img) => {
     if (!img) return null;
     if (typeof img === "string") {
-      return `https://uzbekneftegaz-backend.onrender.com/uploads/news/${img}`;
+      return `https://uzbekneftegaz-backend-production.up.railway.app/uploads/news/${img}`;
     }
     return URL.createObjectURL(img);
   };

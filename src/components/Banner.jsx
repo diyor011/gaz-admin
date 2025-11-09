@@ -21,7 +21,7 @@ export default function AdminBannerManagement() {
     const getBanners = async () => {
         try {
             setLoading(true);
-            const response = await fetch('https://uzbekneftegaz-backend.onrender.com/api/banner');
+            const response = await fetch('https://uzbekneftegaz-backend-production.up.railway.app/api/banner');
             const data = await response.json();
             setBanners(data.banners || []);
         } catch (err) {
@@ -63,7 +63,7 @@ export default function AdminBannerManagement() {
             mediaType: banner.mediaType || 'image'
         });
         setEditingId(banner._id);
-        setPreviewUrl(banner.file ? `https://uzbekneftegaz-backend.onrender.com/uploads/${banner.file}` : '');
+        setPreviewUrl(banner.file ? `https://uzbekneftegaz-backend-production.up.railway.app/uploads/${banner.file}` : '');
         document.getElementById('banner_modal').showModal();
     };
 
@@ -89,64 +89,58 @@ export default function AdminBannerManagement() {
     const handleSubmit = async () => {
         const token = localStorage.getItem("token");
         if (!token) return alert("Avval tizimga kiring!");
-
-        if (!formData.titleUz || !formData.descriptionUz) {
-            alert("Iltimos kamida O'zbek tilida ma'lumot kiriting!");
-            return;
+      
+        if (!formData.titleUz) {
+          alert("Sarlavha (Uz) mavburiy maydon");
+          return;
         }
-
+      
         const data = new FormData();
-
-        // 🔹 Fayl faqat tanlanganda yuboriladi
-        if (formData.file) {
-            data.append("file", formData.file);
-        }
-
-        // 🔹 Backend nested structure kutyapti: title[uz], title[ru], title[oz]
-        data.append("title[uz]", formData.titleUz);
-        data.append("title[ru]", formData.titleRu);
-        data.append("title[oz]", formData.titleOz);
-
-        data.append("description[uz]", formData.descriptionUz);
-        data.append("description[ru]", formData.descriptionRu);
-        data.append("description[oz]", formData.descriptionOz);
-
-        data.append("mediaType", formData.mediaType);
-
+        if (formData.file) data.append("file", formData.file);
+      
+        // 🔹 Backend kutayotgan nomlar bilan
+        data.append("title_uz", formData.titleUz);
+        data.append("title_ru", formData.titleRu);
+        data.append("title_oz", formData.titleOz);
+      
+        data.append("desc_uz", formData.descriptionUz);
+        data.append("desc_ru", formData.descriptionRu);
+        data.append("desc_oz", formData.descriptionOz);
+      
         try {
-            setLoading(true);
-
-            const url = editingId
-                ? `https://uzbekneftegaz-backend.onrender.com/api/banner/update/${editingId}`
-                : "https://uzbekneftegaz-backend.onrender.com/api/banner/upload";
-
-            const method = editingId ? "PUT" : "POST";
-
-            const response = await fetch(url, {
-                method,
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: data,
-            });
-
-            if (response.ok) {
-                await getBanners();
-                document.getElementById("banner_modal").close();
-                setEditingId(null);
-                alert(editingId ? "Banner yangilandi ✅" : "Banner yaratildi ✅");
-            } else {
-                const errText = await response.text();
-                console.error("Server error:", errText);
-                alert("Xatolik yuz berdi!");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Xatolik yuz berdi!");
+          setLoading(true);
+      
+          const url = editingId
+            ? `https://uzbekneftegaz-backend-production.up.railway.app/api/banner/update/${editingId}`
+            : "https://uzbekneftegaz-backend-production.up.railway.app/api/banner/upload";
+      
+          const method = editingId ? "PUT" : "POST";
+      
+          const response = await fetch(url, {
+            method,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: data,
+          });
+      
+          if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(errText);
+          }
+      
+          await getBanners();
+          document.getElementById("banner_modal").close();
+          setEditingId(null);
+          alert(editingId ? "Banner yangilandi ✅" : "Banner yaratildi ✅");
+        } catch (err) {
+          console.error("Server error:", err.message);
+          alert(err.message);
         } finally {
-            setLoading(false);
+          setLoading(false);
         }
-    };
+      };
+      
 
 
     // 🔹 Banner o‘chirish
@@ -158,7 +152,7 @@ export default function AdminBannerManagement() {
 
         try {
             const response = await fetch(
-                `https://uzbekneftegaz-backend.onrender.com/api/banner/delete/${id}`,
+                `https://uzbekneftegaz-backend-production.up.railway.app/api/banner/delete/${id}`,
                 {
                     method: "DELETE",
                     headers: {
@@ -256,13 +250,13 @@ export default function AdminBannerManagement() {
                                                 <div className="w-24 h-16 rounded-lg overflow-hidden shadow-md">
                                                     {banner.mediaType === 'image' ? (
                                                         <img
-                                                            src={`https://uzbekneftegaz-backend.onrender.com/uploads/banners/${banner.file}`}
+                                                            src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/banners/${banner.file}`}
                                                             alt={banner.title?.['uz']}
                                                             className="w-full h-full object-cover"
                                                         />
                                                     ) : (
                                                         <video
-                                                            src={`http://localhost:8000/uploads/${banner.file}`}
+                                                            src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/banners${banner.file}`}
                                                             muted
                                                             loop
                                                             autoPlay

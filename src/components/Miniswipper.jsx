@@ -15,7 +15,7 @@ export default function NewsImageSlider({ news }) {
         {news.images?.map((img, index) => (
           <SwiperSlide key={index}>
             <img
-              src={`https://uzbekneftegaz-backend.onrender.com/uploads/news/${img}`}
+              src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/news/${img}`}
               alt={news.title?.uz || "News image"}
               className="w-full h-full object-cover"
             />

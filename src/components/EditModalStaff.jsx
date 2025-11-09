@@ -100,7 +100,7 @@ export default function EditVeteranModal({ open, onClose, data, onUpdate }) {
                 fd.append("image", form.image);
 
                 const res = await fetch(
-                    `https://uzbekneftegaz-backend.onrender.com/api/honorary/update/${form._id}`,
+                    `https://uzbekneftegaz-backend-production.up.railway.app/api/honorary/update/${form._id}`,
                     {
                         method: "PUT",
                         headers: {
@@ -137,7 +137,7 @@ export default function EditVeteranModal({ open, onClose, data, onUpdate }) {
                 };
 
                 const res = await fetch(
-                    `https://uzbekneftegaz-backend.onrender.com/api/honorary/update/${form._id}`,
+                    `https://uzbekneftegaz-backend-production.up.railway.app/api/honorary/update/${form._id}`,
                     {
                         method: "PUT",
                         headers: {
