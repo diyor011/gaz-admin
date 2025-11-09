@@ -230,7 +230,7 @@ export default function AdminVeteranManagement() {
                     >
                       <td className="px-6 py-4">
                         <img
-                          src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/honorary/${v.image}`}
+                          src={`${v.image}`}
                           alt={v.fullName?.uz}
                           className="w-20 h-20 rounded-lg object-cover shadow"
                         />

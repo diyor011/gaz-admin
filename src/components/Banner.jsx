@@ -63,7 +63,7 @@ export default function AdminBannerManagement() {
             mediaType: banner.mediaType || 'image'
         });
         setEditingId(banner._id);
-        setPreviewUrl(banner.file ? `https://uzbekneftegaz-backend-production.up.railway.app/uploads/${banner.file}` : '');
+        setPreviewUrl(banner.file ? `${banner.file}` : '');
         document.getElementById('banner_modal').showModal();
     };
 
@@ -250,13 +250,13 @@ export default function AdminBannerManagement() {
                                                 <div className="w-24 h-16 rounded-lg overflow-hidden shadow-md">
                                                     {banner.mediaType === 'image' ? (
                                                         <img
-                                                            src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/banners/${banner.file}`}
+                                                            src={`${banner.file}`}
                                                             alt={banner.title?.['uz']}
                                                             className="w-full h-full object-cover"
                                                         />
                                                     ) : (
                                                         <video
-                                                            src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/banners${banner.file}`}
+                                                            src={`${banner.file}`}
                                                             muted
                                                             loop
                                                             autoPlay

@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 
-export default function NewsImageSlider({ news }) {
+export default function   NewsImageSlider({ news }) {
   return (
     <div className="w-20 h-20 rounded-lg overflow-hidden shadow">
       <Swiper
@@ -15,7 +15,7 @@ export default function NewsImageSlider({ news }) {
         {news.images?.map((img, index) => (
           <SwiperSlide key={index}>
             <img
-              src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/news/${img}`}
+              src={`${img}`}
               alt={news.title?.uz || "News image"}
               className="w-full h-full object-cover"
             />

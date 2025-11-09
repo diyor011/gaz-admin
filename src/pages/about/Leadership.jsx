@@ -333,7 +333,7 @@ const Leadership = () => {
                 >
                   <td className="px-4 py-2">
                     <img
-                      src={`https://uzbekneftegaz-backend-production.up.railway.app/uploads/leaders/${leader.avatar}`}
+                      src={`${leader.avatar}`}
                       alt={leader.fullName?.uz}
                       className="w-20 h-20 rounded-lg object-cover shadow"
                     />
