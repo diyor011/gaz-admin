@@ -14,7 +14,6 @@ const Sidebar = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
           <div className='py-2 hover:text-info '>
-            <Link className='pl-4' to={'/banner'}>Banner</Link>
 
           </div>
           <MenuList />

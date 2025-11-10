@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <PrivateRoute element={<App />} />,
     children: [
-      { path: "banner", element: <Banner />, index: true },
+      {  index: true, element: <Banner />, },
       { path: "about/leadership", element: <Leadership /> },
       { path: "about/departments", element: <Departments /> },
       { path: "about/honorary-staff", element: <HonoraryStaff /> },
