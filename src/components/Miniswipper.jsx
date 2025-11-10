@@ -15,7 +15,7 @@ export default function   NewsImageSlider({ news }) {
         {news.images?.map((img, index) => (
           <SwiperSlide key={index}>
             <img
-              src={`${img}`}
+              src={`${img.url}`}
               alt={news.title?.uz || "News image"}
               className="w-full h-full object-cover"
             />

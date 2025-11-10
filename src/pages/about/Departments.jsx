@@ -33,7 +33,7 @@ const Departments = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar"
+        "https://uzneftegaz-backend-production.up.railway.app/api/bolimlar"
       );
       const data = await response.json();
       setDepartments(data.bolimlar || []);
@@ -72,7 +72,7 @@ const Departments = () => {
     try {
 
       await fetch(
-        `https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar/update/${selectedDept._id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/bolimlar/update/${selectedDept._id}`,
         {
           method: "PUT",
           body: fd,
@@ -96,7 +96,7 @@ const Departments = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar", {
+      const response = await fetch("https://uzneftegaz-backend-production.up.railway.app/api/bolimlar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ const Departments = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar/${id}`, {
+      const response = await fetch(`https://uzneftegaz-backend-production.up.railway.app/api/bolimlar/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -162,7 +162,7 @@ const Departments = () => {
         const errData = await response.json();
         toast.error("Server Error:", errData);
         return;
-      }else{
+      } else {
         toast.success("Hujat muvaffaqiyatli tahrirlandi")
       }
 
@@ -182,7 +182,7 @@ const Departments = () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `https://uzbekneftegaz-backend-production.up.railway.app/api/bolimlar/${id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/bolimlar/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -195,7 +195,7 @@ const Departments = () => {
         const errData = await response.json();
         toast.error("Server Error:", errData);
         return;
-      }else {
+      } else {
         toast.success("Hujat muvaffaqiyatli uchirildi")
       }
 

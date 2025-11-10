@@ -34,7 +34,7 @@ const Plans = () => {
 
   const GetPlans = async () => {
     try {
-      const response = await fetch('https://uzbekneftegaz-backend-production.up.railway.app/api/plans-reports')
+      const response = await fetch('https://uzneftegaz-backend-production.up.railway.app/api/plans-reports')
       const request = await response.json()
 
       if (!response.ok) {
@@ -97,7 +97,7 @@ const Plans = () => {
 
     try {
       const response = await fetch(
-        "https://uzbekneftegaz-backend-production.up.railway.app/api/plans-reports",
+        "https://uzneftegaz-backend-production.up.railway.app/api/plans-reports",
         {
           method: "POST",
           headers: {
@@ -173,7 +173,7 @@ const Plans = () => {
     };
 
     try {
-      const response = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/api/vacancies/${editingId}`, {
+      const response = await fetch(`https://uzneftegaz-backend-production.up.railway.app/api/vacancies/${editingId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -209,7 +209,7 @@ const Plans = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzbekneftegaz-backend-production.up.railway.app/api/normative/delete/${id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/normative/delete/${id}`,
         {
           method: "DELETE",
           headers: {

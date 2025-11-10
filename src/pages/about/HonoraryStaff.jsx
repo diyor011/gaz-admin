@@ -86,7 +86,7 @@ export default function AdminVeteranManagement() {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://uzbekneftegaz-backend-production.up.railway.app/api/honorary/"
+        "https://uzneftegaz-backend-production.up.railway.app/api/honorary/"
       );
       const data = await response.json();
       setVeterans(data.data || []);
@@ -101,7 +101,7 @@ export default function AdminVeteranManagement() {
       const token = localStorage.getItem("token"); // ✅ Yoki redux’dan oling
 
       const response = await fetch(
-        "https://uzbekneftegaz-backend-production.up.railway.app/api/honorary/create",
+        "https://uzneftegaz-backend-production.up.railway.app/api/honorary/create",
         {
           method: "POST",
           headers: {
@@ -128,7 +128,7 @@ export default function AdminVeteranManagement() {
 
   const deleteVeteran = async (id) => {
     try {
-      const res = await fetch(`https://uzbekneftegaz-backend-production.up.railway.app/api/honorary/delete/${id}`, {
+      const res = await fetch(`https://uzneftegaz-backend-production.up.railway.app/api/honorary/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`

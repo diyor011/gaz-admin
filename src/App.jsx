@@ -9,9 +9,9 @@ export default function App() {
       <Navbar />
       <div className="flex gap-8">
         <Sidebar />
-    <div className="pt-4 w-[80%]">
-            <Outlet />
-    </div>
+        <div className="pt-4 w-[80%]">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

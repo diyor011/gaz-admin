@@ -34,7 +34,7 @@ const Leadership = () => {
   const GetLeadership = async () => {
     try {
       setLoading(true)
-      const response = await fetch('https://uzbekneftegaz-backend-production.up.railway.app/api/leader')
+      const response = await fetch('https://uzneftegaz-backend-production.up.railway.app/api/leader')
       const request = await response.json()
 
       if (!response.ok) {
@@ -108,7 +108,7 @@ const Leadership = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://uzbekneftegaz-backend-production.up.railway.app/api/leader/create",
+        "https://uzneftegaz-backend-production.up.railway.app/api/leader/create",
         {
           method: "POST",
           headers: {
@@ -193,10 +193,10 @@ const Leadership = () => {
 
       // Turli endpoint variantlarini sinab ko'ramiz
       const endpoints = [
-        { url: `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/${id}`, method: "PUT" },
-        { url: `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/${id}`, method: "PATCH" },
-        { url: `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/update/${id}`, method: "PUT" },
-        { url: `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/edit/${id}`, method: "PUT" },
+        { url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/${id}`, method: "PUT" },
+        { url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/${id}`, method: "PATCH" },
+        { url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/update/${id}`, method: "PUT" },
+        { url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/edit/${id}`, method: "PUT" },
       ];
 
       let success = false;
@@ -242,7 +242,7 @@ const Leadership = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzbekneftegaz-backend-production.up.railway.app/api/leader/${id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/leader/${id}`,
         {
           method: "DELETE",
           headers: {

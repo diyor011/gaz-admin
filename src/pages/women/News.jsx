@@ -26,7 +26,7 @@ const News = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://uzbekneftegaz-backend-production.up.railway.app/api/localNews"
+        "https://uzneftegaz-backend-production.up.railway.app/api/localNews"
       );
       const request = await response.json();
 
@@ -76,7 +76,7 @@ const News = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://uzbekneftegaz-backend-production.up.railway.app/api/localNews",
+        "https://uzneftegaz-backend-production.up.railway.app/api/localNews",
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
@@ -128,7 +128,7 @@ const News = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzbekneftegaz-backend-production.up.railway.app/api/localNews/${id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/localNews/${id}`,
         {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}` },
@@ -159,7 +159,7 @@ const News = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzbekneftegaz-backend-production.up.railway.app/api/localNews/${id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/localNews/${id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

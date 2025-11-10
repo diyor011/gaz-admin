@@ -22,7 +22,7 @@ export default function AdminBannerManagement() {
     const getBanners = async () => {
         try {
             setLoading(true);
-            const response = await fetch('https://uzbekneftegaz-backend-production.up.railway.app/api/banner');
+            const response = await fetch('https://uzneftegaz-backend-production.up.railway.app/api/banner');
             const data = await response.json();
             setBanners(data.banners || []);
         } catch (err) {
@@ -90,58 +90,58 @@ export default function AdminBannerManagement() {
     const handleSubmit = async () => {
         const token = localStorage.getItem("token");
         if (!token) return toast.error("Avval tizimga kiring!");
-      
+
         if (!formData.titleUz) {
-          toast.error("Sarlavha (Uz) mavburiy maydon");
-          return;
+            toast.error("Sarlavha (Uz) mavburiy maydon");
+            return;
         }
-      
+
         const data = new FormData();
         if (formData.file) data.append("file", formData.file);
-      
+
         // 🔹 Backend kutayotgan nomlar bilan
         data.append("title_uz", formData.titleUz);
         data.append("title_ru", formData.titleRu);
         data.append("title_oz", formData.titleOz);
-      
+
         data.append("desc_uz", formData.descriptionUz);
         data.append("desc_ru", formData.descriptionRu);
         data.append("desc_oz", formData.descriptionOz);
-      
+
         try {
-          setLoading(true);
-      
-          const url = editingId
-            ? `https://uzbekneftegaz-backend-production.up.railway.app/api/banner/update/${editingId}`
-            : "https://uzbekneftegaz-backend-production.up.railway.app/api/banner/upload";
-      
-          const method = editingId ? "PUT" : "POST";
-      
-          const response = await fetch(url, {
-            method,
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            body: data,
-          });
-      
-          if (!response.ok) {
-            const errText = await response.text();
-            throw new Error(errText);
-          }
-      
-          await getBanners();
-          document.getElementById("banner_modal").close();
-          setEditingId(null);
-          toast.success(editingId ? "Banner yangilandi ✅" : "Banner yaratildi ✅");
+            setLoading(true);
+
+            const url = editingId
+                ? `https://uzneftegaz-backend-production.up.railway.app/api/banner/update/${editingId}`
+                : "https://uzneftegaz-backend-production.up.railway.app/api/banner/upload";
+
+            const method = editingId ? "PUT" : "POST";
+
+            const response = await fetch(url, {
+                method,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: data,
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(errText);
+            }
+
+            await getBanners();
+            document.getElementById("banner_modal").close();
+            setEditingId(null);
+            toast.success(editingId ? "Banner yangilandi ✅" : "Banner yaratildi ✅");
         } catch (err) {
-          console.error("Server error:", err.message);
-          toast.error(err.message);
+            console.error("Server error:", err.message);
+            toast.error(err.message);
         } finally {
-          setLoading(false);
+            setLoading(false);
         }
-      };
-      
+    };
+
 
 
     // 🔹 Banner o‘chirish
@@ -153,7 +153,7 @@ export default function AdminBannerManagement() {
 
         try {
             const response = await fetch(
-                `https://uzbekneftegaz-backend-production.up.railway.app/api/banner/delete/${id}`,
+                `https://uzneftegaz-backend-production.up.railway.app/api/banner/delete/${id}`,
                 {
                     method: "DELETE",
                     headers: {
