@@ -53,10 +53,24 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
 
   const getImagePreview = (img) => {
     if (!img) return null;
-    if (typeof img === "string") {
-      return `${img}`;
+
+    // Agar rasm obyekt bo‘lib, ichida url bo‘lsa
+    if (typeof img === "object" && img.url) {
+      return img.url;
     }
-    return URL.createObjectURL(img);
+
+    // Agar rasm string bo‘lsa (masalan, serverdan URL)
+    if (typeof img === "string") {
+      return img;
+    }
+
+    // Agar File bo‘lsa (yangi yuklangan)
+    if (img instanceof File) {
+      return URL.createObjectURL(img);
+    }
+
+    // Agar hech biri bo‘lmasa, null qaytaramiz
+    return null;
   };
 
   const handleSubmit = () => {

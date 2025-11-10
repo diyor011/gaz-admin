@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Plus, Edit2, Trash2, File } from "lucide-react";
 import AddDocumentModal from '../../components/AddDocumetModal';
 import EditDocumentModal from '../../components/EditDocumentModal';
+import { toast } from 'react-toastify';
 
 const Documents = () => {
   const [loading, setLoading] = useState(false)
@@ -211,11 +212,17 @@ const Documents = () => {
     }
   };
 
+  console.log(data);
+
 
   const handleDownload = async (file) => {
     try {
       const response = await fetch(`https://uzneftegaz-backend-production.up.railway.app/uploads/files/${file}`);
-      if (!response.ok) throw new Error("Файл недоступен");
+      if (!response.ok) {
+        toast.error(response.status)
+
+        throw new Error("Файл недоступен");
+      }
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -227,7 +234,7 @@ const Documents = () => {
 
       window.URL.revokeObjectURL(url);
     } catch (err) {
-      console.log("Download failed:", err);
+      toast.error("Download failed:", err);
     }
   };
 

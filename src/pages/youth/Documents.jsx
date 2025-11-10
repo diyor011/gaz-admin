@@ -24,7 +24,7 @@ const Documents = () => {
 
   const GetDocuments = async () => {
     try {
-      const response = await fetch('https://uzneftegaz-backend-production.up.railway.app/yoshlarSiyosati')
+      const response = await fetch('https://uzneftegaz-backend-production.up.railway.app/api/yoshlarSiyosati')
       const request = await response.json()
 
       if (!response.ok) {
@@ -82,7 +82,7 @@ const Documents = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://uzneftegaz-backend-production.up.railway.app/yoshlarSiyosati",
+        "https://uzneftegaz-backend-production.up.railway.app/api/yoshlarSiyosati",
         {
           method: "POST",
           headers: {
@@ -151,7 +151,7 @@ const Documents = () => {
       let success = false;
 
       try {
-        const response = await fetch(`https://uzneftegaz-backend-production.up.railway.app/yoshlarSiyosati/${id}`, {
+        const response = await fetch(`https://uzneftegaz-backend-production.up.railway.app/api/yoshlarSiyosati/${id}`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -190,7 +190,7 @@ const Documents = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzneftegaz-backend-production.up.railway.app/yoshlarSiyosati/${id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/yoshlarSiyosati/${id}`,
         {
           method: "DELETE",
           headers: {
