@@ -55,6 +55,7 @@ const News = () => {
   // ➕ Yangilik qo'shish
   const handleSubmit = () => {
     const fd = new FormData();
+
     fd.append("title_uz", form.titleUz);
     fd.append("title_ru", form.titleRu);
     fd.append("title_oz", form.titleOz);
@@ -62,9 +63,10 @@ const News = () => {
     fd.append("desc_ru", form.descriptionRu);
     fd.append("desc_oz", form.descriptionOz);
 
-    if (form.images?.length > 0) {
-      form.images.forEach((img) => {
-        if (img) fd.append("images", img);
+    // 🔥 Backend mediaType emas, media kutmoqda
+    if (form.mediaType?.length > 0) {
+      form.mediaType.forEach((img) => {
+        if (img) fd.append("media", img);
       });
     }
 
@@ -185,7 +187,9 @@ const News = () => {
         {/* Header */}
         <div className="bg-base-100 rounded-xl shadow-sm p-6 mb-6">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-base-content">Yangiliklar</h1>
+            <h1 className="text-3xl font-bold text-base-content">
+              Yangiliklar
+            </h1>
             <button
               onClick={() => {
                 resetForm();

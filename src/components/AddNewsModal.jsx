@@ -13,20 +13,21 @@ export default function AddNewsModal({
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
+  console.log(form);
 
   const handleImageChange = (e, index) => {
     const files = e.target.files[0];
     setForm((prev) => {
-      const updatedImages = [...(prev.images || [])];
+      const updatedImages = [...(prev.mediaType || [])];
       updatedImages[index] = files;
-      return { ...prev, images: updatedImages };
+      return { ...prev, mediaType: updatedImages };
     });
   };
 
   const handleAddImageInput = () => {
     setForm((prev) => ({
       ...prev,
-      images: [...(prev.images || []), null],
+      mediaType: [...(prev.mediaType || []), null],
     }));
   };
 
@@ -135,7 +136,7 @@ export default function AddNewsModal({
             </div>
 
             <div className="space-y-3">
-              {(form.images || [null]).map((img, index) => (
+              {(form.mediaType || [null]).map((img, index) => (
                 <div key={index} className="relative">
                   <input
                     type="file"

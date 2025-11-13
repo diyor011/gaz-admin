@@ -18,7 +18,7 @@ const News = () => {
     descriptionUz: "",
     descriptionRu: "",
     descriptionOz: "",
-    images: [],
+    mediaType: [],
   });
 
   // 📥 Yangiliklarni olish
@@ -48,13 +48,14 @@ const News = () => {
       descriptionUz: "",
       descriptionRu: "",
       descriptionOz: "",
-      images: [],
+      mediaType: [],
     });
   };
 
   // ➕ Yangilik qo'shish
   const handleSubmit = () => {
     const fd = new FormData();
+
     fd.append("title_uz", form.titleUz);
     fd.append("title_ru", form.titleRu);
     fd.append("title_oz", form.titleOz);
@@ -62,9 +63,10 @@ const News = () => {
     fd.append("desc_ru", form.descriptionRu);
     fd.append("desc_oz", form.descriptionOz);
 
-    if (form.images?.length > 0) {
-      form.images.forEach((img) => {
-        if (img) fd.append("images", img);
+    // 🔥 Backend mediaType emas, media kutmoqda
+    if (form.mediaType?.length > 0) {
+      form.mediaType.forEach((img) => {
+        if (img) fd.append("media", img);
       });
     }
 
@@ -84,15 +86,20 @@ const News = () => {
         }
       );
 
-      if (!response.ok) throw new Error(`Xato: ${response.status}`);
+      if (!response.ok) {
+        const err = await response.json();
+        console.error("Serverdan xato:", err);
+        alert(`❌ Xatolik: ${err.message || "Yangilikni yaratib bo‘lmadi"}`);
+        return;
+      }
 
       await GetNews();
       setOpenAddModal(false);
       resetForm();
-      alert("✅ Yangilik muvaffaqiyatli qo'shildi!");
+      alert("✅ Yangilik muvaffaqiyatli qo‘shildi!");
     } catch (err) {
       console.error("Create news error:", err);
-      alert("Xatolik: Yangilikni yaratib bo'lmadi!");
+      alert("Server bilan bog‘lanishda xatolik!");
     }
   };
 
@@ -112,10 +119,10 @@ const News = () => {
     fd.append("desc_ru", editedForm.descriptionRu);
     fd.append("desc_oz", editedForm.descriptionOz);
 
-    if (editedForm.images?.length > 0) {
-      editedForm.images.forEach((img) => {
+    if (editedForm.mediaType?.length > 0) {
+      editedForm.mediaType.forEach((img) => {
         if (img && typeof img !== "string") {
-          fd.append("images", img);
+          fd.append("mediaType", img);
         }
       });
     }
@@ -185,7 +192,9 @@ const News = () => {
         {/* Header */}
         <div className="bg-base-100 rounded-xl shadow-sm p-6 mb-6">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-base-content">Yangiliklar</h1>
+            <h1 className="text-3xl font-bold text-base-content">
+              Yangiliklar
+            </h1>
             <button
               onClick={() => {
                 resetForm();

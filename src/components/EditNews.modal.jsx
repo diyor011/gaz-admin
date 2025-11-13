@@ -9,7 +9,7 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
     descriptionUz: "",
     descriptionRu: "",
     descriptionOz: "",
-    images: [],
+    mediaType: [],
   });
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
         descriptionUz: newsData.description?.uz || "",
         descriptionRu: newsData.description?.ru || "",
         descriptionOz: newsData.description?.oz || "",
-        images: newsData.images || [],
+        mediaType: newsData.mediaType || newsData.images || [],
       });
     }
   }, [open, newsData]);
@@ -36,40 +36,25 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
   const handleImageChange = (e, index) => {
     const file = e.target.files[0];
     if (!file) return;
-
     setLocalForm((prev) => {
-      const updated = [...(prev.images || [])];
+      const updated = [...(prev.mediaType || [])];
       updated[index] = file;
-      return { ...prev, images: updated };
+      return { ...prev, mediaType: updated };
     });
   };
 
   const handleAddImageInput = () => {
     setLocalForm((prev) => ({
       ...prev,
-      images: [...(prev.images || []), null],
+      mediaType: [...(prev.mediaType || []), null],
     }));
   };
 
   const getImagePreview = (img) => {
     if (!img) return null;
-
-    // Agar rasm obyekt bo‘lib, ichida url bo‘lsa
-    if (typeof img === "object" && img.url) {
-      return img.url;
-    }
-
-    // Agar rasm string bo‘lsa (masalan, serverdan URL)
-    if (typeof img === "string") {
-      return img;
-    }
-
-    // Agar File bo‘lsa (yangi yuklangan)
-    if (img instanceof File) {
-      return URL.createObjectURL(img);
-    }
-
-    // Agar hech biri bo‘lmasa, null qaytaramiz
+    if (typeof img === "object" && img.url) return img.url;
+    if (typeof img === "string") return img;
+    if (img instanceof File) return URL.createObjectURL(img);
     return null;
   };
 
@@ -109,27 +94,16 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
               </h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500"
-                placeholder="Yangilik nomi (UZ)"
-                name="titleUz"
-                value={localForm.titleUz}
-                onChange={handleChange}
-              />
-              <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500"
-                placeholder="Yangilik nomi (RU)"
-                name="titleRu"
-                value={localForm.titleRu}
-                onChange={handleChange}
-              />
-              <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500"
-                placeholder="Yangilik nomi (OZ)"
-                name="titleOz"
-                value={localForm.titleOz}
-                onChange={handleChange}
-              />
+              {["Uz", "Ru", "Oz"].map((lang) => (
+                <input
+                  key={lang}
+                  className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500"
+                  placeholder={`Yangilik nomi (${lang})`}
+                  name={`title${lang}`}
+                  value={localForm[`title${lang}`]}
+                  onChange={handleChange}
+                />
+              ))}
             </div>
           </div>
 
@@ -142,30 +116,17 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
               </h3>
             </div>
             <div className="space-y-3">
-              <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg"
-                placeholder="Tavsif (UZ)"
-                name="descriptionUz"
-                value={localForm.descriptionUz}
-                onChange={handleChange}
-                rows="3"
-              ></textarea>
-              <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg"
-                placeholder="Описание (RU)"
-                name="descriptionRu"
-                value={localForm.descriptionRu}
-                onChange={handleChange}
-                rows="3"
-              ></textarea>
-              <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg"
-                placeholder="Description (OZ)"
-                name="descriptionOz"
-                value={localForm.descriptionOz}
-                onChange={handleChange}
-                rows="3"
-              ></textarea>
+              {["Uz", "Ru", "Oz"].map((lang) => (
+                <textarea
+                  key={lang}
+                  className="w-full px-4 py-3 border-2 border-base-200 rounded-lg"
+                  placeholder={`Tavsif (${lang})`}
+                  name={`description${lang}`}
+                  value={localForm[`description${lang}`]}
+                  onChange={handleChange}
+                  rows="3"
+                ></textarea>
+              ))}
             </div>
           </div>
 
@@ -179,7 +140,7 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
             </div>
 
             <div className="space-y-4">
-              {(localForm.images || []).map((img, index) => (
+              {(localForm.mediaType || []).map((img, index) => (
                 <div key={index}>
                   {getImagePreview(img) && (
                     <img
@@ -190,7 +151,7 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
                   )}
                   <input
                     type="file"
-                    accept="image/* ,video/*"
+                    accept="image/*,video/*"
                     id={`image-${index}`}
                     className="hidden"
                     onChange={(e) => handleImageChange(e, index)}
