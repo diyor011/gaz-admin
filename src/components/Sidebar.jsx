@@ -13,8 +13,10 @@ const Sidebar = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-          <div className='py-2 hover:text-info '>
-
+          <div className='p-3 hover:text-info '>
+              <Link>
+                Banner
+              </Link>
           </div>
           <MenuList />
         </div>

@@ -3,7 +3,9 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 
-export default function   NewsImageSlider({ news }) {
+export default function NewsImageSlider({ news }) {
+  console.log(news);
+
   return (
     <div className="w-20 h-20 rounded-lg overflow-hidden shadow">
       <Swiper
@@ -12,13 +14,21 @@ export default function   NewsImageSlider({ news }) {
         loop={true}
         className="w-full h-full"
       >
-        {news.images?.map((img, index) => (
+        {news.mediaType?.map((img, index) => (
           <SwiperSlide key={index}>
-            <img
-              src={`${img.url}`}
-              alt={news.title?.uz || "News image"}
-              className="w-full h-full object-cover"
-            />
+            {img.type === "video" ? (
+              <video
+                src={img.url}
+                 autoPlay muted 
+                className="w-full h-full rounded-lg object-cover"
+              />
+            ) : (
+              <img
+                src={img.url}
+                alt={``}
+                className="w-full h-full rounded-lg object-cover"
+              />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>

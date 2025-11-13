@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { LogOut, Sun, Moon } from "lucide-react";
+import { LogOut, Sun, Moon,  } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/authSlice";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,9 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm shadow-info px-8">
       <div className="flex-1">
-        <a>
+        <Link to={'/'}>
           <img className="w-20 h-20 py-2" src="logo.png" alt="logo" />
-        </a>
+        </Link>
       </div>
 
       <div className="flex items-center gap-2">

@@ -1,6 +1,12 @@
 import { X, User, FileText, Image, Plus } from "lucide-react";
 
-export default function AddNewsModal({ open, onClose, onSubmit, form, setForm }) {
+export default function AddNewsModal({
+  open,
+  onClose,
+  onSubmit,
+  form,
+  setForm,
+}) {
   if (!open) return null;
 
   const handleChange = (e) => {
@@ -33,13 +39,18 @@ export default function AddNewsModal({ open, onClose, onSubmit, form, setForm })
             <div className="w-10 h-10 rounded-lg bg-base-100/20 backdrop-blur-sm flex items-center justify-center">
               <User className="text-base-100" size={22} />
             </div>
-            <h2 className="text-2xl font-bold text-base-100">Yangilik qoshish</h2>
+            <h2 className="text-2xl font-bold text-base-100">
+              Yangilik qoshish
+            </h2>
           </div>
           <button
             onClick={onClose}
             className="w-9 h-9 rounded-lg bg-base-100/20 backdrop-blur-sm hover:bg-base-100/30 transition-all duration-200 flex items-center justify-center group"
           >
-            <X className="text-base-100 group-hover:rotate-90 transition-transform duration-200" size={20} />
+            <X
+              className="text-base-100 group-hover:rotate-90 transition-transform duration-200"
+              size={20}
+            />
           </button>
         </div>
 
@@ -49,7 +60,9 @@ export default function AddNewsModal({ open, onClose, onSubmit, form, setForm })
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <User size={18} className="text-info" />
-              <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Yangilik nomi</h3>
+              <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">
+                Yangilik nomi
+              </h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
@@ -80,7 +93,9 @@ export default function AddNewsModal({ open, onClose, onSubmit, form, setForm })
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <FileText size={18} className="text-teal-600" />
-              <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Tavsif</h3>
+              <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">
+                Tavsif
+              </h3>
             </div>
             <div className="space-y-3">
               <textarea
@@ -114,7 +129,9 @@ export default function AddNewsModal({ open, onClose, onSubmit, form, setForm })
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <Image size={18} className="text-error" />
-              <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Rasm Yuklash</h3>
+              <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">
+                Rasm Yuklash
+              </h3>
             </div>
 
             <div className="space-y-3">
@@ -122,7 +139,7 @@ export default function AddNewsModal({ open, onClose, onSubmit, form, setForm })
                 <div key={index} className="relative">
                   <input
                     type="file"
-                    accept="image/*"
+                    accept="image/* ,video/*"
                     className="hidden"
                     id={`image-upload-${index}`}
                     onChange={(e) => handleImageChange(e, index)}
@@ -131,7 +148,10 @@ export default function AddNewsModal({ open, onClose, onSubmit, form, setForm })
                     htmlFor={`image-upload-${index}`}
                     className="flex items-center justify-center gap-3 px-4 py-4 border-2 border-dashed border-base-300 rounded-lg hover:border-error hover:bg-base-200 transition-all duration-200 cursor-pointer group"
                   >
-                    <Image size={20} className="text-base-300 group-hover:text-error transition-colors" />
+                    <Image
+                      size={20}
+                      className="text-base-300 group-hover:text-error transition-colors"
+                    />
                     <span className="text-base-300 group-hover:text-error font-medium">
                       {img ? img.name : "Rasm tanlash uchun bosing"}
                     </span>

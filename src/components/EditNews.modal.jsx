@@ -86,7 +86,9 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
             <div className="w-10 h-10 rounded-lg bg-base-100/20 flex items-center justify-center">
               <User className="text-base-100" size={22} />
             </div>
-            <h2 className="text-2xl font-bold text-base-100">Yangilikni tahrirlash</h2>
+            <h2 className="text-2xl font-bold text-base-100">
+              Yangilikni tahrirlash
+            </h2>
           </div>
           <button
             onClick={onClose}
@@ -102,7 +104,9 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <User size={18} className="text-info" />
-              <h3 className="text-sm font-semibold uppercase tracking-wide">Yangilik nomi</h3>
+              <h3 className="text-sm font-semibold uppercase tracking-wide">
+                Yangilik nomi
+              </h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
@@ -133,7 +137,9 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <FileText size={18} className="text-teal-600" />
-              <h3 className="text-sm font-semibold uppercase tracking-wide">Tavsif</h3>
+              <h3 className="text-sm font-semibold uppercase tracking-wide">
+                Tavsif
+              </h3>
             </div>
             <div className="space-y-3">
               <textarea
@@ -167,7 +173,9 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <Image size={18} className="text-error" />
-              <h3 className="text-sm font-semibold uppercase tracking-wide">Rasmlar</h3>
+              <h3 className="text-sm font-semibold uppercase tracking-wide">
+                Rasmlar
+              </h3>
             </div>
 
             <div className="space-y-4">
@@ -182,7 +190,7 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
                   )}
                   <input
                     type="file"
-                    accept="image/*"
+                    accept="image/* ,video/*"
                     id={`image-${index}`}
                     className="hidden"
                     onChange={(e) => handleImageChange(e, index)}
@@ -193,7 +201,9 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
                   >
                     <Image size={20} className="text-base-300" />
                     <span className="text-base-300 font-medium">
-                      {typeof img === "string" ? img : img?.name || "Rasmni tanlang"}
+                      {typeof img === "string"
+                        ? img
+                        : img?.name || "Rasmni tanlang"}
                     </span>
                   </label>
                 </div>

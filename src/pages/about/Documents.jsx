@@ -106,7 +106,7 @@ const Documents = () => {
       setOpenAddModal(false);
       resetForm();
     } catch (err) {
-      toast.error("Error creating leader:", err);
+      toast.error("Hujat yaratishda xatolik", err);
     }
   };
 
@@ -223,7 +223,7 @@ const Documents = () => {
 
   const handleDownload = async (file) => {
     try {
-      const response = await fetch(`https://uzneftegaz-backend-production.up.railway.app/uploads/files/${file}`);
+      const response = await fetch(`${file}`);
       if (!response.ok) {
         toast.error(response.status)
 
