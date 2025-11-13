@@ -34,17 +34,17 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
         <button onClick={toggleTheme} className="swap swap-rotate w-10 h-10 transition-all duration-300">
           {theme === "light" ? (
-            <Sun className="w-8 h-8 transition-all duration-300" />
+            <Sun className="w-6 h-6 transition-all duration-300"  />
           ) : (
-            <Moon className="w-8 h-8 transition-all duration-300" />
+            <Moon className="w-6 h-6 transition-all duration-300" />
           )}
         </button>
 
         <button
           onClick={() => dispatch(logout())}
-          className="text-base-content px-4 py-2 rounded"
+          className="text-base-content px-4 py-2 rounded hover:text-error cursor-pointer transition-all duration-300"
         >
-          <LogOut className="w-8 h-8" />
+          <LogOut className="w-6 h-6" />
         </button>
       </div>
     </div>

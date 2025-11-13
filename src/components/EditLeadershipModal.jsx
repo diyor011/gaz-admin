@@ -41,22 +41,22 @@ export default function EditLeaderModal({ open, onClose, onSubmit, form, setForm
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Ism Familya (UZ)"
+                                className="px-4 py-3 border-2 border-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning"
+                                placeholder="Исм фамилия  (Уз)"
                                 name="fullNameUz"
                                 value={form.fullNameUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
+                                className="px-4 py-3 border-2 border-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning"
                                 placeholder="Имя Фамилия (RU)"
                                 name="fullNameRu"
                                 value={form.fullNameRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Name (OZ)"
+                                className="px-4 py-3 border-2 border-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning"
+                                placeholder="Ism Familya (UZ) "
                                 name="fullNameOz"
                                 value={form.fullNameOz}
                                 onChange={handleChange}
@@ -72,22 +72,22 @@ export default function EditLeaderModal({ open, onClose, onSubmit, form, setForm
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Lavozim (UZ)"
+                                className="px-4 py-3 border-2 border-info text-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning"
+                                placeholder="Лавозим(Уз)"
                                 name="gradeUz"
                                 value={form.gradeUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                className="px-4 py-3 border-2 border-info text-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning"
                                 placeholder="Должность (RU)"
                                 name="gradeRu"
                                 value={form.gradeRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Position (OZ)"
+                                className="px-4 py-3 border-2 border-info text-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning"
+                                placeholder="Lavozim (UZ)"
                                 name="gradeOz"
                                 value={form.gradeOz}
                                 onChange={handleChange}
@@ -103,14 +103,14 @@ export default function EditLeaderModal({ open, onClose, onSubmit, form, setForm
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-green-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                className="px-4 py-3 border-2 border-info text-info hover:text-warning  hover:border-warning  rounded-lg focus:border-success outline-none transition-colors duration-200 focus:text-success"
                                 placeholder="Telefon raqami"
                                 name="phone"
                                 value={form.phone}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-green-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                className="px-4 py-3 border-2 border-info text-info hover:text-warning  hover:border-warning  rounded-lg focus:border-success outline-none transition-colors duration-200 focus:text-success"
                                 placeholder="Email"
                                 name="email"
                                 value={form.email}
@@ -127,22 +127,22 @@ export default function EditLeaderModal({ open, onClose, onSubmit, form, setForm
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-yellow-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Ish Kunlari (UZ)"
+                                className="px-4 py-3 border-2 border-info rounded-lg focus:border-success outline-none transition-colors duration-200 hover:border-warning text-info hover:text-warning focus:text-success"
+                                placeholder="Иш КУНИ (УЗ)"
                                 name="workDaysUz"
                                 value={form.workDaysUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-yellow-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                className="px-4 py-3 border-2 border-info rounded-lg focus:border-success outline-none transition-colors duration-200 hover:border-warning text-info hover:text-warning focus:text-success"
                                 placeholder="Рабочие Дни (RU)"
                                 name="workDaysRu"
                                 value={form.workDaysRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-yellow-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Work Days (OZ)"
+                                className="px-4 py-3 border-2 border-info rounded-lg focus:border-success outline-none transition-colors duration-200 hover:border-warning text-info hover:text-warning focus:text-success"
+                                placeholder="Ish Kuni (UZ)"
                                 name="workDaysOz"
                                 value={form.workDaysOz}
                                 onChange={handleChange}
@@ -159,16 +159,16 @@ export default function EditLeaderModal({ open, onClose, onSubmit, form, setForm
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <input
                                 type="time"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-purple-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Boshlanish vaqti"
+                                className="px-4 py-3 border-2 border-info rounded-lg focus:border-success focus:outline-none transition-colors duration-200 hover:border-warning text-info hover:text-warning focus:text-success"
+                                placeholder="Boshlanish vaqti (08:00)"
                                 name="workHoursStart"
                                 value={form.workHoursStart}
                                 onChange={handleChange}
                             />
                             <input
                                 type="time"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-purple-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Tugash vaqti"
+                                className="px-4 py-3 border-2 border-info rounded-lg focus:border-success focus:outline-none transition-colors duration-200 hover:border-warning text-info hover:text-warning focus:text-success"
+                                placeholder="Tugash vaqti (18:00)"
                                 name="workHoursEnd"
                                 value={form.workHoursEnd}
                                 onChange={handleChange}
@@ -184,15 +184,15 @@ export default function EditLeaderModal({ open, onClose, onSubmit, form, setForm
                         </div>
                         <div className="space-y-3">
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Tajriba (UZ)"
+                                className="w-full px-4 py-3 border-2 border-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning resize-none"
+                                placeholder="Тажриба(Уз)"
                                 name="descriptionUz"
                                 value={form.descriptionUz}
                                 onChange={handleChange}
                                 rows="3"
                             ></textarea>
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
+                                className="w-full px-4 py-3 border-2 border-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning resize-none"
                                 placeholder="Опыт (RU)"
                                 name="descriptionRu"
                                 value={form.descriptionRu}
@@ -200,7 +200,7 @@ export default function EditLeaderModal({ open, onClose, onSubmit, form, setForm
                                 rows="3"
                             ></textarea>
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
+                                className="w-full px-4 py-3 border-2 border-info rounded-lg focus:border-success focus:text-success outline-none transition-colors duration-200 hover:border-warning hover:text-warning resize-none"
                                 placeholder="Experience (OZ)"
                                 name="descriptionOz"
                                 value={form.descriptionOz}
@@ -226,10 +226,10 @@ export default function EditLeaderModal({ open, onClose, onSubmit, form, setForm
                             />
                             <label
                                 htmlFor="image-upload-edit"
-                                className="flex items-center justify-center gap-3 px-4 py-4 border-2 border-dashed border-base-300 rounded-lg hover:border-error hover:bg-base-200 transition-all duration-200 cursor-pointer group"
+                                className="flex items-center justify-center gap-3 px-4 py-4 border-2 border-dashed border-info rounded-lg hover:border-error hover:bg-base-200 transition-all duration-200 cursor-pointer group"
                             >
-                                <Image size={20} className="text-base-300 group-hover:text-error transition-colors" />
-                                <span className="text-base-300 group-hover:text-error font-medium">
+                                <Image size={20} className="text-info group-hover:text-error transition-colors" />
+                                <span className="text-info group-hover:text-error font-medium">
                                     {form.avatar
                                         ? (typeof form.avatar === 'string' ? 'Mavjud rasm' : form.avatar.name)
                                         : "Rasm tanlash uchun bosing"}
