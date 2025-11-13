@@ -21,7 +21,7 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
                         <div className="w-10 h-10 rounded-lg bg-base-100/20 backdrop-blur-sm flex items-center justify-center">
                             <User className="text-base-100" size={22} />
                         </div>
-                        <h2 className="text-2xl font-bold text-base-100">Hujat qoshish</h2>
+                        <h2 className="text-2xl font-bold text-base-100">Vacansiya tahrirlash</h2>
                     </div>
                     <button
                         onClick={onClose}

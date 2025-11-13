@@ -1,4 +1,5 @@
-import { X, User, Briefcase, Award, FileText, Calendar, Image } from "lucide-react";
+// components/AddPlansModal.jsx
+import { X, User, Award, FileText, Calendar } from "lucide-react";
 
 export default function AddPlansModal({ open, onClose, onSubmit, form, setForm }) {
     if (!open) return null;
@@ -7,9 +8,6 @@ export default function AddPlansModal({ open, onClose, onSubmit, form, setForm }
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
     };
-
-
-    console.log(form, "form");
 
     return (
         <div className="fixed inset-0 bg-base-content/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
@@ -20,7 +18,7 @@ export default function AddPlansModal({ open, onClose, onSubmit, form, setForm }
                         <div className="w-10 h-10 rounded-lg bg-base-100/20 backdrop-blur-sm flex items-center justify-center">
                             <User className="text-base-100" size={22} />
                         </div>
-                        <h2 className="text-2xl font-bold text-base-100">Hujat qoshish</h2>
+                        <h2 className="text-2xl font-bold text-base-100">Yangi reja qo'shish</h2>
                     </div>
                     <button
                         onClick={onClose}
@@ -31,177 +29,189 @@ export default function AddPlansModal({ open, onClose, onSubmit, form, setForm }
                 </div>
 
                 {/* Content */}
-                <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
-                    {/* Full Name Section */}
-                    <div className="mb-6">
+                <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto space-y-6">
+                    {/* Oy boshlanishi */}
+                    <div>
                         <div className="flex items-center gap-2 mb-3">
-                            <User size={18} className="text-info" />
+                            <Calendar size={18} className="text-info" />
                             <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Oy boshlanishi</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
                                 placeholder="Oy boshlanishi (UZ)"
-                                name="startMoth_uz"
-                                value={form.startMoth_uz}
+                                name="startMonth_uz"
+                                value={form.startMonth_uz || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
                                 placeholder="Oy boshlanishi (RU)"
-                                name="startMoth_ru"
-                                value={form.startMoth_ru}
+                                name="startMonth_ru"
+                                value={form.startMonth_ru || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
                                 placeholder="Oy boshlanishi (OZ)"
-                                name="startMoth_oz"
-                                value={form.startMoth_oz}
+                                name="startMonth_oz"
+                                value={form.startMonth_oz || ""}
                                 onChange={handleChange}
                             />
                         </div>
                     </div>
-                    <div className="mb-6">
+
+                    {/* Oy tugashi */}
+                    <div>
                         <div className="flex items-center gap-2 mb-3">
-                            <User size={18} className="text-info" />
-                            <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Oy Tugashi</h3>
+                            <Calendar size={18} className="text-info" />
+                            <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Oy tugashi</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Oy Tugashi (UZ)"
-                                name="endMoth_uz"
-                                value={form.endMoth_uz}
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+                                placeholder="Oy tugashi (UZ)"
+                                name="endMonth_uz"
+                                value={form.endMonth_uz || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Oy Tugashi (RU)"
-                                name="endMoth_ru"
-                                value={form.endMoth_ru}
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+                                placeholder="Oy tugashi (RU)"
+                                name="endMonth_ru"
+                                value={form.endMonth_ru || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Oy Tugashi (OZ)"
-                                name="endMoth_oz"
-                                value={form.endMoth_oz}
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+                                placeholder="Oy tugashi (OZ)"
+                                name="endMonth_oz"
+                                value={form.endMonth_oz || ""}
                                 onChange={handleChange}
                             />
                         </div>
                     </div>
 
-
-
-
-                    <div className="mb-6">
+                    {/* Rejalar kvartali */}
+                    <div>
                         <div className="flex items-center gap-2 mb-3">
                             <Award size={18} className="text-accent" />
-                            <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">   Rejalar kvartol</h3>
+                            <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Rejalar kvartali</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Rejalar kvartol (UZ)"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                                placeholder="Rejalar kvartali (UZ)"
                                 name="title_uz"
-                                value={form.title_uz}
+                                value={form.title_uz || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Rejalar kvartol  (RU)"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                                placeholder="Rejalar kvartali (RU)"
                                 name="title_ru"
-                                value={form.title_ru}
+                                value={form.title_ru || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Rejalar kvartol  (OZ)"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                                placeholder="Rejalar kvartali (OZ)"
                                 name="title_oz"
-                                value={form.title_oz}
+                                value={form.title_oz || ""}
                                 onChange={handleChange}
                             />
                         </div>
                     </div>
-                    <div className="mb-6">
+
+                    {/* Rejalar turi */}
+                    <div>
                         <div className="flex items-center gap-2 mb-3">
                             <Award size={18} className="text-accent" />
                             <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Rejalar turi</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
                                 placeholder="Rejalar turi (UZ)"
                                 name="category_uz"
-                                value={form.category_uz}
+                                value={form.category_uz || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Rejalar turi  (RU)"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                                placeholder="Rejalar turi (RU)"
                                 name="category_ru"
-                                value={form.category_ru}
+                                value={form.category_ru || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                type="text"
+                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
                                 placeholder="Rejalar turi (OZ)"
                                 name="category_oz"
-                                value={form.category_oz}
+                                value={form.category_oz || ""}
                                 onChange={handleChange}
                             />
                         </div>
                     </div>
-                 
 
-                    <input
-                        type="text"
-                        className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                        name="participantsCount"
-                        value={form.participantsCount}
-                        onChange={handleChange}
-                        placeholder="Ishtirokchilar soni"
-                    />
+                    {/* Ishtirokchilar soni */}
+                    <div>
+                        <label className="block text-sm font-medium text-base-content mb-2">Ishtirokchilar soni</label>
+                        <input
+                            type="number"
+                            className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                            placeholder="Ishtirokchilar soni"
+                            name="participantsCount"
+                            value={form.participantsCount || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
 
-
-
-
-                    {/* Description Section */}
-                    <div className="mb-6">
+                    {/* Tavsif */}
+                    <div>
                         <div className="flex items-center gap-2 mb-3">
                             <FileText size={18} className="text-teal-600" />
-                            <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide"> Oylik Rejalar</h3>
+                            <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">Oylik Rejalar</h3>
                         </div>
                         <div className="space-y-3">
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder=" Oylik Rejalar (UZ)"
+                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
+                                placeholder="Oylik Rejalar (UZ)"
                                 name="description_uz"
-                                value={form.description_uz}
+                                value={form.description_uz || ""}
                                 onChange={handleChange}
                                 rows="3"
-                            ></textarea>
+                            />
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder=" Oylik Rejalar (RU)"
+                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
+                                placeholder="Oylik Rejalar (RU)"
                                 name="description_ru"
-                                value={form.description_ru}
+                                value={form.description_ru || ""}
                                 onChange={handleChange}
                                 rows="3"
-                            ></textarea>
+                            />
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder=" Oylik Rejalar (OZ)"
+                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
+                                placeholder="Oylik Rejalar (OZ)"
                                 name="description_oz"
-                                value={form.description_oz}
+                                value={form.description_oz || ""}
                                 onChange={handleChange}
                                 rows="3"
-                            ></textarea>
+                            />
                         </div>
                     </div>
-
-
                 </div>
 
                 {/* Footer */}
@@ -216,9 +226,8 @@ export default function AddPlansModal({ open, onClose, onSubmit, form, setForm }
                         className="px-6 py-2.5 rounded-lg bg-info text-base-100 font-medium hover:shadow-lg hover:scale-105 transition-all duration-200"
                         onClick={onSubmit}
                     >
-                        Saqlash
+                        Qo'shish
                     </button>
-
                 </div>
             </div>
         </div>

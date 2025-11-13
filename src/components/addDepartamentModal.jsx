@@ -21,7 +21,7 @@ export default function AddDepartamentModal({ open, onClose, onSubmit, form, set
                         <div className="w-10 h-10 rounded-lg bg-base-100/20 backdrop-blur-sm flex items-center justify-center">
                             <User className="text-base-100" size={22} />
                         </div>
-                        <h2 className="text-2xl font-bold text-base-100">Faxriy Xodim Qo'shish</h2>
+                        <h2 className="text-2xl font-bold text-base-100">Tarkibiy Bo'limlar Qo'shish</h2>
                     </div>
                     <button
                         onClick={onClose}
