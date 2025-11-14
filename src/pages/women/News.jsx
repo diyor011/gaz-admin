@@ -18,7 +18,7 @@ const News = () => {
     descriptionUz: "",
     descriptionRu: "",
     descriptionOz: "",
-    images: [],
+    mediaType: [],
   });
 
   // 📥 Yangiliklarni olish
@@ -48,7 +48,7 @@ const News = () => {
       descriptionUz: "",
       descriptionRu: "",
       descriptionOz: "",
-      images: [],
+      mediaType: [],
     });
   };
 
@@ -114,10 +114,10 @@ const News = () => {
     fd.append("desc_ru", editedForm.descriptionRu);
     fd.append("desc_oz", editedForm.descriptionOz);
 
-    if (editedForm.images?.length > 0) {
-      editedForm.images.forEach((img) => {
+    if (editedForm.mediaType?.length > 0) {
+      editedForm.mediaType.forEach((img) => {
         if (img && typeof img !== "string") {
-          fd.append("images", img);
+          fd.append("mediaType", img);
         }
       });
     }
