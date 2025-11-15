@@ -51,7 +51,9 @@ const Reports = () => {
       setLoading(false);
     }
   };
-
+  useEffect(() => {
+  GetPlans()
+}, [])
   const resetForm = () => {
     setForm({
       startMonth_uz: "",
@@ -201,35 +203,27 @@ const Reports = () => {
   };
 
   const deletePlan = async (id) => {
-    if (!confirm("O'chirmoqchimisiz?")) return;
-
-    const token = localStorage.getItem("token");
-
+    if (!window.confirm("Bu yangilikni o'chirmoqchimisiz?")) return;
     try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `https://uzneftegaz-backend-production.up.railway.app/api/hisobot/${id}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-      // Agar server 204 qaytarsa, response.ok = true, lekin json yo'q
-      if (response.ok || response.status === 204) {
-        alert("Muvaffaqiyatli o'chirildi!");
-        await GetPlans(); // await qo'shing, to'liq yuklanishini kutamiz
-      } else {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || "O'chirishda xatolik");
-      }
+      if (!response.ok) throw new Error("Server xatosi!");
+      await GetPlans();
+      alert("🗑️ Yangilik o'chirildi!");
     } catch (err) {
       console.error("Delete error:", err);
-      alert("O'chirishda xatolik: " + (err.message || "Server bilan aloqa yo'q"));
+      alert("Xatolik: o'chirib bo'lmadi!");
     }
   };
+ 
 
-  useEffect(() => {
-    GetPlans();
-  }, []);
 
   return (
     <div className="min-h-screen p-6">
@@ -272,7 +266,7 @@ const Reports = () => {
                   <td className="p-4">{plan.description?.uz}</td>
                   <td className="p-4 text-center">{plan.participantsCount}</td>
 
-                  {/* 🔥 TO‘G‘RI QILINDI */}
+
                   <td className="p-4 text-center">{plan.plan?.uz}</td>
 
                   <td className="p-4 text-center space-x-2">
