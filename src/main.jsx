@@ -8,32 +8,35 @@ import App from "./App";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dawboard";
 import PrivateRoute from "./components/PrivateRouter.jsx";
-import Leadership from './pages/about/Leadership.jsx'
-import Departments from './pages/about/Departments.jsx'
-import HonoraryStaff from './pages/about/HonoraryStaff.jsx'
-import DocumentsAb from './pages/about/Documents.jsx'
-import Vacancies from './pages/about/Vacancies.jsx'
-import Documents from './pages/anti-corruption/Documents.jsx'
-import Contacts from './pages/anti-corruption/Contacts.jsx'
-import Youthnews from './pages/youth/News.jsx'
-import YouthCenternews from './pages/youth/CenterNews.jsx'
-import Youthdocuments from './pages/youth/Documents.jsx'
-import SportCulture from './pages/youth/SportCulture.jsx'
-import WomenNews from './pages/women/News.jsx'
-import WomenReports from './pages/women/Repots.jsx'
-import GenderEquality from './pages/women/GenderEquality.jsx'
-import News from './pages/news/News.jsx'
-import NewsPress from './pages/news/Press.jsx'
-import NewsPlans from './pages/news/Plans.jsx'
-import '../src/index.css'
+import Leadership from "./pages/about/Leadership.jsx";
+import Departments from "./pages/about/Departments.jsx";
+import HonoraryStaff from "./pages/about/HonoraryStaff.jsx";
+import DocumentsAb from "./pages/about/Documents.jsx";
+import Vacancies from "./pages/about/Vacancies.jsx";
+import Documents from "./pages/anti-corruption/Documents.jsx";
+import Contacts from "./pages/anti-corruption/Contacts.jsx";
+import Youthnews from "./pages/youth/News.jsx";
+import YouthCenternews from "./pages/youth/CenterNews.jsx";
+import Youthdocuments from "./pages/youth/Documents.jsx";
+import SportCulture from "./pages/youth/SportCulture.jsx";
+import WomenNews from "./pages/women/News.jsx";
+import WomenReports from "./pages/women/Repots.jsx";
+import GenderEquality from "./pages/women/GenderEquality.jsx";
+import News from "./pages/news/News.jsx";
+import NewsPress from "./pages/news/Press.jsx";
+import NewsPlans from "./pages/news/Plans.jsx";
+import "../src/index.css";
 import Banner from "./components/Banner.jsx";
-
+import OrganizedDocument from "./pages/organized/Document.jsx";
+import OrganizedNews from "./pages/organized/News.jsx";
+import OrganizedEvents from "./pages/organized/Events.jsx";
+import OrganizedStaffhelp from "./pages/organized/Staffhelp.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <PrivateRoute element={<App />} />,
     children: [
-      {  index: true, element: <Banner />, },
+      { index: true, element: <Banner /> },
       { path: "about/leadership", element: <Leadership /> },
       { path: "about/departments", element: <Departments /> },
       { path: "about/honorary-staff", element: <HonoraryStaff /> },
@@ -51,6 +54,11 @@ const router = createBrowserRouter([
       { path: "news", element: <News /> },
       { path: "news/press", element: <NewsPress /> },
       { path: "news/Plans", element: <NewsPlans /> },
+      { path: "organized/document", element: <OrganizedDocument /> },
+      { path: "organized/news", element: <OrganizedNews /> },
+      { path: "organized/events", element: <OrganizedEvents /> },
+      { path: "organized/staffhelp", element: <OrganizedStaffhelp /> },
+      
     ],
   },
   { path: "login", element: <Login /> },
