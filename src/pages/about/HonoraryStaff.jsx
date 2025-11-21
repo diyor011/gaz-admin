@@ -110,10 +110,9 @@ export default function AdminVeteranManagement() {
           body: formData,
         }
       );
-
+      const data = await response.json()
       if (!response.ok) {
-        toast.error(response.status)
-        throw new Error(`Server error: ${response.status}`);
+        throw new Error(data.message || `Server error: ${response.status}`);
       }else{
         toast.success("Faxriy xodim muvaffaqiyatli qoshildi")
       }
@@ -122,7 +121,7 @@ export default function AdminVeteranManagement() {
       setOpenAddModal(false); // modal yopiladi
 
     } catch (err) {
-      toast.error("Error creating veteran:", err);
+      toast.error(err.message || "Xodim yaratishda xatolik");
     }
   };
 
