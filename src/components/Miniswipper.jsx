@@ -4,6 +4,7 @@ import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 
 export default function NewsImageSlider({ news }) {
+  console.log(news.mediaType);
 
   return (
     <div className="w-20 h-20 rounded-lg overflow-hidden shadow">
@@ -13,6 +14,7 @@ export default function NewsImageSlider({ news }) {
         loop={true}
         className="w-full h-full"
       >
+        
         {news.mediaType?.map((img, index) => (
           <SwiperSlide key={index}>
             {img.type === "video" ? (

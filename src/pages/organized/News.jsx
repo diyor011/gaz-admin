@@ -18,7 +18,7 @@ const News = () => {
     descriptionUz: "",
     descriptionRu: "",
     descriptionOz: "",
-    mediaType: [],
+    images: [],
   });
 
   // 📥 Yangiliklarni olish
@@ -26,7 +26,7 @@ const News = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://uzneftegaz-backend-production.up.railway.app/api/industryNews"
+        "https://uzneftegaz-backend-production.up.railway.app/api/kasabaNews"
       );
       const request = await response.json();
 
@@ -48,11 +48,10 @@ const News = () => {
       descriptionUz: "",
       descriptionRu: "",
       descriptionOz: "",
-      mediaType: [],
+      images: [],
     });
   };
 
-  // ➕ Yangilik qo'shish
   const handleSubmit = () => {
     const fd = new FormData();
 
@@ -78,7 +77,7 @@ const News = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://uzneftegaz-backend-production.up.railway.app/api/industryNews",
+        "https://uzneftegaz-backend-production.up.railway.app/api/kasabaNews/create",
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
@@ -86,20 +85,15 @@ const News = () => {
         }
       );
 
-      if (!response.ok) {
-        const err = await response.json();
-        console.error("Serverdan xato:", err);
-        alert(`❌ Xatolik: ${err.message || "Yangilikni yaratib bo‘lmadi"}`);
-        return;
-      }
+      if (!response.ok) throw new Error(`Xato: ${response.status}`);
 
       await GetNews();
       setOpenAddModal(false);
       resetForm();
-      alert("✅ Yangilik muvaffaqiyatli qo‘shildi!");
+      alert("✅ Yangilik muvaffaqiyatli qo'shildi!");
     } catch (err) {
       console.error("Create news error:", err);
-      alert("Server bilan bog‘lanishda xatolik!");
+      alert("Xatolik: Yangilikni yaratib bo'lmadi!");
     }
   };
 
@@ -119,10 +113,10 @@ const News = () => {
     fd.append("desc_ru", editedForm.descriptionRu);
     fd.append("desc_oz", editedForm.descriptionOz);
 
-    if (editedForm.mediaType?.length > 0) {
-      editedForm.mediaType.forEach((img) => {
+    if (editedForm.images?.length > 0) {
+      editedForm.images.forEach((img) => {
         if (img && typeof img !== "string") {
-          fd.append("mediaType", img);
+          fd.append("images", img);
         }
       });
     }
@@ -135,7 +129,7 @@ const News = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzneftegaz-backend-production.up.railway.app/api/industryNews/${id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/kasabaNews/${id}`,
         {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}` },
@@ -160,13 +154,12 @@ const News = () => {
     }
   };
 
-  // 🗑️ Delete API
   const deleteNews = async (id) => {
     if (!window.confirm("Bu yangilikni o'chirmoqchimisiz?")) return;
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://uzneftegaz-backend-production.up.railway.app/api/industryNews/${id}`,
+        `https://uzneftegaz-backend-production.up.railway.app/api/kasabaNews/${id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
