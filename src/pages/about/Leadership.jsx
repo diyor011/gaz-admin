@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
-import AddLeaderModal from '../../components/addModalLeader';
-import EditLeaderModal from '../../components/EditLeadershipModal'; // Yangi import
-import { ToastContainer, toast } from 'react-toastify';
-;
-
+import AddLeaderModal from "../../components/addModalLeader";
+import EditLeaderModal from "../../components/EditLeadershipModal"; // Yangi import
+import { ToastContainer, toast } from "react-toastify";
 const Leadership = () => {
-  const [loading, setLoading] = useState(false)
-  const [data, setData] = useState([])
-  const [openAddModal, setOpenAddModal] = useState(false)
-  const [openEditModal, setOpenEditModal] = useState(false) // Edit modal state
-  const [editingId, setEditingId] = useState(null) // Tahrirlash ID
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [openAddModal, setOpenAddModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false); // Edit modal state
+  const [editingId, setEditingId] = useState(null); // Tahrirlash ID
   const [form, setForm] = useState({
     fullNameUz: "",
     fullNameRu: "",
@@ -33,25 +31,25 @@ const Leadership = () => {
 
   const GetLeadership = async () => {
     try {
-      setLoading(true)
-      const response = await fetch('https://uzneftegaz-backend-production.up.railway.app/api/leader')
-      const request = await response.json()
+      setLoading(true);
+      const response = await fetch(
+        "http://localhost:8000/api/leader"
+      );
+      const request = await response.json();
 
       if (!response.ok) {
-        toast.error(response.status)
+        toast.error(response.status);
 
-        throw new Error(response.status())
+        throw new Error(response.status());
       }
-      setData(request.leaders)
-      setLoading(true)
+      setData(request.leaders);
+      setLoading(false);
+    } catch (err) {
+      toast.error(err);
+    } finally {
+      setLoading(false);
     }
-    catch (err) {
-      toast.error(err)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  };
 
   // Form reset
   const resetForm = () => {
@@ -75,7 +73,7 @@ const Leadership = () => {
       avatar: null,
     });
     setEditingId(null);
-  }
+  };
 
   // Create yangi rahbar
   const handleSubmit = () => {
@@ -86,13 +84,13 @@ const Leadership = () => {
     fd.append("grade_uz", form.gradeUz);
     fd.append("grade_ru", form.gradeRu);
     fd.append("grade_oz", form.gradeOz);
-    fd.append("phone", form.phone)
-    fd.append("email", form.email)
-    fd.append("workDays_uz", form.workDaysUz)
-    fd.append("workDays_oz", form.workDaysOz)
-    fd.append("workDays_ru", form.workDaysRu)
-    fd.append("workHours_start", form.workHoursStart)
-    fd.append("workHours_end", form.workHoursEnd)
+    fd.append("phone", form.phone);
+    fd.append("email", form.email);
+    fd.append("workDays_uz", form.workDaysUz);
+    fd.append("workDays_oz", form.workDaysOz);
+    fd.append("workDays_ru", form.workDaysRu);
+    fd.append("workHours_start", form.workHoursStart);
+    fd.append("workHours_end", form.workHoursEnd);
     fd.append("description_uz", form.descriptionUz);
     fd.append("description_ru", form.descriptionRu);
     fd.append("description_oz", form.descriptionOz);
@@ -108,7 +106,7 @@ const Leadership = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://uzneftegaz-backend-production.up.railway.app/api/leader/create",
+        "http://localhost:8000/api/leader/create",
         {
           method: "POST",
           headers: {
@@ -117,20 +115,19 @@ const Leadership = () => {
           body: formData,
         }
       );
+      const data = await response.json();
 
       if (!response.ok) {
-        toast.error(response.status)
-
-        throw new Error(`Server error: ${response.status}`);
+        throw new Error(data.message || `Server error: ${response.status}`);
       } else {
-        toast.success("Rahbar muvaffaqiyatli Qoshildi")
+        toast.success("Rahbar muvaffaqiyatli Qoshildi");
       }
 
       await GetLeadership();
       setOpenAddModal(false);
       resetForm();
     } catch (err) {
-      toast.error("Error creating leader:", err);
+      toast.error(err.message || "Rahbar yaratishda xatolik:", );
     }
   };
 
@@ -168,19 +165,19 @@ const Leadership = () => {
     fd.append("grade_uz", form.gradeUz);
     fd.append("grade_ru", form.gradeRu);
     fd.append("grade_oz", form.gradeOz);
-    fd.append("phone", form.phone)
-    fd.append("email", form.email)
-    fd.append("workDays_uz", form.workDaysUz)
-    fd.append("workDays_oz", form.workDaysOz)
-    fd.append("workDays_ru", form.workDaysRu)
-    fd.append("workHours_start", form.workHoursStart)
-    fd.append("workHours_end", form.workHoursEnd)
+    fd.append("phone", form.phone);
+    fd.append("email", form.email);
+    fd.append("workDays_uz", form.workDaysUz);
+    fd.append("workDays_oz", form.workDaysOz);
+    fd.append("workDays_ru", form.workDaysRu);
+    fd.append("workHours_start", form.workHoursStart);
+    fd.append("workHours_end", form.workHoursEnd);
     fd.append("description_uz", form.descriptionUz);
     fd.append("description_ru", form.descriptionRu);
     fd.append("description_oz", form.descriptionOz);
 
     // Faqat yangi rasm tanlangan bo'lsa qo'shamiz
-    if (form.avatar && typeof form.avatar !== 'string') {
+    if (form.avatar && typeof form.avatar !== "string") {
       fd.append("avatar", form.avatar);
     }
 
@@ -193,10 +190,22 @@ const Leadership = () => {
 
       // Turli endpoint variantlarini sinab ko'ramiz
       const endpoints = [
-        { url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/${id}`, method: "PUT" },
-        { url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/${id}`, method: "PATCH" },
-        { url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/update/${id}`, method: "PUT" },
-        { url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/edit/${id}`, method: "PUT" },
+        {
+          url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/${id}`,
+          method: "PUT",
+        },
+        {
+          url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/${id}`,
+          method: "PATCH",
+        },
+        {
+          url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/update/${id}`,
+          method: "PUT",
+        },
+        {
+          url: `https://uzneftegaz-backend-production.up.railway.app/api/leader/edit/${id}`,
+          method: "PUT",
+        },
       ];
 
       let success = false;
@@ -221,7 +230,9 @@ const Leadership = () => {
       }
 
       if (!success) {
-        throw new Error("Hech qanday endpoint ishlamadi. Backend'ni tekshiring!");
+        throw new Error(
+          "Hech qanday endpoint ishlamadi. Backend'ni tekshiring!"
+        );
       }
 
       await GetLeadership();
@@ -230,13 +241,17 @@ const Leadership = () => {
       toast.success("Rahbar muvaffaqiyatli tahrirlandi!");
     } catch (err) {
       toast.error("Error updating leader:", err);
-      toast.error(`Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`);
+      toast.error(
+        `Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`
+      );
     }
   };
 
   // Delete
   const deleteLeadership = async (id) => {
-    const isConfirm = window.confirm("Rostan ham bu rahbarni o'chirmoqchimisiz?");
+    const isConfirm = window.confirm(
+      "Rostan ham bu rahbarni o'chirmoqchimisiz?"
+    );
     if (!isConfirm) return;
 
     try {
@@ -252,13 +267,13 @@ const Leadership = () => {
       );
 
       if (!response.ok) {
-        toast.error(response.status)
+        toast.error(response.status);
 
         const errData = await response.json();
         toast.error("Server Error:", errData);
         return;
       } else {
-        toast.success("Rahbar muvaffaqiyatli ochirildi")
+        toast.success("Rahbar muvaffaqiyatli ochirildi");
       }
 
       GetLeadership();
@@ -268,8 +283,8 @@ const Leadership = () => {
   };
 
   useEffect(() => {
-    GetLeadership()
-  }, [])
+    GetLeadership();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -299,81 +314,86 @@ const Leadership = () => {
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-info"></div>
               <p className="text-gray-500 mt-4">Yuklanmoqda...</p>
             </div>
-          ) : (<table className="min-w-full  ">
-            <thead className="bg-base-100">
-              <tr>
-                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
-                  Rasim
-                </th>
-                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
-                  Ism Familya
-                </th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
-                  Lavozimi
-                </th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
-                  Email
-                </th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
-                  Raqami
-                </th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
-                  Ish tartibi
-                </th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
-                  Tajriba
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-info ">
-              {data.map((leader) => (
-                <tr
-                  key={leader._id}
-                  className="hover:bg-base-200 transition-colors "
-                >
-                  <td className="px-4 py-2">
-                    <img
-                      src={`${leader.avatar}`}
-                      alt={leader.fullName?.uz}
-                      className="w-20 h-20 rounded-lg object-cover shadow"
-                    />
-                  </td>
-                  <td className="px-2 py-2 font-semibold break-word  whitespace-nowrap text-xs">
-                    {leader.fullName?.uz}
-                  </td>
-                  <td className="whitespace-nowrap text-xs break-word text-center">{leader.grade?.uz}</td>
-                  <td className="px-3 py-4 whitespace-nowrap  break-word text-xs">
-                    {leader.email || "Email kiritilmagan"}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap break-word text-xs">
-                    {leader.phone || "Raqam kiritilmagan"}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap break-word text-xs flex flex-col">
-                    <span>{leader.workDays?.uz} </span>
-                    <span>{leader.workHours?.start}-{leader.workHours?.end}</span>
-                  </td>
-                  <td className="px-3 py-4 max-w-xs  break-words text-xs text-center ">
-                    {leader.description?.uz}
-                  </td>
-                  <td className="px-3 py-4 text-right whitespace-nowrap text-xs">
-                    <button
-                      onClick={() => handleEditClick(leader)}
-                      className="p-1 text-blue-500 hover:bg-info rounded-lg transition-colors"
-                    >
-                      <Edit2 size={18} />
-                    </button>
-                    <button
-                      onClick={() => deleteLeadership(leader._id)}
-                      className="p-1 text-red-600 hover:bg-error rounded-lg ml-2 transition-colors"
-                    >
-                      <Trash2 size={18} />
-                    </button>
-                  </td>
+          ) : (
+            <table className="min-w-full  ">
+              <thead className="bg-base-100">
+                <tr>
+                  <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
+                    Rasim
+                  </th>
+                  <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
+                    Ism Familya
+                  </th>
+                  <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
+                    Lavozimi
+                  </th>
+                  <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
+                    Email
+                  </th>
+                  <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
+                    Raqami
+                  </th>
+                  <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
+                    Ish tartibi
+                  </th>
+                  <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
+                    Tajriba
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>)}
-
+              </thead>
+              <tbody className="divide-y divide-info ">
+                {data.map((leader) => (
+                  <tr
+                    key={leader._id}
+                    className="hover:bg-base-200 transition-colors "
+                  >
+                    <td className="px-4 py-2">
+                      <img
+                        src={`${leader.avatar}`}
+                        alt={leader.fullName?.uz}
+                        className="w-20 h-20 rounded-lg object-cover shadow"
+                      />
+                    </td>
+                    <td className="px-2 py-2 font-semibold break-word  whitespace-nowrap text-xs">
+                      {leader.fullName?.uz}
+                    </td>
+                    <td className="whitespace-nowrap text-xs break-word text-center">
+                      {leader.grade?.uz}
+                    </td>
+                    <td className="px-3 py-4 whitespace-nowrap  break-word text-xs">
+                      {leader.email || "Email kiritilmagan"}
+                    </td>
+                    <td className="px-3 py-4 whitespace-nowrap break-word text-xs">
+                      {leader.phone || "Raqam kiritilmagan"}
+                    </td>
+                    <td className="px-3 py-4 whitespace-nowrap break-word text-xs flex flex-col">
+                      <span>{leader.workDays?.uz} </span>
+                      <span>
+                        {leader.workHours?.start}-{leader.workHours?.end}
+                      </span>
+                    </td>
+                    <td className="px-3 py-4 max-w-xs  break-words text-xs text-center ">
+                      {leader.description?.uz}
+                    </td>
+                    <td className="px-3 py-4 text-right whitespace-nowrap text-xs">
+                      <button
+                        onClick={() => handleEditClick(leader)}
+                        className="p-1 text-blue-500 hover:bg-info rounded-lg transition-colors"
+                      >
+                        <Edit2 size={18} />
+                      </button>
+                      <button
+                        onClick={() => deleteLeadership(leader._id)}
+                        className="p-1 text-red-600 hover:bg-error rounded-lg ml-2 transition-colors"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
 
@@ -401,7 +421,7 @@ const Leadership = () => {
       />
       <ToastContainer />
     </div>
-  )
-}
+  );
+};
 
-export default Leadership
+export default Leadership;
