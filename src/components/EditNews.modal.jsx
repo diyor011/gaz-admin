@@ -97,7 +97,7 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
               {["Uz", "Ru", "Oz"].map((lang) => (
                 <input
                   key={lang}
-                  className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500"
+                  className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                   placeholder={`Yangilik nomi (${lang})`}
                   name={`title${lang}`}
                   value={localForm[`title${lang}`]}
@@ -119,7 +119,7 @@ export default function EditNewsModal({ open, onClose, onSubmit, newsData }) {
               {["Uz", "Ru", "Oz"].map((lang) => (
                 <textarea
                   key={lang}
-                  className="w-full px-4 py-3 border-2 border-base-200 rounded-lg"
+                  className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                   placeholder={`Tavsif (${lang})`}
                   name={`description${lang}`}
                   value={localForm[`description${lang}`]}

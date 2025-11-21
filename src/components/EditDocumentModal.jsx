@@ -42,22 +42,22 @@ export default function EditDocumentModal({ open, onClose, onSubmit, form, setFo
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Hujatlar nomi (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder=" (УЗ)"
                                 name="titleUz"
                                 value={form.titleUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Hujatlar nomi (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder=" (RU)"
                                 name="titleRu"
                                 value={form.titleRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Hujatlar nomi (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder=" (UZ)"
                                 name="titleOz"
                                 value={form.titleOz}
                                 onChange={handleChange}
@@ -75,22 +75,22 @@ export default function EditDocumentModal({ open, onClose, onSubmit, form, setFo
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Qaror yoki farmon raqami  (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="  (УЗ)"
                                 name="decreeUz"
                                 value={form.decreeUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Qaror yoki farmon raqami  (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder=" (RU)"
                                 name="decreeRu"
                                 value={form.decreeRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Qaror yoki farmon raqami  (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="decreeOz"
                                 value={form.decreeOz}
                                 onChange={handleChange}
@@ -110,24 +110,24 @@ export default function EditDocumentModal({ open, onClose, onSubmit, form, setFo
                         </div>
                         <div className="space-y-3">
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Tavsif (UZ)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder=" (УЗ)"
                                 name="descriptionUz"
                                 value={form.descriptionUz}
                                 onChange={handleChange}
                                 rows="3"
                             ></textarea>
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Описание (RU)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="descriptionRu"
                                 value={form.descriptionRu}
                                 onChange={handleChange}
                                 rows="3"
                             ></textarea>
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Description (OZ)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="descriptionOz"
                                 value={form.descriptionOz}
                                 onChange={handleChange}

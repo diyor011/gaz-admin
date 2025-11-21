@@ -52,24 +52,24 @@ export default function AddSportModal({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
-                placeholder="Nomi  (UZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="Номи  (УЗ)"
                 name="title_uz"
                 value={form.title_uz || ""}
                 onChange={handleChange}
               />
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
-                placeholder="Nomi (RU)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="Название (RU)"
                 name="title_ru"
                 value={form.title_ru || ""}
                 onChange={handleChange}
               />
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
-                placeholder="Nomi (OZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="Nomi (UZ)"
                 name="title_oz"
                 value={form.title_oz || ""}
                 onChange={handleChange}
@@ -92,7 +92,7 @@ export default function AddSportModal({
                 name="category_uz"
                 value={form.category_uz || ""}
                 onChange={handleChange}
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               >
                 <option value="Маданият">Маданият</option>
                 <option value="Спорт">Спорт</option>
@@ -103,7 +103,7 @@ export default function AddSportModal({
                 name="category_ru"
                 value={form.category_ru || ""}
                 onChange={handleChange}
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               >
                 <option value="Культура">Культура</option>
                 <option value="Спорт">Спорт</option>
@@ -114,7 +114,7 @@ export default function AddSportModal({
                 name="category_oz"
                 value={form.category_oz || ""}
                 onChange={handleChange}
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               >
                 <option value="Madaniyat">Madaniyat</option>
                 <option value="Sport">Sport</option>
@@ -133,24 +133,25 @@ export default function AddSportModal({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                placeholder="Ishtirokchilar soni (UZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="Иштирокчилар сони (УЗ)"
                 name="athlete_uz"
                 value={form.athlete_uz || ""}
                 onChange={handleChange}
               />
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                placeholder="Ishtirokchilar soni (RU)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="
+Количество участников (RU)"
                 name="athlete_ru"
                 value={form.athlete_ru || ""}
                 onChange={handleChange}
               />
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                placeholder="Ishtirokchilar soni(OZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="Ishtirokchilar soni(UZ)"
                 name="athlete_oz"
                 value={form.athlete_oz || ""}
                 onChange={handleChange}
@@ -169,8 +170,8 @@ export default function AddSportModal({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                placeholder="  tadbir Joyi (UZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="Taдбир Жойи  (УЗ)"
                 name="place_uz"
                 value={form.place_uz || ""}
                 onChange={handleChange}
@@ -178,16 +179,17 @@ export default function AddSportModal({
 
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                placeholder="  tadbir Joyi (RU)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="  
+Место проведения мероприятия(RU)"
                 name="place_ru"
                 value={form.place_ru || ""}
                 onChange={handleChange}
               />
               <input
                 type="text"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                placeholder="  tadbir Joyi (OZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="  tadbir Joyi (UZ)"
                 name="place_oz"
                 value={form.place_oz || ""}
                 onChange={handleChange}
@@ -205,24 +207,24 @@ export default function AddSportModal({
             </div>
             <div className="space-y-3">
               <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
-                placeholder="batafsil (UZ)"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="Батафсил (УЗ)"
                 name="description_uz"
                 value={form.description_uz || ""}
                 onChange={handleChange}
                 rows="3"
               />
               <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
-                placeholder="batafsil (RU)"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="Подробнно (RU)"
                 name="description_ru"
                 value={form.description_ru || ""}
                 onChange={handleChange}
                 rows="3"
               />
               <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
-                placeholder="batafsil (OZ)"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="batafsil (UZ)"
                 name="description_oz"
                 value={form.description_oz || ""}
                 onChange={handleChange}

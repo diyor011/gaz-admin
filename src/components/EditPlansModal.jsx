@@ -41,22 +41,22 @@ export default function EditPlansModal({ open, onClose, onSubmit, form, setForm 
                 name="startMonth_uz"
                 value={form.startMonth_uz || ""}
                 onChange={handleChange}
-                placeholder="UZ"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-warning focus:outline-none"
+                placeholder="УЗ"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="startMonth_ru"
                 value={form.startMonth_ru || ""}
                 onChange={handleChange}
                 placeholder="RU"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-warning focus:outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="startMonth_oz"
                 value={form.startMonth_oz || ""}
                 onChange={handleChange}
-                placeholder="OZ"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-warning focus:outline-none"
+                placeholder="UZ"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>
@@ -72,22 +72,22 @@ export default function EditPlansModal({ open, onClose, onSubmit, form, setForm 
                 name="endMonth_uz"
                 value={form.endMonth_uz || ""}
                 onChange={handleChange}
-                placeholder="UZ"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-warning focus:outline-none"
+                placeholder="УЗ"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="endMonth_ru"
                 value={form.endMonth_ru || ""}
                 onChange={handleChange}
                 placeholder="RU"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-warning focus:outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="endMonth_oz"
                 value={form.endMonth_oz || ""}
                 onChange={handleChange}
-                placeholder="OZ"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-warning focus:outline-none"
+                placeholder="UZ"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>
@@ -103,22 +103,22 @@ export default function EditPlansModal({ open, onClose, onSubmit, form, setForm 
                 name="title_uz"
                 value={form.title_uz || ""}
                 onChange={handleChange}
-                placeholder="UZ"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-accent focus:outline-none"
+                placeholder="УЗ"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="title_ru"
                 value={form.title_ru || ""}
                 onChange={handleChange}
                 placeholder="RU"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-accent focus:outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="title_oz"
                 value={form.title_oz || ""}
                 onChange={handleChange}
-                placeholder="OZ"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-accent focus:outline-none"
+                placeholder="UZ"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>
@@ -134,22 +134,22 @@ export default function EditPlansModal({ open, onClose, onSubmit, form, setForm 
                 name="category_uz"
                 value={form.category_uz || ""}
                 onChange={handleChange}
-                placeholder="UZ"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-accent focus:outline-none"
+                placeholder="УЗ"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="category_ru"
                 value={form.category_ru || ""}
                 onChange={handleChange}
                 placeholder="RU"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-accent focus:outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="category_oz"
                 value={form.category_oz || ""}
                 onChange={handleChange}
-                placeholder="OZ"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-accent focus:outline-none"
+                placeholder="UZ"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function EditPlansModal({ open, onClose, onSubmit, form, setForm 
               value={form.participantsCount}
               onChange={(e) => setForm({ ...form, participantsCount: Number(e.target.value) || 0 })}
               placeholder="0"
-              className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none"
+              className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
             />
           </div>
 
@@ -178,9 +178,9 @@ export default function EditPlansModal({ open, onClose, onSubmit, form, setForm 
                 name="description_uz"
                 value={form.description_uz || ""}
                 onChange={handleChange}
-                placeholder="UZ"
+                placeholder="УЗ"
                 rows="3"
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none resize-none"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <textarea
                 name="description_ru"
@@ -188,15 +188,15 @@ export default function EditPlansModal({ open, onClose, onSubmit, form, setForm 
                 onChange={handleChange}
                 placeholder="RU"
                 rows="3"
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none resize-none"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <textarea
                 name="description_oz"
                 value={form.description_oz || ""}
                 onChange={handleChange}
-                placeholder="OZ"
+                placeholder="UZ"
                 rows="3"
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none resize-none"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>

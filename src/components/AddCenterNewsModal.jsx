@@ -67,22 +67,22 @@ export default function AddCenterNewsModal({
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Yangilik nomi (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="Янгилик номи (УЗ)"
                                 name="titleUz"
                                 value={form.titleUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Yangilik nomi (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="Название новости (RU)"
                                 name="titleRu"
                                 value={form.titleRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Yangilik nomi (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="Yangilik nomi (Uz)"
                                 name="titleOz"
                                 value={form.titleOz}
                                 onChange={handleChange}
@@ -100,15 +100,15 @@ export default function AddCenterNewsModal({
                         </div>
                         <div className="space-y-3">
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Tavsif (UZ)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="Тавсир  (УЗ)"
                                 name="descriptionUz"
                                 value={form.descriptionUz}
                                 onChange={handleChange}
                                 rows="3"
                             ></textarea>
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Описание (RU)"
                                 name="descriptionRu"
                                 value={form.descriptionRu}
@@ -116,8 +116,8 @@ export default function AddCenterNewsModal({
                                 rows="3"
                             ></textarea>
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Description (OZ)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="Tavsif (Uz)"
                                 name="descriptionOz"
                                 value={form.descriptionOz}
                                 onChange={handleChange}

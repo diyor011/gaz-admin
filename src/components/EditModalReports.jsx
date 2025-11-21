@@ -1,4 +1,3 @@
-// components/AddPlansModal.jsx
 import { X, User, Award, FileText, Calendar } from "lucide-react";
 
 export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm }) {
@@ -42,24 +41,24 @@ export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                                placeholder="Oy boshlanishi (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(УЗ)"
                                 name="startMonth_uz"
                                 value={form.startMonth_uz || ""}
                                 onChange={handleChange}
                             />
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                                placeholder="Oy boshlanishi (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="startMonth_ru"
                                 value={form.startMonth_ru || ""}
                                 onChange={handleChange}
                             />
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                                placeholder="Oy boshlanishi (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="startMonth_oz"
                                 value={form.startMonth_oz || ""}
                                 onChange={handleChange}
@@ -76,24 +75,24 @@ export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                                placeholder="Oy tugashi (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(УЗ)"
                                 name="endMonth_uz"
                                 value={form.endMonth_uz || ""}
                                 onChange={handleChange}
                             />
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                                placeholder="Oy tugashi (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="endMonth_ru"
                                 value={form.endMonth_ru || ""}
                                 onChange={handleChange}
                             />
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                                placeholder="Oy tugashi (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="endMonth_oz"
                                 value={form.endMonth_oz || ""}
                                 onChange={handleChange}
@@ -110,24 +109,24 @@ export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
-                                placeholder="Rejalar kvartali (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(УЗ)"
                                 name="title_uz"
                                 value={form.title_uz || ""}
                                 onChange={handleChange}
                             />
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
-                                placeholder="Rejalar kvartali (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="title_ru"
                                 value={form.title_ru || ""}
                                 onChange={handleChange}
                             />
                             <input
                                 type="text"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
-                                placeholder="Rejalar kvartali (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="title_oz"
                                 value={form.title_oz || ""}
                                 onChange={handleChange}
@@ -151,7 +150,7 @@ export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm
                                 name="plan_uz"
                                 value={form.plan_uz}
                                 onChange={handleChange}
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             >
                                 <option value="Режалаштирилган">Режалаштирилган</option>
                                 <option value="Бажарилмоқда">Бажарилмоқда</option>
@@ -164,7 +163,7 @@ export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm
                                 name="plan_ru"
                                 value={form.plan_ru}
                                 onChange={handleChange}
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             >
                                 <option value="Запланировано">Запланировано</option>
                                 <option value="Выполняется">Выполняется</option>
@@ -177,7 +176,7 @@ export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm
                                 name="plan_oz"
                                 value={form.plan_oz}
                                 onChange={handleChange}
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             >
                                 <option value="Rejalashtirilgan">Rejalashtirilgan</option>
                                 <option value="Bajarilmoqda">Bajarilmoqda</option>
@@ -192,7 +191,7 @@ export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm
                         <label className="block text-sm font-medium text-base-content mb-2">Ishtirokchilar soni</label>
                         <input
                             type="number"
-                            className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors"
+                            className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             placeholder="Ishtirokchilar soni"
                             name="participantsCount"
                             value={form.participantsCount || ""}
@@ -208,24 +207,24 @@ export default function EditRepotsModal({ open, onClose, onSubmit, form, setForm
                         </div>
                         <div className="space-y-3">
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
-                                placeholder="Oylik Rejalar (UZ)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(УЗ)"
                                 name="description_uz"
                                 value={form.description_uz || ""}
                                 onChange={handleChange}
                                 rows="3"
                             />
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
-                                placeholder="Oylik Rejalar (RU)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="description_ru"
                                 value={form.description_ru || ""}
                                 onChange={handleChange}
                                 rows="3"
                             />
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors resize-none"
-                                placeholder="Oylik Rejalar (OZ)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="description_oz"
                                 value={form.description_oz || ""}
                                 onChange={handleChange}

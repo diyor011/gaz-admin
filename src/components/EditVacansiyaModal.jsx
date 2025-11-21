@@ -41,22 +41,22 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Vacansiya nomi (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(УЗ)"
                                 name="titleUz"
                                 value={form.titleUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Vacansiya nomi (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="titleRu"
                                 value={form.titleRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                                placeholder="Vacansiya nomi (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="titleOz"
                                 value={form.titleOz}
                                 onChange={handleChange}
@@ -74,22 +74,22 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Oylik (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(УЗ)"
                                 name="salaryUz"
                                 value={form.salaryUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Oylik  (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="salaryRu"
                                 value={form.salaryRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Oylik  (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="salaryOz"
                                 value={form.salaryOz}
                                 onChange={handleChange}
@@ -103,22 +103,22 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Tajriba talabi (UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(УЗ)"
                                 name="requirementsUz"
                                 value={form.requirementsUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Tajriba talabi  (RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="requirementsRu"
                                 value={form.requirementsRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
-                                placeholder="Tajriba talabi  (OZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="requirementsOz"
                                 value={form.requirementsOz}
                                 onChange={handleChange}
@@ -136,7 +136,7 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
                                 name="salaryTypeUz"
                                 value={form.salaryTypeUz}
                                 onChange={handleChange}
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             >
                                 <option value="">Tanlang</option>
                                 <option value="To'liq stavka">To'liq stavka</option>
@@ -148,7 +148,7 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
                                 name="salaryTypeRu"
                                 value={form.salaryTypeRu}
                                 onChange={handleChange}
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             >
                                 <option value="">Выберите</option>
                                 <option value="Полная ставка">Полная ставка</option>
@@ -160,7 +160,7 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
                                 name="salaryTypeOz"
                                 value={form.salaryTypeOz}
                                 onChange={handleChange}
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             >
                                 <option value="">Танланг</option>
                                 <option value="Тўлиқ ставка">Тўлиқ ставка</option>
@@ -171,7 +171,7 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
 
                     <input
                         type="date"
-                        className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-amber-500 focus:outline-none transition-colors duration-200 hover:border-base-content"
+                        className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                         name="deadline"
                         value={form.deadline}
                         onChange={handleChange}
@@ -188,24 +188,24 @@ export default function EditVacansiyaModal({ open, onClose, onSubmit, form, setF
                         </div>
                         <div className="space-y-3">
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Tavsif (UZ)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(УЗ)"
                                 name="descriptionUz"
                                 value={form.descriptionUz}
                                 onChange={handleChange}
                                 rows="3"
                             ></textarea>
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Описание (RU)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(RU)"
                                 name="descriptionRu"
                                 value={form.descriptionRu}
                                 onChange={handleChange}
                                 rows="3"
                             ></textarea>
                             <textarea
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                                placeholder="Description (OZ)"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                placeholder="(UZ)"
                                 name="descriptionOz"
                                 value={form.descriptionOz}
                                 onChange={handleChange}

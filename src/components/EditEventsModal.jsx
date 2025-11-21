@@ -99,22 +99,22 @@ export default function EditEventsModal({
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir nomi (UZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(УЗ)"
                 name="title_uz"
                 value={form.title_uz}
                 onChange={handleChange}
               />
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir nomi (RU)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(RU)"
                 name="title_ru"
                 value={form.title_ru}
                 onChange={handleChange}
               />
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir nomi (OZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(UZ)"
                 name="title_oz"
                 value={form.title_oz}
                 onChange={handleChange}
@@ -130,22 +130,22 @@ export default function EditEventsModal({
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir Turi (UZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(УЗ)"
                 name="category_uz"
                 value={form.category_uz}
                 onChange={handleChange}
               />
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir Turi (RU)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(RU)"
                 name="category_ru"
                 value={form.category_ru}
                 onChange={handleChange}
               />
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir Turi (OZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(UZ)"
                 name="category_oz"
                 value={form.category_oz}
                 onChange={handleChange}
@@ -161,22 +161,22 @@ export default function EditEventsModal({
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir manzili (UZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder=" (УЗ)"
                 name="location_uz"
                 value={form.location_uz}
                 onChange={handleChange}
               />
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir manzili (RU)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(RU)"
                 name="location_ru"
                 value={form.location_ru}
                 onChange={handleChange}
               />
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir manzili (OZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(UZ)"
                 name="location_oz"
                 value={form.location_oz}
                 onChange={handleChange}
@@ -193,24 +193,24 @@ export default function EditEventsModal({
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir kuni(UZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(УЗ)"
                 name="date"
                 type="date"
                 value={form.date}
                 onChange={handleChange}
               />
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="Tadbir Vaqti (RU)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(RU)"
                 name="time"
                 type="time"
                 value={form.time}
                 onChange={handleChange}
               />
               <input
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors duration-200 hover:border-base-200"
-                placeholder="ishtirokchilar soni (OZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(UZ)"
                 name="users"
                 value={form.users}
                 onChange={handleChange}
@@ -228,24 +228,24 @@ export default function EditEventsModal({
             </div>
             <div className="space-y-3">
               <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                placeholder="Tavsif (UZ)"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(УЗ)"
                 name="description_uz"
                 value={form.description_uz}
                 onChange={handleChange}
                 rows="3"
               ></textarea>
               <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                placeholder="Описание (RU)"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(RU)"
                 name="description_ru"
                 value={form.description_ru}
                 onChange={handleChange}
                 rows="3"
               ></textarea>
               <textarea
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none transition-colors duration-200 hover:border-base-content resize-none"
-                placeholder="Description (OZ)"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                placeholder="(UZ)"
                 name="description_oz"
                 value={form.description_oz}
                 onChange={handleChange}

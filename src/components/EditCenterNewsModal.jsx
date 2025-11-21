@@ -80,25 +80,25 @@ export default function EditCenterNewsModal({
 
                     {/* Title */}
                     <div>
-                        <label className="flex items-center gap-2 mb-2 text-sm font-semibold uppercase">
+                        <label className="flex items-center gap-2 mb-2 text-sm font-semibold uppercase text-info">
                             <User size={18} /> Yangilik nomi
                         </label>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <input name="titleUz" value={form.titleUz || ""} onChange={handleChange} placeholder="UZ" className="input" />
-                            <input name="titleRu" value={form.titleRu || ""} onChange={handleChange} placeholder="RU" className="input" />
-                            <input name="titleOz" value={form.titleOz || ""} onChange={handleChange} placeholder="OZ" className="input" />
+                            <input name="titleUz" value={form.titleUz || ""} onChange={handleChange} placeholder="Уз" className="input px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration" />
+                            <input name="titleRu" value={form.titleRu || ""} onChange={handleChange} placeholder="RU" className="input px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration" />
+                            <input name="titleOz" value={form.titleOz || ""} onChange={handleChange} placeholder="UZ" className="input px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration" />
                         </div>
                     </div>
 
                     {/* Description */}
                     <div>
-                        <label className="flex items-center gap-2 mb-2 text-sm font-semibold uppercase">
+                        <label className="flex items-center gap-2 mb-2 text-sm font-semibold uppercase text-info">
                             <FileText size={18} /> Tavsif
                         </label>
                         <div className="space-y-3">
-                            <textarea name="descriptionUz" value={form.descriptionUz || ""} onChange={handleChange} rows="3" placeholder="UZ" className="textarea w-full" />
-                            <textarea name="descriptionRu" value={form.descriptionRu || ""} onChange={handleChange} rows="3" placeholder="RU" className="textarea w-full" />
-                            <textarea name="descriptionOz" value={form.descriptionOz || ""} onChange={handleChange} rows="3" placeholder="OZ" className="textarea w-full" />
+                            <textarea name="descriptionUz" value={form.descriptionUz || ""} onChange={handleChange} rows="3" placeholder="УЗ" className="textarea w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration" />
+                            <textarea name="descriptionRu" value={form.descriptionRu || ""} onChange={handleChange} rows="3" placeholder="RU" className="textarea w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration" />
+                            <textarea name="descriptionOz" value={form.descriptionOz || ""} onChange={handleChange} rows="3" placeholder="UZ" className="textarea w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration" />
                         </div>
                     </div>
 
@@ -121,7 +121,7 @@ export default function EditCenterNewsModal({
 
                     {/* Yangi rasmlar */}
                     <div>
-                        <label className="flex items-center gap-2 mb-2 text-sm font-semibold uppercase">
+                        <label className="flex items-center gap-2 mb-2 text-sm font-semibold uppercase text-info">
                             <Image size={18} /> Yangi rasm yuklash
                         </label>
                         <div className="space-y-3">

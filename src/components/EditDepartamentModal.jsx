@@ -49,21 +49,21 @@ export default function EditDepartamentModal({ open, onClose, onSubmit, form, se
                 value={form.titleUz}
                 onChange={handleChange}
                 placeholder="Bo‘lim nomi (UZ)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="titleRu"
                 value={form.titleRu}
                 onChange={handleChange}
                 placeholder="Bo‘lim nomi (RU)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="titleOz"
                 value={form.titleOz}
                 onChange={handleChange}
                 placeholder="Bo‘lim nomi (OZ)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>
@@ -80,21 +80,21 @@ export default function EditDepartamentModal({ open, onClose, onSubmit, form, se
                 value={form.employeesUz}
                 onChange={handleChange}
                 placeholder="Xodimlar soni (UZ)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-indigo-500 outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="employeesRu"
                 value={form.employeesRu}
                 onChange={handleChange}
                 placeholder="Xodimlar soni (RU)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-indigo-500 outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="employeesOz"
                 value={form.employeesOz}
                 onChange={handleChange}
                 placeholder="Xodimlar soni (OZ)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-indigo-500 outline-none"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>
@@ -110,22 +110,22 @@ export default function EditDepartamentModal({ open, onClose, onSubmit, form, se
                 name="leaderUz"
                 value={form.leaderUz}
                 onChange={handleChange}
-                placeholder="Rahbari (UZ)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-purple-500 outline-none"
+                placeholder="(УЗ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="leaderRu"
                 value={form.leaderRu}
                 onChange={handleChange}
-                placeholder="Rahbari (RU)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-purple-500 outline-none"
+                placeholder=" (RU)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <input
                 name="leaderOz"
                 value={form.leaderOz}
                 onChange={handleChange}
-                placeholder="Rahbari (OZ)"
-                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-purple-500 outline-none"
+                placeholder="(UZ)"
+                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>
@@ -141,25 +141,25 @@ export default function EditDepartamentModal({ open, onClose, onSubmit, form, se
                 name="descriptionUz"
                 value={form.descriptionUz}
                 onChange={handleChange}
-                placeholder="Tavsif (UZ)"
+                placeholder="(УЗ)"
                 rows="3"
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 outline-none resize-none"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <textarea
                 name="descriptionRu"
                 value={form.descriptionRu}
                 onChange={handleChange}
-                placeholder="Описание (RU)"
+                placeholder=" (RU)"
                 rows="3"
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 outline-none resize-none"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
               <textarea
                 name="descriptionOz"
                 value={form.descriptionOz}
                 onChange={handleChange}
-                placeholder="Description (OZ)"
+                placeholder=" (UZ)"
                 rows="3"
-                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 outline-none resize-none"
+                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
               />
             </div>
           </div>

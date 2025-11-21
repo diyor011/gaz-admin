@@ -48,22 +48,22 @@ export default function EditGenderModal({ open, onClose, onSubmit, form, setForm
                                 name="title_uz"
                                 value={form.title_uz || ""}
                                 onChange={handleChange}
-                                placeholder="Nomi (UZ)"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                                placeholder="(УЗ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             />
                             <input
                                 name="title_ru"
                                 value={form.title_ru || ""}
                                 onChange={handleChange}
-                                placeholder="Nomi (RU)"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                                placeholder="(RU)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             />
                             <input
                                 name="title_oz"
                                 value={form.title_oz || ""}
                                 onChange={handleChange}
-                                placeholder="Nomi (OZ)"
-                                className="px-4 py-3 border-2 border-base-200 rounded-lg focus:border-blue-500 focus:outline-none"
+                                placeholder="(UZ)"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             />
                         </div>
                     </div>
@@ -79,25 +79,25 @@ export default function EditGenderModal({ open, onClose, onSubmit, form, setForm
                                 name="description_uz"
                                 value={form.description_uz || ""}
                                 onChange={handleChange}
-                                placeholder="Tavsif (UZ)"
+                                placeholder="(УЗ)"
                                 rows="3"
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none resize-none"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             />
                             <textarea
                                 name="description_ru"
                                 value={form.description_ru || ""}
                                 onChange={handleChange}
-                                placeholder="Tavsif (RU)"
+                                placeholder="(RU)"
                                 rows="3"
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none resize-none"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             />
                             <textarea
                                 name="description_oz"
                                 value={form.description_oz || ""}
                                 onChange={handleChange}
-                                placeholder="Tavsif (OZ)"
+                                placeholder="(UZ)"
                                 rows="3"
-                                className="w-full px-4 py-3 border-2 border-base-200 rounded-lg focus:border-teal-500 focus:outline-none resize-none"
+                                className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             />
                         </div>
                     </div>
