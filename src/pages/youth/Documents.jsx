@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Plus, Edit2, Trash2, File } from "lucide-react";
 import AddDocumentModal from '../../components/AddDocumetModal';
 import EditDocumentModal from '../../components/EditDocumentModal';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Documents = () => {
   const [loading, setLoading] = useState(false)
@@ -175,10 +176,10 @@ const Documents = () => {
       await GetDocuments();
       setOpenEditModal(false);
       resetForm();
-      alert("Hujat muvaffaqiyatli tahrirlandi!");
+      toast.success("Hujat muvaffaqiyatli tahrirlandi!");
     } catch (err) {
       console.error("Error updating leader:", err);
-      alert(`Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`);
+      toast.error(`Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`);
     }
   };
 
@@ -339,6 +340,7 @@ const Documents = () => {
         setForm={setForm}
         onSubmit={handleEditSubmit}
       />
+          <ToastContainer />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import { Lock, Phone, ArrowRight, AlertCircle } from "lucide-react";
+import { ToastContainer } from "react-toastify";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -134,6 +135,7 @@ export default function Login() {
 
         <p className="text-center text-gray-500 text-xs mt-6">© 2025 Barcha huquqlar himoyalangan</p>
       </div>
+       
     </div>
   );
 }

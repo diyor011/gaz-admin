@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
-import AddNewsModal from "../../components/AddNewsModal";
-import EditNewsModal from "../../components/EditNews.modal";
 import NewsImageSlider from "../../components/Miniswipper";
 import AddEventsModal from "../../components/AddEventsModal";
 import EditEventsModal from "../../components/EditEventsModal";
+import { toast, ToastContainer } from "react-toastify";
 
 const Events = () => {
   const [loading, setLoading] = useState(false);
@@ -126,10 +125,10 @@ const Events = () => {
       await GetNews();
       setOpenAddModal(false);
       resetForm();
-      alert("Tadbir muvaffaqiyatli qo'shildi!");
+      toast.success("Tadbir muvaffaqiyatli qo'shildi!");
     } catch (err) {
       console.error(err);
-      alert("Xatolik: " + (err.message || "Tadbir qo'shib bo'lmadi"));
+      toast.error("Xatolik: " + (err.message || "Tadbir qo'shib bo'lmadi"));
     }
   };
   // ✏️ Edit tugmasi bosilganda
@@ -190,13 +189,13 @@ const Events = () => {
         throw new Error(err.message || "Server xatosi");
       }
 
-      alert("✅ Tadbir muvaffaqiyatli yangilandi!");
+      toast.success("✅ Tadbir muvaffaqiyatli yangilandi!");
       setOpenEditModal(false);
       setEditingNews(null);
       GetNews(); // Jadvalni yangilash
     } catch (err) {
       console.error("Edit Event Error:", err);
-      alert("Tadbirni yangilab bo'lmadi: " + (err.message || "Server xatosi"));
+      toast.error("Tadbirni yangilab bo'lmadi: " + (err.message || "Server xatosi"));
     }
   };
 
@@ -216,17 +215,17 @@ const Events = () => {
       if (!response.ok) {
         const err = await response.json();
         console.error("Update Error:", err);
-        alert("Xatolik: yangilikni tahrirlab bo'lmadi!");
+        toast.error("Xatolik: yangilikni tahrirlab bo'lmadi!");
         return;
       }
 
       await GetNews();
       setOpenEditModal(false);
       setEditingNews(null);
-      alert("✅ Yangilik muvaffaqiyatli yangilandi!");
+      toast.success("✅ Yangilik muvaffaqiyatli yangilandi!");
     } catch (err) {
       console.error("Update News Error:", err);
-      alert("Server bilan bog'lanishda xatolik!");
+      toast.error("Server bilan bog'lanishda xatolik!");
     }
   };
 
@@ -245,10 +244,10 @@ const Events = () => {
 
       if (!response.ok) throw new Error("Server xatosi!");
       await GetNews();
-      alert("🗑️ Yangilik o'chirildi!");
+      toast.success("🗑️ Yangilik o'chirildi!");
     } catch (err) {
       console.error("Delete error:", err);
-      alert("Xatolik: o'chirib bo'lmadi!");
+      toast.error("Xatolik: o'chirib bo'lmadi!");
     }
   };
 
@@ -394,6 +393,7 @@ const Events = () => {
         setForm={setForm}
         editingNews={editingNews}
       />
+        <ToastContainer />
     </div>
   );
 };

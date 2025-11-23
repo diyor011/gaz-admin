@@ -5,6 +5,7 @@ import EditNewsModal from "../../components/EditNews.modal";
 import NewsImageSlider from "../../components/Miniswipper";
 import AddCenterNewsModal from "../../components/AddCenterNewsModal";
 import EditCenterNewsModal from "../../components/EditCenterNewsModal";
+import { toast, ToastContainer } from "react-toastify";
 
 const News = () => {
   const [loading, setLoading] = useState(false);
@@ -91,17 +92,17 @@ const News = () => {
       if (!response.ok) {
         const err = await response.json();
         console.error("Serverdan xato:", err);
-        alert(`❌ Xatolik: ${err.message || "Yangilikni yaratib bo‘lmadi"}`);
+        toast.error(`❌ Xatolik: ${err.message || "Yangilikni yaratib bo‘lmadi"}`);
         return;
       }
 
       await GetNews();
       setOpenAddModal(false);
       resetForm();
-      alert("✅ Yangilik muvaffaqiyatli qo‘shildi!");
+      toast.success("✅ Yangilik muvaffaqiyatli qo‘shildi!");
     } catch (err) {
       console.error("Create news error:", err);
-      alert("Server bilan bog‘lanishda xatolik!");
+      toast.error("Server bilan bog‘lanishda xatolik!");
     }
   };
 
@@ -160,23 +161,23 @@ const News = () => {
       if (!response.ok) {
         const err = await response.json();
         console.error("Update Error:", err);
-        alert("Xatolik: yangilikni tahrirlab bo'lmadi!");
+        toast.error("Xatolik: yangilikni tahrirlab bo'lmadi!");
         return;
       }
 
       await GetNews();
       setOpenEditModal(false);
       setEditingNews(null);
-      alert("✅ Yangilik muvaffaqiyatli yangilandi!");
+      toast.success("✅ Yangilik muvaffaqiyatli yangilandi!");
     } catch (err) {
       console.error("Update News Error:", err);
-      alert("Server bilan bog'lanishda xatolik!");
+      toast.error("Server bilan bog'lanishda xatolik!");
     }
   };
 
   // 🗑️ Delete API
   const deleteNews = async (id) => {
-    if (!window.confirm("Bu yangilikni o'chirmoqchimisiz?")) return;
+    if (!window.showConfirm("Bu yangilikni o'chirmoqchimisiz?")) return;
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -189,10 +190,10 @@ const News = () => {
 
       if (!response.ok) throw new Error("Server xatosi!");
       await GetNews();
-      alert("🗑️ Yangilik o'chirildi!");
+      toast.success("🗑️ Yangilik o'chirildi!");
     } catch (err) {
       console.error("Delete error:", err);
-      alert("Xatolik: o'chirib bo'lmadi!");
+      toast.error("Xatolik: o'chirib bo'lmadi!");
     }
   };
 
@@ -313,6 +314,7 @@ const News = () => {
         newsData={editingNews}
         onSubmit={handleEditSubmit}
       />
+          <ToastContainer />
     </div>
   );
 };

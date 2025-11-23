@@ -1,5 +1,6 @@
     import { useEffect, useState } from "react";
     import { X, User, Briefcase, Award, FileText, Calendar, Image } from "lucide-react";
+import { toast, ToastContainer } from "react-toastify";
 
     export default function EditVeteranModal({ open, onClose, data, onUpdate }) {
         const empty = {
@@ -69,7 +70,7 @@
 
         const handleSave = async () => {
             if (!form._id) {
-                alert("No veteran selected for update.");
+                toast.error("Yangilanish uchun faxriy tanlanmagan");
                 return;
             }
 
@@ -155,7 +156,7 @@
                 }
             } catch (err) {
                 console.error("Update error:", err);
-                alert("Saqlashda xatolik yuz berdi. Konsolni tekshiring.");
+                toast.error("Saqlashda xatolik yuz berdi. Konsolni tekshiring.");
             } finally {
                 setSaving(false);
             }
@@ -418,6 +419,7 @@
                         </button>
                     </div>
                 </div>
+                    <ToastContainer />
             </div>
         );
     }

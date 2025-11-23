@@ -4,6 +4,7 @@ import PlansModal from "../../components/AddPlansModal"; // Yangi nom
 import AddPlansModal from "../../components/AddPlansModal";
 import AddGenderModal from "../../components/AddGenderModal";
 import EditPlansModal from "../../components/EditPlansModal";
+import { toast, ToastContainer } from "react-toastify";
 
 const Plans = () => {
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,7 @@ const Plans = () => {
       setData(result.reports || []);
     } catch (err) {
       console.error("Fetch error:", err);
-      alert("Ma'lumotlarni yuklashda xatolik");
+      toast.error("Ma'lumotlarni yuklashda xatolik");
     } finally {
       setLoading(false);
     }
@@ -104,13 +105,13 @@ const Plans = () => {
         throw new Error(data.message || `Server xatosi: ${response.status}`);
       }
 
-      alert("Reja muvaffaqiyatli qo'shildi!");
+      toast.success("Reja muvaffaqiyatli qo'shildi!");
       await GetPlans();
       setOpenAddModal(false);
       resetForm();
     } catch (error) {
       console.error("POST xatosi:", error);
-      alert("Xatolik: " + error.message);
+      toast.error("Xatolik: " + error.message);
     }
   };
   const handleEditClick = (plan) => {
@@ -179,13 +180,13 @@ const Plans = () => {
         throw new Error(data.message || `Server xatosi: ${response.status}`);
       }
 
-      alert("Reja muvaffaqiyatli tahrirlandi!");
+      toast.success("Reja muvaffaqiyatli tahrirlandi!");
       await GetPlans();
       setOpenEditModal(false);
       resetForm();
     } catch (error) {
       console.error("PUT xatosi:", error);
-      alert("Xatolik: " + error.message);
+      toast.error("Xatolik: " + error.message);
     }
   };
   const deletePlan = async (id) => {
@@ -199,7 +200,7 @@ const Plans = () => {
       if (!response.ok) throw new Error("O'chirishda xatolik");
       await GetPlans();
     } catch (err) {
-      alert("O'chirishda xatolik");
+      toast.error("O'chirishda xatolik");
     }
   };
 
@@ -289,6 +290,7 @@ const Plans = () => {
         form={form}
         setForm={setForm}
       />
+        <ToastContainer />
     </div>
   );
 };

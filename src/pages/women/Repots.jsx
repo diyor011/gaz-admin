@@ -3,6 +3,7 @@ import { Plus, Edit2, Trash2 } from "lucide-react";
 import AddReportsModal from "../../components/addReportsModal";
 import EditPlansModal from "../../components/EditPlansModal";
 import EditRepotsModal from "../../components/EditModalReports";
+import { toast, ToastContainer } from "react-toastify";
 
 const Reports = () => {
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,7 @@ const Reports = () => {
 
       setData(result.reports || []);
     } catch (err) {
-      alert("Yuklashda xatolik");
+      toast.error("Yuklashda xatolik");
     } finally {
       setLoading(false);
     }
@@ -122,12 +123,12 @@ const Reports = () => {
 
       if (!response.ok) throw new Error(data.message);
 
-      alert("Hisobot qo‘shildi!");
+      toast.success("Hisobot qo‘shildi!");
       GetPlans();
       setOpenAddModal(false);
       resetForm();
     } catch (error) {
-      alert("Xatolik: " + error.message);
+      toast.error("Xatolik: " + error.message);
     }
   };
 
@@ -193,12 +194,12 @@ const Reports = () => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
 
-      alert("Tahrirlandi!");
+      toast.success("Tahrirlandi!");
       GetPlans();
       setOpenEditModal(false);
       resetForm();
     } catch (err) {
-      alert("Xatolik: " + err.message);
+      toast.error("Xatolik: " + err.message);
     }
   };
 
@@ -216,10 +217,10 @@ const Reports = () => {
 
       if (!response.ok) throw new Error("Server xatosi!");
       await GetPlans();
-      alert("🗑️ Yangilik o'chirildi!");
+      toast.success("🗑️ Yangilik o'chirildi!");
     } catch (err) {
       console.error("Delete error:", err);
-      alert("Xatolik: o'chirib bo'lmadi!");
+      toast.error("Xatolik: o'chirib bo'lmadi!");
     }
   };
  
@@ -308,6 +309,7 @@ const Reports = () => {
         form={form}
         setForm={setForm}
       />
+          <ToastContainer />
     </div>
   );
 };

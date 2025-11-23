@@ -143,7 +143,7 @@ export default function AdminVeteranManagement() {
       setVeterans((prev) => prev.filter((item) => item._id !== id));
     } catch (error) {
       toast.error("Error deleting veteran:", error);
-      alert("Удалить не удалось. Проверяем доступы и токен.");
+      toast("Удалить не удалось. Проверяем доступы и токен.");
     }
   };
 

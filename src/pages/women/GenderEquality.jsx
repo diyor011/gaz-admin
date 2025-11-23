@@ -29,7 +29,7 @@ const GenderEquality = () => {
       setData(result.gender || []);
     } catch (err) {
       console.error("Fetch error:", err);
-      alert("Ma'lumotlarni yuklashda xatolik");
+      toast.error("Ma'lumotlarni yuklashda xatolik");
     } finally {
       setLoading(false);
     }
@@ -66,12 +66,12 @@ const GenderEquality = () => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Server xatosi");
 
-      alert("Hujjat qo'shildi!");
+      toast.success("Hujjat qo'shildi!");
       await GetDocuments();
       setOpenAddModal(false);
       resetForm();
     } catch (error) {
-      alert("Xatolik: " + error.message);
+      toast.error("Xatolik: " + error.message);
     }
   };
   const handleEditSubmit = async () => {
