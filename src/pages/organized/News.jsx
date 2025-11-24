@@ -155,6 +155,7 @@ const News = () => {
     }
   };
 
+  // 🗑️ Delete API
   const deleteNews = async (id) => {
     if (!window.confirm("Bu yangilikni o'chirmoqchimisiz?")) return;
     try {
@@ -291,7 +292,7 @@ const News = () => {
         newsData={editingNews}
         onSubmit={handleEditSubmit}
       />
-          <ToastContainer />
+        <ToastContainer />
     </div>
   );
 };
