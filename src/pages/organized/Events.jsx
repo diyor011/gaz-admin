@@ -330,25 +330,25 @@ const Events = () => {
                     <td className="px-4 py-2">
                       <NewsImageSlider news={news} />
                     </td>
-                    <td className="px-2 py-2 font-semibold whitespace-nowrap text-xs">
+                    <td className="px-2 py-2 font-semibold  line-clamp-1 text-xs">
                       {news.title?.uz}
                     </td>
-                    <td className="px-3 py-4 text-xs text-center break-words">
+                    <td className="px-3 py-4 text-xs text-center line-clamp-1">
                       {news.description?.uz}
                     </td>
-                    <td className="px-3 py-4 text-xs text-center break-words">
+                    <td className="px-3 py-4 text-xs text-center line-clamp-1">
                       {news.location?.uz}
                     </td>
-                    <td className="px-3 py-4 text-xs text-center break-words">
+                    <td className="px-3 py-4 text-xs text-center line-clamp-1">
                       {news.time}
                     </td>
-                    <td className="px-3 py-4 text-xs text-center break-words">
+                    <td className="px-3 py-4 text-xs text-center line-clamp-1">
                       {news.date.slice(0, 10)}
                     </td>
-                    <td className="px-3 py-4 text-xs text-center break-words">
+                    <td className="px-3 py-4 text-xs text-center line-clamp-1">
                       {news.users}
                     </td>
-                    <td className="px-3 py-4 text-xs text-center break-words">
+                    <td className="px-3 py-4 text-xs text-center line-clamp-1">
                       {news.category?.uz}
                     </td>
                     <td className="px-3 py-4 text-right whitespace-nowrap text-xs">
