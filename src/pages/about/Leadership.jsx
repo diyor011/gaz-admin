@@ -33,7 +33,7 @@ const Leadership = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:8000/api/leader"
+        "https://uzneftegaz-backend-production.up.railway.app/api/leader"
       );
       const request = await response.json();
 
@@ -106,7 +106,7 @@ const Leadership = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:8000/api/leader/create",
+        "https://uzneftegaz-backend-production.up.railway.app/api/leader/create",
         {
           method: "POST",
           headers: {
@@ -127,7 +127,7 @@ const Leadership = () => {
       setOpenAddModal(false);
       resetForm();
     } catch (err) {
-      toast.error(err.message || "Rahbar yaratishda xatolik:", );
+      toast.error(err.message || "Rahbar yaratishda xatolik:");
     }
   };
 
