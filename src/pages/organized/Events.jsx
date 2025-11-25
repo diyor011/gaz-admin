@@ -224,53 +224,56 @@ const Events = () => {
 
         {/* Jadval – butunlay o‘zgarmadi */}
         <div className="bg-base-100 rounded-xl shadow-sm shadow-info overflow-hidden">
-          <table className="min-w-full">
-            <thead>
-              <tr>
-                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">Rasm</th>
-                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">Nom</th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Tavsif</th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Manzil</th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Vaqt</th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Sana</th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Qatnashuvchilar</th>
-                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Turi</th>
-                <th className="p-4 text-right text-xs font-semibold text-gray-600 uppercase">Amal</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-info">
-              {loading ? (
-                <tr><td colSpan={9} className="text-center py-6">Yuklanmoqda...</td></tr>
-              ) : data.length === 0 ? (
-                <tr><td colSpan={9} className="text-center py-6">Yangiliklar mavjud emas</td></tr>
-              ) : (
-                data.map((news) => (
-                  <tr key={news._id} className="hover:bg-base-200 transition-colors">
-                    <td className="px-4 py-2"><NewsImageSlider news={news} /></td>
-                    <td className="px-2 py-2 font-semibold break-words text-xs">
-                      {news.title?.uz?.slice(0, 20)}
-                    </td>
-                    <td className="px-3 py-4 text-xs text-center line-clamp-1">
-                      {news.description?.uz?.slice(0, 100)}
-                    </td>
-                    <td className="px-3 py-4 text-xs text-center break-words">{news.location?.uz}</td>
-                    <td className="px-3 py-4 text-xs text-center break-words">{news.time}</td>
-                    <td className="px-3 py-4 text-xs text-center break-words">{news.date?.slice(0, 10)}</td>
-                    <td className="px-3 py-4 text-xs text-center break-words">{news.users}</td>
-                    <td className="px-3 py-4 text-xs text-center line-clamp-1">{news.category?.uz}</td>
-                    <td className="px-3 py-4 text-right whitespace-nowrap text-xs">
-                      <button onClick={() => handleEditClick(news)} className="p-1 text-blue-500 hover:bg-info rounded-lg transition-colors">
-                        <Edit2 size={18} />
-                      </button>
-                      <button onClick={() => deleteNews(news._id)} className="p-1 text-red-600 hover:bg-error rounded-lg ml-2 transition-colors">
-                        <Trash2 size={18} />
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+      <table className="min-w-full border-separate border-spacing-y-3">
+  <thead>
+    <tr>
+      <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">Rasm</th>
+      <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">Nom</th>
+      <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Tavsif</th>
+      <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Manzil</th>
+      <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Vaqt</th>
+      <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Sana</th>
+      <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Qatnashuvchilar</th>
+      <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">Turi</th>
+      <th className="p-4 text-right text-xs font-semibold text-gray-600 uppercase">Amal</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {loading ? (
+      <tr><td colSpan={9} className="text-center py-6">
+          <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-info"></div>
+              <p className="text-gray-500 mt-4">Yuklanmoqda...</p>
+            </div>
+        </td></tr>
+    ) : data.length === 0 ? (
+      <tr><td colSpan={9} className="text-center py-6">Yangiliklar mavjud emas</td></tr>
+    ) : (
+      data.map(news => (
+        <tr key={news._id} className="hover:bg-base-200 transition-colors text-center rounded-xl">
+          <td className="px-4 py-2 rounded-l-xl"><NewsImageSlider news={news} /></td>
+          <td className="px-2 py-2 font-semibold break-words text-xs">{news.title?.uz?.slice(0, 20)}</td>
+          <td className="px-3 py-4 text-xs text-center  break-words max-w-[150px]">{news.description?.uz?.slice(0, 100)}</td>
+          <td className="px-3 py-4 text-xs text-center break-words">{news.location?.uz}</td>
+          <td className="px-3 py-4 text-xs text-center break-words">{news.time}</td>
+          <td className="px-3 py-4 text-xs text-center break-words">{news.date?.slice(0, 10)}</td>
+          <td className="px-3 py-4 text-xs text-center break-words">{news.users}</td>
+          <td className="px-3 py-4 text-xs text-center break-words ">{news.category?.uz}</td>
+          <td className="px-3 py-4 text-right whitespace-nowrap text-xs rounded-r-xl">
+            <button onClick={() => handleEditClick(news)} className="p-1 text-blue-500 hover:bg-info rounded-lg transition-colors">
+              <Edit2 size={18} />
+            </button>
+            <button onClick={() => deleteNews(news._id)} className="p-1 text-red-600 hover:bg-error rounded-lg ml-2 transition-colors">
+              <Trash2 size={18} />
+            </button>
+          </td>
+        </tr>
+      ))
+    )}
+  </tbody>
+</table>
+
         </div>
       </div>
 
