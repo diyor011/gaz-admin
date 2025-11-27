@@ -1,0 +1,235 @@
+import { X, User, FileText, Image, Plus } from "lucide-react";
+import { useEffect, useState } from "react";
+
+export default function EditStaffhelpModal({ open, onClose, onSubmit, newsData }) {
+    const [localForm, setLocalForm] = useState({
+        titleUz: "",
+        titleRu: "",
+        titleOz: "",
+        descriptionUz: "",
+        descriptionRu: "",
+        descriptionOz: "",
+        gifts: [{ uz: "", ru: "", oz: "" }],
+        categoryUz: "",
+        categoryRu: "",
+        categoryOz: "",
+        mediaType: [],
+    });
+
+    useEffect(() => {
+        if (open && newsData) {
+            setLocalForm({
+                titleUz: newsData.title?.uz || "",
+                titleRu: newsData.title?.ru || "",
+                titleOz: newsData.title?.oz || "",
+                descriptionUz: newsData.description?.uz || "",
+                descriptionRu: newsData.description?.ru || "",
+                descriptionOz: newsData.description?.oz || "",
+                gifts: newsData.gifts?.length ? newsData.gifts : [{ uz: "", ru: "", oz: "" }],
+                categoryUz: newsData.category?.uz || "",
+                categoryRu: newsData.category?.ru || "",
+                categoryOz: newsData.category?.oz || "",
+                mediaType: newsData.mediaType || newsData.images || [],
+            });
+        }
+    }, [open, newsData]);
+
+    if (!open) return null;
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLocalForm(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleGiftChange = (index, field, value) => {
+        const updated = [...localForm.gifts];
+        updated[index][field] = value;
+        setLocalForm(prev => ({ ...prev, gifts: updated }));
+    };
+
+    const handleAddGift = () => {
+        setLocalForm(prev => ({
+            ...prev,
+            gifts: [...prev.gifts, { uz: "", ru: "", oz: "" }],
+        }));
+    };
+
+    const handleImageChange = (e, index) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const updated = [...localForm.mediaType];
+        updated[index] = file;
+        setLocalForm(prev => ({ ...prev, mediaType: updated }));
+    };
+
+    const handleAddImageInput = () => {
+        setLocalForm(prev => ({
+            ...prev,
+            mediaType: [...(prev.mediaType || []), null],
+        }));
+    };
+
+    const getImagePreview = (img) => {
+        if (!img) return null;
+        if (typeof img === "object" && img.url) return img.url;
+        if (typeof img === "string") return img;
+        if (img instanceof File) return URL.createObjectURL(img);
+        return null;
+    };
+
+    const handleSubmit = () => {
+        onSubmit(localForm);
+    };
+
+    return (
+        <div className="fixed inset-0 bg-base-content/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-base-100 w-full max-w-5xl rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
+                {/* Header */}
+                <div className="bg-info px-6 py-5 flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-base-100/20 flex items-center justify-center">
+                            <User className="text-base-100" size={22} />
+                        </div>
+                        <h2 className="text-2xl font-bold text-base-100">Yangilikni tahrirlash</h2>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="w-9 h-9 rounded-lg bg-base-100/20 hover:bg-base-100/30 flex items-center justify-center transition-all"
+                    >
+                        <X className="text-base-100" size={20} />
+                    </button>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
+                    {/* Title */}
+                    <div className="mb-6">
+                        <div className="flex items-center gap-2 mb-3">
+                            <User size={18} className="text-info" />
+                            <h3 className="text-sm font-semibold uppercase tracking-wide">Yangilik nomi</h3>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            {["Uz", "Ru", "Oz"].map(lang => (
+                                <input
+                                    key={lang}
+                                    className="px-4 py-3 border-2 text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                    placeholder={`Yangilik nomi (${lang})`}
+                                    name={`title${lang}`}
+                                    value={localForm[`title${lang}`]}
+                                    onChange={handleChange}
+                                />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Description */}
+                    <div className="mb-6">
+                        <div className="flex items-center gap-2 mb-3">
+                            <FileText size={18} className="text-teal-600" />
+                            <h3 className="text-sm font-semibold uppercase tracking-wide">Tavsif</h3>
+                        </div>
+                        <div className="space-y-3">
+                            {["Uz", "Ru", "Oz"].map(lang => (
+                                <textarea
+                                    key={lang}
+                                    className="w-full px-4 py-3 border-2 text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                                    placeholder={`Tavsif (${lang})`}
+                                    name={`description${lang}`}
+                                    value={localForm[`description${lang}`]}
+                                    onChange={handleChange}
+                                    rows="3"
+                                />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Gifts */}
+                    <div className="mb-6">
+                        <div className="flex items-center gap-2 mb-3">
+                            <User size={18} className="text-info" />
+                            <h3 className="text-sm font-semibold uppercase tracking-wide">Sovg‘alar (Gifts)</h3>
+                        </div>
+                        {localForm.gifts.map((gift, index) => (
+                            <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+                                {["uz", "ru", "oz"].map(lang => (
+                                    <input
+                                        key={lang}
+                                        className="px-4 py-3 border-2 text-info border-info rounded-lg"
+                                        placeholder={`Gift (${lang})`}
+                                        value={gift[lang]}
+                                        onChange={(e) => handleGiftChange(index, lang, e.target.value)}
+                                    />
+                                ))}
+                            </div>
+                        ))}
+                        <button
+                            onClick={handleAddGift}
+                            className="flex items-center gap-2 text-info hover:text-blue-600 font-medium mt-3"
+                        >
+                            <Plus size={18} /> Yana gift qo'shish
+                        </button>
+                    </div>
+
+                    {/* Images */}
+                    <div className="mb-6">
+                        <div className="flex items-center gap-2 mb-3">
+                            <Image size={18} className="text-error" />
+                            <h3 className="text-sm font-semibold uppercase tracking-wide">Rasmlar</h3>
+                        </div>
+                        <div className="space-y-4">
+                            {(localForm.mediaType || []).map((img, index) => (
+                                <div key={index}>
+                                    {getImagePreview(img) && (
+                                        <img
+                                            src={getImagePreview(img)}
+                                            alt="preview"
+                                            className="w-24 h-24 object-cover rounded-lg mb-2 border shadow"
+                                        />
+                                    )}
+                                    <input
+                                        type="file"
+                                        accept="image/*,video/*"
+                                        id={`image-${index}`}
+                                        className="hidden"
+                                        onChange={(e) => handleImageChange(e, index)}
+                                    />
+                                    <label
+                                        htmlFor={`image-${index}`}
+                                        className="flex items-center justify-center gap-3 px-4 py-3 border-2 border-dashed border-base-300 rounded-lg hover:border-error cursor-pointer transition"
+                                    >
+                                        <Image size={20} className="text-base-300" />
+                                        <span className="text-base-300 font-medium">
+                                            {typeof img === "string" ? img : img?.name || "Rasmni tanlang"}
+                                        </span>
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+                        <button
+                            onClick={handleAddImageInput}
+                            className="flex items-center gap-2 text-info hover:text-blue-600 font-medium mt-3"
+                        >
+                            <Plus size={18} /> Yana rasm qo'shish
+                        </button>
+                    </div>
+                </div>
+
+                {/* Footer */}
+                <div className="bg-base-200 px-6 py-4 flex justify-end gap-3 border-t">
+                    <button
+                        className="px-6 py-2.5 rounded-lg border-2 border-base-300 text-base-content font-medium hover:bg-base-200"
+                        onClick={onClose}
+                    >
+                        Bekor qilish
+                    </button>
+                    <button
+                        className="px-6 py-2.5 rounded-lg bg-info text-base-100 font-medium hover:shadow-lg hover:scale-105"
+                        onClick={handleSubmit}
+                    >
+                        Saqlash
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
