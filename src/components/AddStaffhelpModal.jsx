@@ -150,7 +150,7 @@ export default function AddStaffhelpModal({
                             <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                                 <input
                                     className="px-4 py-3 border-2 text-info border-info rounded-lg"
-                                    placeholder="Gift (UZ)"
+                                    placeholder="Совга (Уз)"
                                     value={gift.uz}
                                     onChange={(e) => handleGiftChange(index, "uz", e.target.value)}
                                 />
@@ -164,7 +164,7 @@ export default function AddStaffhelpModal({
 
                                 <input
                                     className="px-4 py-3 border-2 text-info border-info rounded-lg"
-                                    placeholder="Gift (OZ)"
+                                    placeholder="Sovga (UZ)"
                                     value={gift.oz}
                                     onChange={(e) => handleGiftChange(index, "oz", e.target.value)}
                                 />
@@ -175,7 +175,7 @@ export default function AddStaffhelpModal({
                             onClick={handleAddGift}
                             className="flex items-center gap-2 text-info hover:text-blue-600 font-medium mt-3"
                         >
-                            <Plus size={18} /> Yana gift qo‘shish
+                            <Plus size={18} /> Yana sovga qo‘shish
                         </button>
                     </div>
 

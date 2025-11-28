@@ -30,7 +30,7 @@ const Staffhelp = () => {
     images: [],
   });
 
-  // 📥 Yangiliklarni olish
+
   const GetNews = async () => {
     try {
       setLoading(true);
@@ -82,22 +82,28 @@ const Staffhelp = () => {
     fd.append("category_ru", form.categoryRu);
     fd.append("category_oz", form.categoryOz);
 
-    form.gifts.forEach((gift, index) => {
+    // // 🔥 GIFTS FIX → massivni stringga aylantiramiz
+    // fd.append("gifts_uz", form.gifts.map(g => g.uz).join(","));
+    // fd.append("gifts_ru", form.gifts.map(g => g.ru).join(","));
+    // fd.append("gifts_oz", form.gifts.map(g => g.oz).join(","));
+
+
+
+   form.gifts.forEach((gift, index) => {
       fd.append(`gifts[${index}][uz]`, gift.uz);
       fd.append(`gifts[${index}][ru]`, gift.ru);
       fd.append(`gifts[${index}][oz]`, gift.oz);
     });
-    // 🔹 Shu yerda mediaType ishlatiladi
+
+
+    // 🔥 Rasm joylash
     (form.mediaType || []).forEach((img) => {
       if (img) fd.append("media", img);
     });
-    console.log("FormData tarkibi:");
-    for (let pair of fd.entries()) {
-      console.log(pair[0], ":", pair[1]);
-    }
 
     createNews(fd);
   };
+
 
 
 
@@ -118,10 +124,10 @@ const Staffhelp = () => {
       await GetNews();
       setOpenAddModal(false);
       resetForm();
-      toast.success("✅ Yangilik muvaffaqiyatli qo'shildi!");
+      toast.success("✅  muvaffaqiyatli qo'shildi!");
     } catch (err) {
       console.error("Create news error:", err);
-      toast.error("Xatolik: Yangilikni yaratib bo'lmadi!");
+      toast.error("Xatolik:  yaratib bo'lmadi!");
     }
   };
 
@@ -131,7 +137,7 @@ const Staffhelp = () => {
     setOpenEditModal(true);
   };
 
-  // 📝 Yangilikni tahrirlashni yuborish
+
   const handleEditSubmit = (editedForm) => {
     const fd = new FormData();
 
@@ -178,14 +184,14 @@ const Staffhelp = () => {
       if (!response.ok) {
         const err = await response.json();
         console.error("Update Error:", err);
-        toast.error("Xatolik: yangilikni tahrirlab bo'lmadi!");
+        toast.error("Xatolik:  tahrirlab bo'lmadi!");
         return;
       }
 
       await GetNews();
       setOpenEditModal(false);
       setEditingNews(null);
-      toast.success("✅ Yangilik muvaffaqiyatli yangilandi!");
+      toast.success("✅  muvaffaqiyatli yangilandi!");
     } catch (err) {
       console.error("Update News Error:", err);
       toast.error("Server bilan bog'lanishda xatolik!");
@@ -194,7 +200,7 @@ const Staffhelp = () => {
 
   // 🗑️ Delete API
   const deleteNews = async (id) => {
-    if (!window.confirm("Bu yangilikni o'chirmoqchimisiz?")) return;
+    if (!window.confirm(" o'chirmoqchimisiz?")) return;
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -207,7 +213,7 @@ const Staffhelp = () => {
 
       if (!response.ok) throw new Error("Server xatosi!");
       await GetNews();
-      toast.success("🗑️ Yangilik o'chirildi!");
+      toast.success("🗑️  o'chirildi!");
     } catch (err) {
       console.error("Delete error:", err);
       toast.error("Xatolik: o'chirib bo'lmadi!");
