@@ -223,11 +223,12 @@ const News = () => {
             </thead>
             <tbody className="divide-y divide-info">
               {loading ? (
-                <tr>
-                  <td colSpan={4} className="text-center py-6">
-                    Yuklanmoqda...
-                  </td>
-                </tr>
+             <tr><td colSpan={9} className="text-center py-6">
+          <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-info"></div>
+              <p className="text-gray-500 mt-4">Yuklanmoqda...</p>
+            </div>
+        </td></tr>
               ) : data.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="text-center py-6">

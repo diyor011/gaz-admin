@@ -70,33 +70,25 @@ const Staffhelp = () => {
   const handleSubmit = () => {
     const fd = new FormData();
 
-    fd.append("title_uz", form.titleUz);
-    fd.append("title_ru", form.titleRu);
-    fd.append("title_oz", form.titleOz);
+    fd.append("title_uz", form.titleUz.trim());
+    fd.append("title_ru", form.titleRu.trim());
+    fd.append("title_oz", form.titleOz.trim());
 
-    fd.append("description_uz", form.descriptionUz);
-    fd.append("description_ru", form.descriptionRu);
-    fd.append("description_oz", form.descriptionOz);
+    fd.append("description_uz", form.descriptionUz.trim());
+    fd.append("description_ru", form.descriptionRu.trim());
+    fd.append("description_oz", form.descriptionOz.trim());
 
-    fd.append("category_uz", form.categoryUz);
-    fd.append("category_ru", form.categoryRu);
-    fd.append("category_oz", form.categoryOz);
+    fd.append("category_uz", form.categoryUz.trim());
+    fd.append("category_ru", form.categoryRu.trim());
+    fd.append("category_oz", form.categoryOz.trim());
 
-    // // 🔥 GIFTS FIX → massivni stringga aylantiramiz
-    // fd.append("gifts_uz", form.gifts.map(g => g.uz).join(","));
-    // fd.append("gifts_ru", form.gifts.map(g => g.ru).join(","));
-    // fd.append("gifts_oz", form.gifts.map(g => g.oz).join(","));
-
-
-
-   form.gifts.forEach((gift, index) => {
-      fd.append(`gifts[${index}][uz]`, gift.uz);
-      fd.append(`gifts[${index}][ru]`, gift.ru);
-      fd.append(`gifts[${index}][oz]`, gift.oz);
+    // Gifts – backend kutgan array ko‘rinishida
+    form.gifts.forEach((gift) => {
+      fd.append("gifts_uz", gift.uz.trim());
+      fd.append("gifts_ru", gift.ru.trim());
+      fd.append("gifts_oz", gift.oz.trim());
     });
 
-
-    // 🔥 Rasm joylash
     (form.mediaType || []).forEach((img) => {
       if (img) fd.append("media", img);
     });
@@ -153,12 +145,12 @@ const Staffhelp = () => {
     fd.append("category_ru", editedForm.categoryRu);
     fd.append("category_oz", editedForm.categoryOz);
 
-    // Gifts
-    editedForm.gifts.forEach((gift, index) => {
-      fd.append(`gifts[${index}][uz]`, gift.uz);
-      fd.append(`gifts[${index}][ru]`, gift.ru);
-      fd.append(`gifts[${index}][oz]`, gift.oz);
+    editedForm.gifts.forEach((gift) => {
+      fd.append("gifts_uz", gift.uz.trim());
+      fd.append("gifts_ru", gift.ru.trim());
+      fd.append("gifts_oz", gift.oz.trim());
     });
+
 
     // Media
     (editedForm.mediaType || []).forEach((img) => {
@@ -272,14 +264,15 @@ const Staffhelp = () => {
             </thead>
             <tbody className="divide-y divide-info">
               {loading ? (
-                <tr>
-                  <td colSpan={4} className="text-center py-6">
-                    Yuklanmoqda...
-                  </td>
-                </tr>
+                <tr><td colSpan={9} className="text-center py-6">
+                  <div className="text-center py-12">
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-info"></div>
+                    <p className="text-gray-500 mt-4">Yuklanmoqda...</p>
+                  </div>
+                </td></tr>
               ) : data.length === 0 ? (
-                <tr>
-                  <td colSpan={4} className="text-center py-6">
+                <tr className="">
+                  <td colSpan={4} className="text-center py-6 ">
                     Xodimlarni qolap quvatlash mavjud emas
                   </td>
                 </tr>
