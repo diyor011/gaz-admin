@@ -9,14 +9,17 @@ const Sidebar = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
-        
+
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-          <div className='p-3 hover:text-info '>
-              <Link>
-                Banner
-              </Link>
+          <div className='p-3   flex flex-col gap-2'>
+            <Link className='hover:text-info'>
+              Banner
+            </Link>
+            <Link to={'Book'} className='hover:text-info'>
+              Kitoblar
+            </Link>
           </div>
           <MenuList />
         </div>

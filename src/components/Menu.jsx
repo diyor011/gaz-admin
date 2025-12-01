@@ -14,6 +14,7 @@ const MenuList = () => {
         { label: "Faxriy xodimlar", path: "/about/honorary-staff" },
         { label: "Me’yoriy hujjatlar", path: "/about/documents" },
         { label: "Bo‘sh ish o‘rinlari", path: "/about/vacancies" },
+        { label: "OAV Nigoxi", path: "/about/telekanal" },
       ],
     },
     {

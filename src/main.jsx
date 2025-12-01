@@ -31,6 +31,8 @@ import OrganizedDocument from "./pages/organized/Document.jsx";
 import OrganizedNews from "./pages/organized/News.jsx";
 import OrganizedEvents from "./pages/organized/Events.jsx";
 import OrganizedStaffhelp from "./pages/organized/Staffhelp.jsx";
+import Telecanal from "./pages/about/Telecanal.jsx"
+import Book from "./pages/Book.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +60,8 @@ const router = createBrowserRouter([
       { path: "organized/news", element: <OrganizedNews /> },
       { path: "organized/events", element: <OrganizedEvents /> },
       { path: "organized/staffhelp", element: <OrganizedStaffhelp /> },
+      { path: "about/telekanal", element: <Telecanal /> },
+      { path: "Book", element: <Book /> },
       
     ],
   },
