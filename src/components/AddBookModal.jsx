@@ -3,8 +3,7 @@ import {
     User,
     FileText,
     Image,
-    Calendar,
-    Award
+    Plus
 } from "lucide-react";
 
 export default function AddBooksModal({
@@ -22,9 +21,20 @@ export default function AddBooksModal({
     };
 
     // Rasmlar (bir nechta)
-    const handleImagesChange = (e) => {
-        const files = Array.from(e.target.files);
-        setForm((prev) => ({ ...prev, mediaImages: files }));
+    const handleImageChange = (e, index) => {
+        const file = e.target.files[0];
+        setForm((prev) => {
+            const updatedImages = [...(prev.mediaImages || [])];
+            updatedImages[index] = file;
+            return { ...prev, mediaImages: updatedImages };
+        });
+    };
+
+    const handleAddImageInput = () => {
+        setForm((prev) => ({
+            ...prev,
+            mediaImages: [...(prev.mediaImages || []), null],
+        }));
     };
 
     // PDF (bir nechta)
@@ -52,7 +62,6 @@ export default function AddBooksModal({
 
                 {/* BODY */}
                 <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
-
                     {/* Nomi */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
@@ -65,7 +74,7 @@ export default function AddBooksModal({
                                 className="px-4 py-3 border-2 border-info rounded-lg"
                                 placeholder="Kitob nomi (Uz)"
                                 name="titleUz"
-                                value={form.titleUz}
+                                value={form.titleUz || ""}
                                 onChange={handleChange}
                             />
                             <input
@@ -85,19 +94,18 @@ export default function AddBooksModal({
                         </div>
                     </div>
 
-                    {/* Mualif */}
+                    {/* Muallif */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
                             <User size={18} className="text-info" />
                             <h3 className="text-sm font-semibold">Muallif</h3>
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
                                 className="px-4 py-3 border-2 border-info rounded-lg"
                                 placeholder="Muallif (Uz)"
                                 name="avtorUz"
-                                value={form.avtorUz}
+                                value={form.avtorUz || ""}
                                 onChange={handleChange}
                             />
                             <input
@@ -123,23 +131,22 @@ export default function AddBooksModal({
                             <FileText size={18} className="text-info" />
                             <h3 className="text-sm font-semibold">Tavsif</h3>
                         </div>
-
                         <textarea
-                            className="w-full px-4  py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                            className="w-full px-4 py-3 border-2 border-info rounded-lg"
                             placeholder="Tavsif (Uz)"
                             name="descriptionUz"
-                            value={form.descriptionUz}
+                            value={form.descriptionUz || ""}
                             onChange={handleChange}
                         />
                         <textarea
-                            className="w-full px-4  py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                            className="w-full px-4 py-3 border-2 border-info rounded-lg"
                             placeholder="Описание (Ru)"
                             name="descriptionRu"
                             value={form.descriptionRu}
                             onChange={handleChange}
                         />
                         <textarea
-                            className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                            className="w-full px-4 py-3 border-2 border-info rounded-lg"
                             placeholder="Tavsif (Oz)"
                             name="descriptionOz"
                             value={form.descriptionOz}
@@ -150,7 +157,7 @@ export default function AddBooksModal({
                     {/* Sahifalar va yil */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <input
-                            className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                            className="px-4 py-3 border-2 border-info rounded-lg"
                             placeholder="Sahifa soni"
                             name="pages"
                             value={form.pages}
@@ -158,7 +165,7 @@ export default function AddBooksModal({
                             type="number"
                         />
                         <input
-                            className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
+                            className="px-4 py-3 border-2 border-info rounded-lg"
                             placeholder="Yil"
                             name="year"
                             value={form.year}
@@ -169,19 +176,41 @@ export default function AddBooksModal({
 
                     {/* Rasm yuklash */}
                     <div className="mb-6">
-                        <div className="flex items-center gap-2 mb-2">
-                            <Image size={18} className="text-info" />
-                            <h3 className="text-sm font-semibold">Rasmlar</h3>
+                        <div className="flex items-center gap-2 mb-3">
+                            <Image size={18} className="text-error" />
+                            <h3 className="text-sm font-semibold text-base-content uppercase tracking-wide">
+                                Rasm Yuklash
+                            </h3>
                         </div>
-                        <input
-                            type="file"
-                            multiple
-                            accept="image/*"
-                            onChange={handleImagesChange}
-                            className="file-input file-input-bordered w-full"
-                        />
+                        <div className="space-y-3">
+                            {(form.mediaImages || [null]).map((img, index) => (
+                                <div key={index} className="relative">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        id={`image-upload-${index}`}
+                                        onChange={(e) => handleImageChange(e, index)}
+                                    />
+                                    <label
+                                        htmlFor={`image-upload-${index}`}
+                                        className="flex items-center justify-center gap-3 px-4 py-4 border-2 border-dashed border-base-300 rounded-lg hover:border-error hover:bg-base-200 transition-all duration-200 cursor-pointer group"
+                                    >
+                                        <Image size={20} className="text-base-300 group-hover:text-error transition-colors" />
+                                        <span className="text-base-300 group-hover:text-error font-medium">
+                                            {img ? img.name : "Rasm tanlash uchun bosing"}
+                                        </span>
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+                        <button
+                            onClick={handleAddImageInput}
+                            className="flex items-center gap-2 text-info hover:text-blue-600 font-medium mt-3"
+                        >
+                            <Plus size={18} /> Yana rasm qo‘shish
+                        </button>
                     </div>
-
 
                     {/* PDF yuklash */}
                     <div className="mb-6">
@@ -205,7 +234,6 @@ export default function AddBooksModal({
                     >
                         Saqlash
                     </button>
-
                 </div>
             </div>
         </div>

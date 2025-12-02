@@ -25,8 +25,8 @@ const Book = () => {
         descriptionOz: "",
         pages: "",
         year: "",
-        mediaImages: [],   
-        mediaDocs: [],     
+        mediaImages: [],
+        mediaDocs: [],
     });
     const GetDocuments = async () => {
         setLoading(true)
@@ -56,13 +56,16 @@ const Book = () => {
             titleUz: "",
             titleRu: "",
             titleOz: "",
-            decreeUz: "",
-            decreeRu: "",
-            decreeOz: "",
+            avtorUz: "",
+            avtorRu: "",
+            avtorOz: "",
             descriptionUz: "",
             descriptionRu: "",
             descriptionOz: "",
-            file: null,
+            pages: "",
+            year: "",
+            mediaImages: [],
+            mediaDocs: [],
         });
         setEditingId(null);
     }
@@ -85,15 +88,16 @@ const Book = () => {
         fd.append("pages", Number(form.pages));
         fd.append("year", Number(form.year));
 
-        // Rasm massivlari
-        form.mediaImages.forEach((file) => {
-            fd.append("mediaImages", file);
+
+        (form.mediaImages || []).forEach((file) => {
+            if (file) fd.append("mediaImages", file);
         });
 
         // PDF fayllar
-        form.mediaDocs.forEach((file) => {
-            fd.append("mediaDocs", file);
+        (form.mediaDocs || []).forEach((file) => {
+            if (file) fd.append("mediaDocs", file);
         });
+
 
         createDocuments(fd);
     };
@@ -239,29 +243,25 @@ const Book = () => {
         }
     };
 
-
-    const handleDownload = async (file) => {
+    const handleDownload = async (fileUrl) => {
         try {
-            const response = await fetch(`${file}`);
-            if (!response.ok) {
-                toast.error(response.status)
-
-                throw new Error("Файл недоступен");
-            }
-
+            const token = localStorage.getItem("token");
+            const response = await fetch(fileUrl, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error("Fayl yuklab bo‘lmadi");
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
-
             const a = document.createElement("a");
             a.href = url;
-            a.download = file;
+            a.download = fileUrl.split("/").pop(); // fayl nomi
             a.click();
-
             window.URL.revokeObjectURL(url);
         } catch (err) {
-            toast.error("Download failed:", err);
+            toast.error(err.message);
         }
     };
+
 
     useEffect(() => {
         GetDocuments()
@@ -329,34 +329,34 @@ const Book = () => {
                                 >
                                     <td className=" py-2">
                                         {document.mediaType?.length > 0 ? (
-                                            <Swiper
-                                                spaceBetween={10}
-                                                slidesPerView={1}
-                                                className="w-20 h-20 rounded-md overflow-hidden"
-                                            >
-                                                {document.mediaType.map((item, index) => (
-                                                    <SwiperSlide key={index}>
-                                                        {item.type.startsWith("video") ? (
-                                                            <video
-                                                                src={item.url}
-                                                                className="w-full h-full object-cover rounded-md"
-                                                                controls
-                                                            />
-                                                        ) : (
-                                                            <img
-                                                                src={item.url}
-                                                                alt="media"
-                                                                className="w-full h-full object-cover rounded-md"
-                                                            />
-                                                        )}
-                                                    </SwiperSlide>
-                                                ))}
+                                            <Swiper spaceBetween={10} slidesPerView={1} className="w-20 h-20 rounded-md overflow-hidden">
+                                                {document.mediaType
+                                                    .filter(item => item.type === "image" || item.type === "video")
+                                                    .map((item, index) => (
+                                                        <SwiperSlide key={index}>
+                                                            {item.type === "video" ? (
+                                                                <video
+                                                                    src={item.url}
+                                                                    className="w-full h-full object-cover rounded-md"
+                                                                    controls
+                                                                />
+                                                            ) : (
+                                                                <img
+                                                                    src={item.url}
+                                                                    alt="media"
+                                                                    className="w-full h-full object-cover rounded-md"
+                                                                />
+                                                            )}
+                                                        </SwiperSlide>
+                                                    ))
+                                                }
                                             </Swiper>
                                         ) : (
                                             <div className="w-[80px] h-[80px] bg-gray-200 rounded-md flex items-center justify-center text-xs">
                                                 No Media
                                             </div>
                                         )}
+
                                     </td>
 
                                     <td className="px-4 py-2">
