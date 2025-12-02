@@ -417,7 +417,7 @@ export default function AdminBannerManagement() {
                   </label>
                   <input
                     type="text"
-                    placeholder="O'zbek tilida"
+                    placeholder=" Ўзбек тилида"
                     value={formData.titleUz}
                     onChange={(e) =>
                       setFormData({ ...formData, titleUz: e.target.value })
@@ -445,7 +445,7 @@ export default function AdminBannerManagement() {
                   </label>
                   <input
                     type="text"
-                    placeholder="Ўзбек тилида"
+                    placeholder="O'zbek tilida"
                     value={formData.titleOz}
                     onChange={(e) =>
                       setFormData({ ...formData, titleOz: e.target.value })
@@ -459,10 +459,10 @@ export default function AdminBannerManagement() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Tavsif (O'zbekcha) *
+                       Tavsif (Ўзбекча)*
                   </label>
                   <textarea
-                    placeholder="O'zbek tilida"
+                    placeholder=" Ўзбек тилида"
                     value={formData.descriptionUz}
                     onChange={(e) =>
                       setFormData({
@@ -493,10 +493,10 @@ export default function AdminBannerManagement() {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Tavsif (Ўзбекча)
+                    Tavsif (O'zbekcha) 
                   </label>
                   <textarea
-                    placeholder="Ўзбек тилида"
+                    placeholder="O'zbek tilida"
                     value={formData.descriptionOz}
                     onChange={(e) =>
                       setFormData({
