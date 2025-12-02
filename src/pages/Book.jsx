@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import AddBooksModal from '../components/AddBookModal';
+import EditBooksModal from '../components/EditBookModal';
 
 const Book = () => {
     const [loading, setLoading] = useState(false)
@@ -424,7 +425,7 @@ const Book = () => {
                 onSubmit={handleSubmit}
             />
 
-            <EditDocumentModal
+            <EditBooksModal
                 open={openEditModal}
                 onClose={() => {
                     setOpenEditModal(false);
