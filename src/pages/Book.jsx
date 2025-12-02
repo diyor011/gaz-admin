@@ -134,22 +134,33 @@ const Book = () => {
 
 
     // Edit modal ochish
-    const handleEditClick = (document) => {
+    const handleEditClick = (book) => {
         setForm({
-            titleUz: document.title?.uz || "",
-            titleRu: document.title?.ru || "",
-            titleOz: document.title?.oz || "",
-            decreeUz: document.decree?.uz || "",
-            decreeRu: document.decree?.ru || "",
-            decreeOz: document.decree?.oz || "",
-            descriptionUz: document.description?.uz || "",
-            descriptionRu: document.description?.ru || "",
-            descriptionOz: document.description?.oz || "",
-            file: document.file || null,
+            titleUz: book.title?.uz || "",
+            titleRu: book.title?.ru || "",
+            titleOz: book.title?.oz || "",
+
+            avtorUz: book.avtor?.uz || "",
+            avtorRu: book.avtor?.ru || "",
+            avtorOz: book.avtor?.oz || "",
+
+            descriptionUz: book.description?.uz || "",
+            descriptionRu: book.description?.ru || "",
+            descriptionOz: book.description?.oz || "",
+
+            pages: book.pages || "",
+            year: book.year || "",
+
+            mediaImages: [],
+            mediaDocs: [],
+
+            file: book.file || null,
         });
-        setEditingId(document._id);
+
+        setEditingId(book._id);
         setOpenEditModal(true);
     };
+
 
     const handleEditSubmit = () => {
         const fd = new FormData();
@@ -157,17 +168,27 @@ const Book = () => {
         fd.append("title_uz", form.titleUz);
         fd.append("title_ru", form.titleRu);
         fd.append("title_oz", form.titleOz);
-        fd.append("decree_uz", form.decreeUz);
-        fd.append("decree_ru", form.decreeRu);
-        fd.append("decree_oz", form.decreeOz);
+
+        fd.append("avtor_uz", form.avtorUz);
+        fd.append("avtor_ru", form.avtorRu);
+        fd.append("avtor_oz", form.avtorOz);
+
         fd.append("description_uz", form.descriptionUz);
         fd.append("description_ru", form.descriptionRu);
         fd.append("description_oz", form.descriptionOz);
 
-        if (form.file) {
-            fd.append("file", form.file);
-        }
+        fd.append("pages", Number(form.pages));
+        fd.append("year", Number(form.year));
 
+        // Yangi yuklangan rasm/video
+        form.mediaImages.forEach((file) => {
+            fd.append("mediaImages", file);
+        });
+
+        // Yangi yuklangan PDF
+        form.mediaDocs.forEach((file) => {
+            fd.append("mediaDocs", file);
+        });
 
         updateDocuments(editingId, fd);
     };
@@ -176,40 +197,32 @@ const Book = () => {
         try {
             const token = localStorage.getItem("token");
 
-
-            let success = false;
-
-            try {
-                const response = await fetch(`https://uzneftegaz-backend-production.up.railway.app/api/books/${id}`, {
+            const response = await fetch(
+                `https://uzneftegaz-backend-production.up.railway.app/api/books/${id}`,
+                {
                     method: "PUT",
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                     body: formData,
-                });
-
-                if (response.ok) {
-                    success = true;
-                    toast.success(`Hujat muvaffaqiyatli ozgardi: ✅`);
                 }
-            } catch (e) {
-                toast.error(e)
+            );
+
+            if (!response.ok) {
+                toast.error("Xatolik: " + response.status);
+                throw new Error();
             }
 
-
-            if (!success) {
-                throw new Error("Hech qanday endpoint ishlamadi. Backend'ni tekshiring!");
-            }
+            toast.success("Kitob muvaffaqiyatli tahrirlandi!");
 
             await GetDocuments();
             setOpenEditModal(false);
             resetForm();
-            toast.success("Hujat muvaffaqiyatli tahrirlandi!");
         } catch (err) {
-            toast.error("Error updating leader:", err);
-            toast.error(`Xatolik: ${err.message}\n\nBackend API dokumentatsiyasini tekshiring yoki backend dasturchiga murojaat qiling.`);
+            toast.error("Error updating book");
         }
     };
+
 
     // Delete
     const deleteDocuments = async (id) => {
