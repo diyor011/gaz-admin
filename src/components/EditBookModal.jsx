@@ -1,20 +1,9 @@
-import {
-    X,
-    User,
-    FileText,
-    Image,
-    Trash2
-} from "lucide-react";
+import { X, User, FileText, Image, Trash2, Calendar, BookOpen } from "lucide-react";
 
-export default function EditBooksModal({
-    open,
-    onClose,
-    onSubmit,
-    form,
-    setForm,
-}) {
+export default function EditBooksModal({ open, onClose, onSubmit, form, setForm }) {
     if (!open) return null;
 
+    // Inputlarni handle qilish
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
@@ -32,7 +21,7 @@ export default function EditBooksModal({
         });
     };
 
-    // --- Rasm o‘chirish ---
+    // --- Rasm o'chirish ---
     const handleDeleteImage = (index) => {
         setForm((prev) => ({
             ...prev,
@@ -40,7 +29,7 @@ export default function EditBooksModal({
         }));
     };
 
-    // --- Rasm qo‘shish ---
+    // --- Yangi rasm qo'shish ---
     const handleAddImage = (e) => {
         const files = Array.from(e.target.files);
         if (files.length === 0) return;
@@ -69,22 +58,20 @@ export default function EditBooksModal({
                         </div>
                         <h2 className="text-2xl font-bold text-base-100">Kitobni tahrirlash</h2>
                     </div>
-
                     <button onClick={onClose} className="w-9 h-9 rounded-lg bg-base-100/20 hover:bg-base-100/30 flex items-center justify-center">
                         <X size={20} className="text-base-100" />
                     </button>
                 </div>
 
-                {/* BODY */}
+                {/* Body */}
                 <div className="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
 
-                    {/* Inputs */}
+                    {/* Kitob nomlari */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
                             <FileText size={18} className="text-warning" />
                             <h3 className="text-sm font-semibold">Kitob nomlari</h3>
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
                                 className="px-4 py-3 border-2 border-warning rounded-lg"
@@ -93,7 +80,6 @@ export default function EditBooksModal({
                                 value={form.titleUz}
                                 onChange={handleChange}
                             />
-
                             <input
                                 className="px-4 py-3 border-2 border-warning rounded-lg"
                                 placeholder="Название книги (Ru)"
@@ -101,7 +87,6 @@ export default function EditBooksModal({
                                 value={form.titleRu}
                                 onChange={handleChange}
                             />
-
                             <input
                                 className="px-4 py-3 border-2 border-warning rounded-lg"
                                 placeholder="Kitob nomi (Oz)"
@@ -112,49 +97,137 @@ export default function EditBooksModal({
                         </div>
                     </div>
 
-                    {/* ===== RASMLAR EDIT ===== */}
+                    {/* Muallif */}
+                    <div className="mb-6">
+                        <div className="flex items-center gap-2 mb-3">
+                            <User size={18} className="text-warning" />
+                            <h3 className="text-sm font-semibold">Muallif</h3>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <input
+                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                placeholder="Muallif (Uz)"
+                                name="avtorUz"
+                                value={form.avtorUz}
+                                onChange={handleChange}
+                            />
+                            <input
+                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                placeholder="Автор (Ru)"
+                                name="avtorRu"
+                                value={form.avtorRu}
+                                onChange={handleChange}
+                            />
+                            <input
+                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                placeholder="Muallif (Oz)"
+                                name="avtorOz"
+                                value={form.avtorOz}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Tavsif */}
+                    <div className="mb-6">
+                        <div className="flex items-center gap-2 mb-3">
+                            <FileText size={18} className="text-warning" />
+                            <h3 className="text-sm font-semibold">Tavsif</h3>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <textarea
+                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                placeholder="Tavsif (Uz)"
+                                name="descriptionUz"
+                                value={form.descriptionUz}
+                                onChange={handleChange}
+                                rows="3"
+                            />
+                            <textarea
+                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                placeholder="Описание (Ru)"
+                                name="descriptionRu"
+                                value={form.descriptionRu}
+                                onChange={handleChange}
+                                rows="3"
+                            />
+                            <textarea
+                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                placeholder="Tavsif (Oz)"
+                                name="descriptionOz"
+                                value={form.descriptionOz}
+                                onChange={handleChange}
+                                rows="3"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Sahifalar va Yil */}
+                    <div className="mb-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <div className="flex items-center gap-2 mb-3">
+                                    <BookOpen size={18} className="text-warning" />
+                                    <h3 className="text-sm font-semibold">Sahifalar soni</h3>
+                                </div>
+                                <input
+                                    type="number"
+                                    className="px-4 py-3 border-2 border-warning rounded-lg w-full"
+                                    placeholder="Sahifalar soni"
+                                    name="pages"
+                                    value={form.pages}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <div className="flex items-center gap-2 mb-3">
+                                    <Calendar size={18} className="text-warning" />
+                                    <h3 className="text-sm font-semibold">Nashr yili</h3>
+                                </div>
+                                <input
+                                    type="number"
+                                    className="px-4 py-3 border-2 border-warning rounded-lg w-full"
+                                    placeholder="Nashr yili"
+                                    name="year"
+                                    value={form.year}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Rasmlar */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
                             <Image size={18} className="text-warning" />
                             <h3 className="text-sm font-semibold">Rasmlar</h3>
                         </div>
-
-                        {/* Mavjud rasmlar */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                             {form.mediaImages?.map((img, index) => (
                                 <div key={index} className="relative border rounded-lg p-2">
-
                                     <img
-                                        src={
-                                            typeof img === "string"
-                                                ? img
-                                                : URL.createObjectURL(img)
-                                        }
+                                        src={typeof img === "string" ? img : URL.createObjectURL(img)}
                                         className="w-full h-32 object-cover rounded-lg"
+                                        alt={`rasm-${index}`}
                                     />
-
-                                    {/* Delete Button */}
                                     <button
                                         onClick={() => handleDeleteImage(index)}
                                         className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1"
                                     >
                                         <Trash2 size={16} />
                                     </button>
-
-                                    {/* Replace (input) */}
                                     <input
                                         type="file"
                                         accept="image/*"
-                                        className="mt-2 w-full"
+                                        className="mt-2 w-full text-xs"
                                         onChange={(e) => handleImageReplace(e, index)}
                                     />
                                 </div>
                             ))}
                         </div>
 
-                        {/* Rasm qo'shish */}
                         <label className="btn btn-warning w-full cursor-pointer">
-                            Yangi rasm qo‘shish
+                            Yangi rasm qo'shish
                             <input
                                 type="file"
                                 accept="image/*"
@@ -165,7 +238,7 @@ export default function EditBooksModal({
                         </label>
                     </div>
 
-                    {/* ===== PDF EDIT ===== */}
+                    {/* PDF */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
                             <FileText size={18} className="text-warning" />
@@ -173,10 +246,8 @@ export default function EditBooksModal({
                         </div>
 
                         {form.mediaDocs?.length > 0 && (
-                            <div className="border p-3 rounded-lg mb-3">
-                                <p className="font-medium">
-                                    {form.mediaDocs.length} ta PDF yuklangan
-                                </p>
+                            <div className="border p-3 rounded-lg mb-3 bg-warning/10">
+                                <p className="font-medium">{form.mediaDocs.length} ta PDF yuklangan</p>
                             </div>
                         )}
 
@@ -184,15 +255,15 @@ export default function EditBooksModal({
                             type="file"
                             accept=".pdf"
                             multiple
-                            className="file-input file-input-bordered w-full"
+                            className="file-input file-input-bordered file-input-warning w-full"
                             onChange={handleDocReplace}
                         />
                     </div>
 
-                    <button onClick={onSubmit} className="btn btn-warning w-full text-base-100">
+                    {/* Saqlash tugmasi */}
+                    <button onClick={onSubmit} className="btn btn-warning w-full text-base-100 font-bold">
                         Saqlash
                     </button>
-
                 </div>
             </div>
         </div>

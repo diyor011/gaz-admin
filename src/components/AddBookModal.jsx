@@ -72,7 +72,7 @@ export default function AddBooksModal({
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
                                 className="px-4 py-3 border-2 border-info rounded-lg"
-                                placeholder="Kitob nomi (Uz)"
+                                placeholder="Китоб номи (УЗ)"
                                 name="titleUz"
                                 value={form.titleUz || ""}
                                 onChange={handleChange}
@@ -86,7 +86,7 @@ export default function AddBooksModal({
                             />
                             <input
                                 className="px-4 py-3 border-2 border-info rounded-lg"
-                                placeholder="Kitob nomi (Oz)"
+                                placeholder="Kitob nomi (Uz) "
                                 name="titleOz"
                                 value={form.titleOz}
                                 onChange={handleChange}
@@ -103,7 +103,7 @@ export default function AddBooksModal({
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
                                 className="px-4 py-3 border-2 border-info rounded-lg"
-                                placeholder="Muallif (Uz)"
+                                placeholder=" Муалиф (УЗ)"
                                 name="avtorUz"
                                 value={form.avtorUz || ""}
                                 onChange={handleChange}
@@ -117,7 +117,7 @@ export default function AddBooksModal({
                             />
                             <input
                                 className="px-4 py-3 border-2 border-info rounded-lg"
-                                placeholder="Muallif (Oz)"
+                                placeholder="Muallif (Uz)"
                                 name="avtorOz"
                                 value={form.avtorOz}
                                 onChange={handleChange}
@@ -133,7 +133,7 @@ export default function AddBooksModal({
                         </div>
                         <textarea
                             className="w-full px-4 py-3 border-2 border-info rounded-lg"
-                            placeholder="Tavsif (Uz)"
+                            placeholder=" Тавсиф (УЗ)"
                             name="descriptionUz"
                             value={form.descriptionUz || ""}
                             onChange={handleChange}
@@ -147,7 +147,7 @@ export default function AddBooksModal({
                         />
                         <textarea
                             className="w-full px-4 py-3 border-2 border-info rounded-lg"
-                            placeholder="Tavsif (Oz)"
+                            placeholder="Tavsif (Uz)"
                             name="descriptionOz"
                             value={form.descriptionOz}
                             onChange={handleChange}

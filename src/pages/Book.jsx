@@ -152,8 +152,11 @@ const Book = () => {
             pages: book.pages || "",
             year: book.year || "",
 
-            mediaImages: [],
-            mediaDocs: [],
+            // --- Mavjud rasmlar va PDF fayllarni saqlash ---
+            mediaImages: book.mediaType
+                ? book.mediaType.filter(item => item.type === "image").map(item => item.url)
+                : [],
+            mediaDocs: book.file ? [book.file] : [],
 
             file: book.file || null,
         });
@@ -161,6 +164,7 @@ const Book = () => {
         setEditingId(book._id);
         setOpenEditModal(true);
     };
+
 
 
     const handleEditSubmit = () => {
