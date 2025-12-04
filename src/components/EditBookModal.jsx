@@ -9,7 +9,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
-    // --- Rasmlarni almashtirish ---
+    // Rasmni almashtirish
     const handleImageReplace = (e, index) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -21,7 +21,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
         });
     };
 
-    // --- Rasm o'chirish ---
+    // Rasm o'chirish
     const handleDeleteImage = (index) => {
         setForm((prev) => ({
             ...prev,
@@ -29,7 +29,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
         }));
     };
 
-    // --- Yangi rasm qo'shish ---
+    // Yangi rasm qo'shish
     const handleAddImage = (e) => {
         const files = Array.from(e.target.files);
         if (files.length === 0) return;
@@ -40,10 +40,22 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
         }));
     };
 
-    // --- PDF faylni almashtirish ---
+    // PDF faylni almashtirish
     const handleDocReplace = (e) => {
         const files = Array.from(e.target.files);
         setForm((prev) => ({ ...prev, mediaDocs: files }));
+    };
+
+    // Rasm URL yaratish (eski va yangi rasmlar uchun)
+    const getImageUrl = (img) => {
+        if (typeof img === "string") {
+            // Eski rasm (URL)
+            return img;
+        } else if (img instanceof File) {
+            // Yangi yuklangan rasm (File)
+            return URL.createObjectURL(img);
+        }
+        return "";
     };
 
     return (
@@ -204,28 +216,44 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                             {form.mediaImages?.map((img, index) => (
-                                <div key={index} className="relative border rounded-lg p-2">
+                                <div key={index} className="relative border-2 border-warning rounded-lg p-2 bg-warning/5">
                                     <img
-                                        src={typeof img === "string" ? img : URL.createObjectURL(img)}
+                                        src={getImageUrl(img)}
                                         className="w-full h-32 object-cover rounded-lg"
                                         alt={`rasm-${index}`}
                                     />
+                                    
+                                    {/* Badge - eski yoki yangi */}
+                                    <div className="absolute top-3 left-3 px-2 py-1 rounded-md text-xs font-semibold bg-black/70 text-white">
+                                        {typeof img === "string" ? "Eski" : "Yangi"}
+                                    </div>
+
+                                    {/* O'chirish tugmasi */}
                                     <button
                                         onClick={() => handleDeleteImage(index)}
-                                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1"
+                                        className="absolute top-3 right-3 bg-red-500 hover:bg-red-600 text-white rounded-full p-1.5 transition-all"
+                                        title="O'chirish"
                                     >
                                         <Trash2 size={16} />
                                     </button>
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="mt-2 w-full text-xs"
-                                        onChange={(e) => handleImageReplace(e, index)}
-                                    />
+
+                                    {/* Rasmni almashtirish */}
+                                    <label className="mt-2 block">
+                                        <span className="btn btn-warning btn-xs w-full cursor-pointer">
+                                            Almashtirish
+                                        </span>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="hidden"
+                                            onChange={(e) => handleImageReplace(e, index)}
+                                        />
+                                    </label>
                                 </div>
                             ))}
                         </div>
 
+                        {/* Yangi rasm qo'shish */}
                         <label className="btn btn-warning w-full cursor-pointer">
                             Yangi rasm qo'shish
                             <input
@@ -246,7 +274,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                         </div>
 
                         {form.mediaDocs?.length > 0 && (
-                            <div className="border p-3 rounded-lg mb-3 bg-warning/10">
+                            <div className="border-2 border-warning p-3 rounded-lg mb-3 bg-warning/10">
                                 <p className="font-medium">{form.mediaDocs.length} ta PDF yuklangan</p>
                             </div>
                         )}

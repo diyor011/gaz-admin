@@ -4,7 +4,9 @@ import AddDocumentModal from '../components/AddDocumetModal';
 import EditDocumentModal from '../components/EditDocumentModal';
 import { toast, ToastContainer } from 'react-toastify';
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/pagination";
 import AddBooksModal from '../components/AddBookModal';
 import EditBooksModal from '../components/EditBookModal';
 
@@ -12,8 +14,8 @@ const Book = () => {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState([])
     const [openAddModal, setOpenAddModal] = useState(false)
-    const [openEditModal, setOpenEditModal] = useState(false) // Edit modal state
-    const [editingId, setEditingId] = useState(null) // Tahrirlash ID
+    const [openEditModal, setOpenEditModal] = useState(false)
+    const [editingId, setEditingId] = useState(null)
     const [form, setForm] = useState({
         titleUz: "",
         titleRu: "",
@@ -29,12 +31,12 @@ const Book = () => {
         mediaImages: [],
         mediaDocs: [],
     });
+
     const GetDocuments = async () => {
         setLoading(true)
         try {
             const response = await fetch('https://uzneftegaz-backend-production.up.railway.app/api/books')
             const request = await response.json()
-
 
             if (!response.ok) {
                 toast.error(response.status)
@@ -89,20 +91,16 @@ const Book = () => {
         fd.append("pages", form.pages);
         fd.append("year", form.year);
 
-        // Rasm emas backendga → string bo‘lishi kerak yoki file -> key "mediaType"
         form.mediaImages.forEach((file) => {
             fd.append("mediaType", file);
         });
 
-        // PDF fayl → to‘g‘ri
         form.mediaDocs.forEach((file) => {
             fd.append("mediaDocs", file);
         });
 
         createDocuments(fd);
     };
-
-
 
     const createDocuments = async (formData) => {
         try {
@@ -133,9 +131,10 @@ const Book = () => {
         }
     };
 
-
     // Edit modal ochish
     const handleEditClick = (book) => {
+        console.log("Book data:", book); // Debug uchun
+        
         setForm({
             titleUz: book.title?.uz || "",
             titleRu: book.title?.ru || "",
@@ -152,20 +151,25 @@ const Book = () => {
             pages: book.pages || "",
             year: book.year || "",
 
-            // --- Mavjud rasmlar va PDF fayllarni saqlash ---
-            mediaImages: book.mediaType
-                ? book.mediaType.filter(item => item.type === "image").map(item => item.url)
+            // Barcha mediaType rasmlarini olish (type filter ishlatmasdan)
+            mediaImages: book.mediaType && Array.isArray(book.mediaType)
+                ? book.mediaType.map(item => item.url)
                 : [],
-            mediaDocs: book.file ? [book.file] : [],
-
-            file: book.file || null,
+            
+            // mediaDocs to'g'ri olish
+            mediaDocs: book.mediaDocs && Array.isArray(book.mediaDocs)
+                ? book.mediaDocs.map(doc => doc.url)
+                : [],
         });
 
         setEditingId(book._id);
         setOpenEditModal(true);
     };
 
-
+    // File tekshirish funksiyasi
+    const isFile = (item) => {
+        return item && typeof item === 'object' && item.constructor && item.constructor.name === 'File';
+    };
 
     const handleEditSubmit = () => {
         const fd = new FormData();
@@ -185,14 +189,18 @@ const Book = () => {
         fd.append("pages", Number(form.pages));
         fd.append("year", Number(form.year));
 
-        // Yangi yuklangan rasm/video
-        form.mediaImages.forEach((file) => {
-            fd.append("mediaImages", file);
+        // Faqat yangi yuklangan FILE larni yuboramiz (Backend "mediaType" kutadi!)
+        form.mediaImages.forEach((item) => {
+            if (isFile(item)) {
+                fd.append("mediaType", item);
+            }
         });
 
-        // Yangi yuklangan PDF
+        // Faqat FILE bo'lgan PDFlar
         form.mediaDocs.forEach((file) => {
-            fd.append("mediaDocs", file);
+            if (isFile(file)) {
+                fd.append("mediaDocs", file);
+            }
         });
 
         updateDocuments(editingId, fd);
@@ -228,7 +236,6 @@ const Book = () => {
         }
     };
 
-
     // Delete
     const deleteDocuments = async (id) => {
         const isConfirm = window.confirm("Rostan ham bu Hujat o'chirmoqchimisiz?");
@@ -260,28 +267,28 @@ const Book = () => {
             toast.error("Delete Error:", err);
         }
     };
- const handleDownload = async (file) => {
-    try {
-      const response = await fetch(`${file}`);
-      if (!response.ok) {
-        toast.error(response.status)
 
-        throw new Error("Файл недоступен");
-      }
+    const handleDownload = async (file) => {
+        try {
+            const response = await fetch(`${file}`);
+            if (!response.ok) {
+                toast.error(response.status)
+                throw new Error("Файл недоступен");
+            }
 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = file;
-      a.click();
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = file;
+            a.click();
 
-      window.URL.revokeObjectURL(url);
-    } catch (err) {
-      toast.error("Download failed:", err);
-    }
-  };
+            window.URL.revokeObjectURL(url);
+        } catch (err) {
+            toast.error("Download failed:", err);
+        }
+    };
 
     useEffect(() => {
         GetDocuments()
@@ -310,112 +317,126 @@ const Book = () => {
                 </div>
 
                 <div className="bg-base-100 rounded-xl shadow-sm shadow-info overflow-hidden w-full">
-                    {loading && data.length === 0 ? (<div className="text-center py-12">
-                        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-info"></div>
-                        <p className="text-gray-500 mt-4">Yuklanmoqda...</p>
-                    </div>) : (<table className="w-full">
-                        <thead className="bg-base-100">
-                            <tr>
-                                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
-                                    Rasim
-                                </th>
-                                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
-                                    Pdf
-                                </th>
-                                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
-                                    Nomi
-                                </th>
-                                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
-                                    Mualif
-                                </th>
-                                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
-                                    Saxifalar soni
-                                </th>
-                                <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
-                                    Kitob yozilgan yili
-                                </th>
-                                <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
-                                    Batafsil
-                                </th>
-
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-info">
-                            {data.map((document) => (
-                                <tr
-                                    key={document._id}
-                                    className="hover:bg-base-200 transition-colors"
-
-                                >
-                                    <td className=" py-2">
-                                        {document.mediaType?.length > 0 ? (
-                                            <Swiper spaceBetween={10} slidesPerView={1} className="w-20 h-20 rounded-md overflow-hidden">
-                                                {document.mediaType
-                                                    .filter(item => item.type === "image" || item.type === "video")
-                                                    .map((item, index) => (
-                                                        <SwiperSlide key={index}>
-                                                            {item.type === "video" ? (
-                                                                <video
-                                                                    src={item.url}
-                                                                    className="w-full h-full object-cover rounded-md"
-                                                                    controls
-                                                                />
-                                                            ) : (
-                                                                <img
-                                                                    src={item.url}
-                                                                    alt="media"
-                                                                    className="w-full h-full object-cover rounded-md"
-                                                                />
-                                                            )}
-                                                        </SwiperSlide>
-                                                    ))
-                                                }
-                                            </Swiper>
-                                        ) : (
-                                            <div className="w-[80px] h-[80px] bg-gray-200 rounded-md flex items-center justify-center text-xs">
-                                                No Media
-                                            </div>
-                                        )}
-
-                                    </td>
-
-                                    <td className="px-4 py-2">
-                                        <button onClick={() => handleDownload(document.mediaDocs?.url)}>
-                                            <File />
-                                        </button>
-
-                                    </td>
-                                    <td className="px-2 py-2 font-semibold whitespace-nowrap text-sm">
-                                        {document.title?.uz}
-                                    </td>
-                                    <td className="px-2 py-2 font-semibold whitespace-nowrap text-sm">
-                                        {document.avtor?.uz}
-                                    </td>
-                                    <td className="whitespace-nowrap px-12 py-2">{document.pages}</td>
-                                    <td className="whitespace-nowrap px-12 py-2 ">{document.year}</td>
-
-                                    <td className="px-4 py-4 max-w-xs truncate">
-                                        {document.description?.uz}
-                                    </td>
-                                    <td className="px-4 py-4 text-right whitespace-nowrap">
-                                        <button
-                                            onClick={() => handleEditClick(document)}
-                                            className="p-2 text-blue-500 hover:bg-info rounded-lg transition-colors"
-                                        >
-                                            <Edit2 size={18} />
-                                        </button>
-                                        <button
-                                            onClick={() => deleteDocuments(document._id)}
-                                            className="p-2 text-red-600 hover:bg-error rounded-lg ml-2 transition-colors"
-                                        >
-                                            <Trash2 size={18} />
-                                        </button>
-                                    </td>
+                    {loading && data.length === 0 ? (
+                        <div className="text-center py-12">
+                            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-info"></div>
+                            <p className="text-gray-500 mt-4">Yuklanmoqda...</p>
+                        </div>
+                    ) : (
+                        <table className="w-full">
+                            <thead className="bg-base-100">
+                                <tr>
+                                    <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
+                                        Rasim
+                                    </th>
+                                    <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
+                                        Pdf
+                                    </th>
+                                    <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
+                                        Nomi
+                                    </th>
+                                    <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
+                                        Mualif
+                                    </th>
+                                    <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
+                                        Saxifalar soni
+                                    </th>
+                                    <th className="p-4 text-left text-xs font-semibold text-gray-600 uppercase">
+                                        Kitob yozilgan yili
+                                    </th>
+                                    <th className="p-4 text-center text-xs font-semibold text-gray-600 uppercase">
+                                        Batafsil
+                                    </th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>)}
+                            </thead>
+                            <tbody className="divide-y divide-info">
+                                {data.map((document) => (
+                                    <tr
+                                        key={document._id}
+                                        className="hover:bg-base-200 transition-colors"
+                                    >
+                                        <td className="py-2 px-4">
+                                            {document.mediaType?.length > 0 ? (
+                                                document.mediaType.length === 1 ? (
+                                                    // Bitta rasm
+                                                    <img
+                                                        src={document.mediaType[0].url}
+                                                        alt="media"
+                                                        className="w-20 h-20 object-cover rounded-2xl shadow-xl"
+                                                    />
+                                                ) : (
+                                                    // Ko'p rasm - Swiper
+                                                    <div className="w-32 h-24">
+                                                        <Swiper
+                                                            modules={[Autoplay, Pagination]}
+                                                            spaceBetween={10}
+                                                            slidesPerView={1}
+                                                            autoplay={{
+                                                                delay: 3000,
+                                                                disableOnInteraction: false,
+                                                            }}
+                                                            pagination={{ 
+                                                                clickable: true,
+                                                                dynamicBullets: true,
+                                                            }}
+                                                            loop={true}
+                                                            className="w-full h-full rounded-xl shadow-xl"
+                                                        >
+                                                            {document.mediaType.map((m, index) => (
+                                                                <SwiperSlide key={index}>
+                                                                    <img
+                                                                        src={m.url}
+                                                                        alt={`media-${index}`}
+                                                                        className="w-full h-full object-cover rounded-xl"
+                                                                    />
+                                                                </SwiperSlide>
+                                                            ))}
+                                                        </Swiper>
+                                                    </div>
+                                                )
+                                            ) : (
+                                                // Media yo'q bo'lsa
+                                                <div className="w-20 h-20 bg-gray-200 rounded-2xl flex items-center justify-center shadow-xl">
+                                                    <p className="text-gray-400 text-xs">Rasm yo'q</p>
+                                                </div>
+                                            )}
+                                        </td>
 
+                                        <td className="px-4 py-2">
+                                            <button onClick={() => handleDownload(document.mediaDocs?.url)}>
+                                                <File />
+                                            </button>
+                                        </td>
+                                        <td className="px-2 py-2 font-semibold whitespace-nowrap text-sm">
+                                            {document.title?.uz}
+                                        </td>
+                                        <td className="px-2 py-2 font-semibold whitespace-nowrap text-sm">
+                                            {document.avtor?.uz}
+                                        </td>
+                                        <td className="whitespace-nowrap px-12 py-2">{document.pages}</td>
+                                        <td className="whitespace-nowrap px-12 py-2">{document.year}</td>
+                                        <td className="px-4 py-4 max-w-xs truncate">
+                                            {document.description?.uz}
+                                        </td>
+                                        <td className="px-4 py-4 text-right whitespace-nowrap">
+                                            <button
+                                                onClick={() => handleEditClick(document)}
+                                                className="p-2 text-blue-500 hover:bg-info rounded-lg transition-colors"
+                                            >
+                                                <Edit2 size={18} />
+                                            </button>
+                                            <button
+                                                onClick={() => deleteDocuments(document._id)}
+                                                className="p-2 text-red-600 hover:bg-error rounded-lg ml-2 transition-colors"
+                                            >
+                                                <Trash2 size={18} />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
             </div>
 
@@ -442,7 +463,6 @@ const Book = () => {
                 onSubmit={handleEditSubmit}
             />
             <ToastContainer />
-
         </div>
     )
 }
