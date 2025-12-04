@@ -86,22 +86,22 @@ const Book = () => {
         fd.append("description_ru", form.descriptionRu);
         fd.append("description_oz", form.descriptionOz);
 
-        fd.append("pages", Number(form.pages));
-        fd.append("year", Number(form.year));
+        fd.append("pages", form.pages);
+        fd.append("year", form.year);
 
-
-        (form.mediaImages || []).forEach((file) => {
-            if (file) fd.append("mediaImages", file);
+        // Rasm emas backendga → string bo‘lishi kerak yoki file -> key "mediaType"
+        form.mediaImages.forEach((file) => {
+            fd.append("mediaType", file);
         });
 
-        // PDF fayllar
-        (form.mediaDocs || []).forEach((file) => {
-            if (file) fd.append("mediaDocs", file);
+        // PDF fayl → to‘g‘ri
+        form.mediaDocs.forEach((file) => {
+            fd.append("mediaDocs", file);
         });
-
 
         createDocuments(fd);
     };
+
 
 
     const createDocuments = async (formData) => {
@@ -260,26 +260,28 @@ const Book = () => {
             toast.error("Delete Error:", err);
         }
     };
+ const handleDownload = async (file) => {
+    try {
+      const response = await fetch(`${file}`);
+      if (!response.ok) {
+        toast.error(response.status)
 
-    const handleDownload = async (fileUrl) => {
-        try {
-            const token = localStorage.getItem("token");
-            const response = await fetch(fileUrl, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            if (!response.ok) throw new Error("Fayl yuklab bo‘lmadi");
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = fileUrl.split("/").pop(); // fayl nomi
-            a.click();
-            window.URL.revokeObjectURL(url);
-        } catch (err) {
-            toast.error(err.message);
-        }
-    };
+        throw new Error("Файл недоступен");
+      }
 
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = file;
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      toast.error("Download failed:", err);
+    }
+  };
 
     useEffect(() => {
         GetDocuments()
@@ -378,10 +380,10 @@ const Book = () => {
                                     </td>
 
                                     <td className="px-4 py-2">
-                                        <button onClick={() => handleDownload(document.file)}>
-
+                                        <button onClick={() => handleDownload(document.mediaDocs?.url)}>
                                             <File />
                                         </button>
+
                                     </td>
                                     <td className="px-2 py-2 font-semibold whitespace-nowrap text-sm">
                                         {document.title?.uz}
