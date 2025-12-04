@@ -71,21 +71,21 @@ export default function AddBooksModal({
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-info rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Китоб номи (УЗ)"
                                 name="titleUz"
                                 value={form.titleUz || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-info rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Название книги (Ru)"
                                 name="titleRu"
                                 value={form.titleRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-info rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Kitob nomi (Uz) "
                                 name="titleOz"
                                 value={form.titleOz}
@@ -102,21 +102,21 @@ export default function AddBooksModal({
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-info rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder=" Муалиф (УЗ)"
                                 name="avtorUz"
                                 value={form.avtorUz || ""}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-info rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Автор (Ru)"
                                 name="avtorRu"
                                 value={form.avtorRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-info rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Muallif (Uz)"
                                 name="avtorOz"
                                 value={form.avtorOz}
@@ -132,21 +132,21 @@ export default function AddBooksModal({
                             <h3 className="text-sm font-semibold">Tavsif</h3>
                         </div>
                         <textarea
-                            className="w-full px-4 py-3 border-2 border-info rounded-lg"
+                            className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             placeholder=" Тавсиф (УЗ)"
                             name="descriptionUz"
                             value={form.descriptionUz || ""}
                             onChange={handleChange}
                         />
                         <textarea
-                            className="w-full px-4 py-3 border-2 border-info rounded-lg"
+                            className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             placeholder="Описание (Ru)"
                             name="descriptionRu"
                             value={form.descriptionRu}
                             onChange={handleChange}
                         />
                         <textarea
-                            className="w-full px-4 py-3 border-2 border-info rounded-lg"
+                            className="w-full px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             placeholder="Tavsif (Uz)"
                             name="descriptionOz"
                             value={form.descriptionOz}
@@ -157,7 +157,7 @@ export default function AddBooksModal({
                     {/* Sahifalar va yil */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <input
-                            className="px-4 py-3 border-2 border-info rounded-lg"
+                            className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             placeholder="Sahifa soni"
                             name="pages"
                             value={form.pages}
@@ -165,7 +165,7 @@ export default function AddBooksModal({
                             type="number"
                         />
                         <input
-                            className="px-4 py-3 border-2 border-info rounded-lg"
+                            className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                             placeholder="Yil"
                             name="year"
                             value={form.year}

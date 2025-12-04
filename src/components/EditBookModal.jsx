@@ -63,7 +63,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
             <div className="bg-base-100 w-full max-w-5xl rounded-2xl shadow-2xl overflow-hidden">
 
                 {/* Header */}
-                <div className="bg-warning px-6 py-5 flex justify-between items-center">
+                <div className="bg-info px-6 py-5 flex justify-between items-center">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-base-100/20 flex items-center justify-center">
                             <User className="text-base-100" size={22} />
@@ -81,26 +81,26 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                     {/* Kitob nomlari */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
-                            <FileText size={18} className="text-warning" />
+                            <FileText size={18} className="text-info" />
                             <h3 className="text-sm font-semibold">Kitob nomlari</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Kitob nomi (Uz)"
                                 name="titleUz"
                                 value={form.titleUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Название книги (Ru)"
                                 name="titleRu"
                                 value={form.titleRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Kitob nomi (Oz)"
                                 name="titleOz"
                                 value={form.titleOz}
@@ -112,26 +112,26 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                     {/* Muallif */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
-                            <User size={18} className="text-warning" />
+                            <User size={18} className="text-info" />
                             <h3 className="text-sm font-semibold">Muallif</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Muallif (Uz)"
                                 name="avtorUz"
                                 value={form.avtorUz}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Автор (Ru)"
                                 name="avtorRu"
                                 value={form.avtorRu}
                                 onChange={handleChange}
                             />
                             <input
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Muallif (Oz)"
                                 name="avtorOz"
                                 value={form.avtorOz}
@@ -143,12 +143,12 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                     {/* Tavsif */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
-                            <FileText size={18} className="text-warning" />
+                            <FileText size={18} className="text-info" />
                             <h3 className="text-sm font-semibold">Tavsif</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <textarea
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Tavsif (Uz)"
                                 name="descriptionUz"
                                 value={form.descriptionUz}
@@ -156,7 +156,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                                 rows="3"
                             />
                             <textarea
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Описание (Ru)"
                                 name="descriptionRu"
                                 value={form.descriptionRu}
@@ -164,7 +164,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                                 rows="3"
                             />
                             <textarea
-                                className="px-4 py-3 border-2 border-warning rounded-lg"
+                                className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration"
                                 placeholder="Tavsif (Oz)"
                                 name="descriptionOz"
                                 value={form.descriptionOz}
@@ -179,12 +179,12 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <div className="flex items-center gap-2 mb-3">
-                                    <BookOpen size={18} className="text-warning" />
+                                    <BookOpen size={18} className="text-info" />
                                     <h3 className="text-sm font-semibold">Sahifalar soni</h3>
                                 </div>
                                 <input
                                     type="number"
-                                    className="px-4 py-3 border-2 border-warning rounded-lg w-full"
+                                    className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration w-full"
                                     placeholder="Sahifalar soni"
                                     name="pages"
                                     value={form.pages}
@@ -193,12 +193,12 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                             </div>
                             <div>
                                 <div className="flex items-center gap-2 mb-3">
-                                    <Calendar size={18} className="text-warning" />
+                                    <Calendar size={18} className="text-info" />
                                     <h3 className="text-sm font-semibold">Nashr yili</h3>
                                 </div>
                                 <input
                                     type="number"
-                                    className="px-4 py-3 border-2 border-warning rounded-lg w-full"
+                                    className="px-4 py-3 border-2  text-info border-info hover:border-warning hover:text-warning focus:text-success -200 rounded-lg focus:border-success outline-none transition-colors duration w-full"
                                     placeholder="Nashr yili"
                                     name="year"
                                     value={form.year}
@@ -211,12 +211,12 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                     {/* Rasmlar */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
-                            <Image size={18} className="text-warning" />
+                            <Image size={18} className="text-info" />
                             <h3 className="text-sm font-semibold">Rasmlar</h3>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                             {form.mediaImages?.map((img, index) => (
-                                <div key={index} className="relative border-2 border-warning rounded-lg p-2 bg-warning/5">
+                                <div key={index} className="relative border-2 border-info rounded-lg p-2 bg-info">
                                     <img
                                         src={getImageUrl(img)}
                                         className="w-full h-32 object-cover rounded-lg"
@@ -231,7 +231,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                                     {/* O'chirish tugmasi */}
                                     <button
                                         onClick={() => handleDeleteImage(index)}
-                                        className="absolute top-3 right-3 bg-red-500 hover:bg-red-600 text-white rounded-full p-1.5 transition-all"
+                                        className="absolute top-3 right-3 bg-warning hover:bg-error text-white rounded-full p-1.5 transition-all"
                                         title="O'chirish"
                                     >
                                         <Trash2 size={16} />
@@ -254,7 +254,7 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                         </div>
 
                         {/* Yangi rasm qo'shish */}
-                        <label className="btn btn-warning w-full cursor-pointer">
+                        <label className="btn btn-info w-full cursor-pointer">
                             Yangi rasm qo'shish
                             <input
                                 type="file"
@@ -269,12 +269,12 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                     {/* PDF */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
-                            <FileText size={18} className="text-warning" />
+                            <FileText size={18} className="text-info" />
                             <h3 className="text-sm font-semibold">PDF fayllar</h3>
                         </div>
 
                         {form.mediaDocs?.length > 0 && (
-                            <div className="border-2 border-warning p-3 rounded-lg mb-3 bg-warning/10">
+                            <div className="border-2 border-info p-3 rounded-lg mb-3 bg-info">
                                 <p className="font-medium">{form.mediaDocs.length} ta PDF yuklangan</p>
                             </div>
                         )}
@@ -283,13 +283,13 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                             type="file"
                             accept=".pdf"
                             multiple
-                            className="file-input file-input-bordered file-input-warning w-full"
+                            className="file-input file-input-bordered file-input-info w-full"
                             onChange={handleDocReplace}
                         />
                     </div>
 
                     {/* Saqlash tugmasi */}
-                    <button onClick={onSubmit} className="btn btn-warning w-full text-base-100 font-bold">
+                    <button onClick={onSubmit} className="btn btn-info w-full text-base-100 font-bold">
                         Saqlash
                     </button>
                 </div>
