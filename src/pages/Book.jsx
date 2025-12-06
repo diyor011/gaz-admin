@@ -134,7 +134,7 @@ const Book = () => {
     // Edit modal ochish
     const handleEditClick = (book) => {
         console.log("Book data:", book); // Debug uchun
-        
+
         setForm({
             titleUz: book.title?.uz || "",
             titleRu: book.title?.ru || "",
@@ -155,7 +155,7 @@ const Book = () => {
             mediaImages: book.mediaType && Array.isArray(book.mediaType)
                 ? book.mediaType.map(item => item.url)
                 : [],
-            
+
             // mediaDocs to'g'ri olish
             mediaDocs: book.mediaDocs && Array.isArray(book.mediaDocs)
                 ? book.mediaDocs.map(doc => doc.url)
@@ -356,51 +356,58 @@ const Book = () => {
                                         className="hover:bg-base-200 transition-colors"
                                     >
                                         <td className="py-2 px-4">
-                                            {document.mediaType?.length > 0 ? (
-                                                document.mediaType.length === 1 ? (
-                                                    // Bitta rasm
+                                            {document.mediaType ? (
+                                                Array.isArray(document.mediaType) ? (
+                                                    document.mediaType.length === 1 ? (
+                                                        <img
+                                                            src={document.mediaType[0].url}
+                                                            alt="media"
+                                                            className="w-20 h-20 object-cover rounded-2xl shadow-xl"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-32 h-24">
+                                                            <Swiper
+                                                                modules={[Autoplay, Pagination]}
+                                                                spaceBetween={10}
+                                                                slidesPerView={1}
+                                                                autoplay={{
+                                                                    delay: 3000,
+                                                                    disableOnInteraction: false,
+                                                                }}
+                                                                pagination={{
+                                                                    clickable: true,
+                                                                    dynamicBullets: true,
+                                                                }}
+                                                                loop={true}
+                                                                className="w-full h-full rounded-xl shadow-xl"
+                                                            >
+                                                                {document.mediaType.map((m, index) => (
+                                                                    <SwiperSlide key={index}>
+                                                                        <img
+                                                                            src={m.url}
+                                                                            alt={`media-${index}`}
+                                                                            className="w-full h-full object-cover rounded-xl"
+                                                                        />
+                                                                    </SwiperSlide>
+                                                                ))}
+                                                            </Swiper>
+                                                        </div>
+                                                    )
+                                                ) : (
+                                                    // mediaType object bo‘lsa
                                                     <img
-                                                        src={document.mediaType[0].url}
+                                                        src={document.mediaType.url}
                                                         alt="media"
                                                         className="w-20 h-20 object-cover rounded-2xl shadow-xl"
                                                     />
-                                                ) : (
-                                                    // Ko'p rasm - Swiper
-                                                    <div className="w-32 h-24">
-                                                        <Swiper
-                                                            modules={[Autoplay, Pagination]}
-                                                            spaceBetween={10}
-                                                            slidesPerView={1}
-                                                            autoplay={{
-                                                                delay: 3000,
-                                                                disableOnInteraction: false,
-                                                            }}
-                                                            pagination={{ 
-                                                                clickable: true,
-                                                                dynamicBullets: true,
-                                                            }}
-                                                            loop={true}
-                                                            className="w-full h-full rounded-xl shadow-xl"
-                                                        >
-                                                            {document.mediaType.map((m, index) => (
-                                                                <SwiperSlide key={index}>
-                                                                    <img
-                                                                        src={m.url}
-                                                                        alt={`media-${index}`}
-                                                                        className="w-full h-full object-cover rounded-xl"
-                                                                    />
-                                                                </SwiperSlide>
-                                                            ))}
-                                                        </Swiper>
-                                                    </div>
                                                 )
                                             ) : (
-                                                // Media yo'q bo'lsa
                                                 <div className="w-20 h-20 bg-gray-200 rounded-2xl flex items-center justify-center shadow-xl">
                                                     <p className="text-gray-400 text-xs">Rasm yo'q</p>
                                                 </div>
                                             )}
                                         </td>
+
 
                                         <td className="px-4 py-2">
                                             <button onClick={() => handleDownload(document.mediaDocs?.url)}>
