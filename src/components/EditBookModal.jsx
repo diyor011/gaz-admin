@@ -3,7 +3,6 @@ import { X, User, FileText, Image, Trash2, Calendar, BookOpen } from "lucide-rea
 export default function EditBooksModal({ open, onClose, onSubmit, form, setForm }) {
     if (!open) return null;
 
-    // Inputlarni handle qilish
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
@@ -40,19 +39,17 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
         }));
     };
 
-    // PDF faylni almashtirish
+    // PDF faylni almashtirish (faqat bitta)
     const handleDocReplace = (e) => {
-        const files = Array.from(e.target.files);
-        setForm((prev) => ({ ...prev, mediaDocs: files }));
+        const file = e.target.files[0];
+        setForm((prev) => ({ ...prev, mediaDocs: file || null }));
     };
 
-    // Rasm URL yaratish (eski va yangi rasmlar uchun)
+    // Rasm URL yaratish
     const getImageUrl = (img) => {
         if (typeof img === "string") {
-            // Eski rasm (URL)
             return img;
         } else if (img instanceof File) {
-            // Yangi yuklangan rasm (File)
             return URL.createObjectURL(img);
         }
         return "";
@@ -223,12 +220,10 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                                         alt={`rasm-${index}`}
                                     />
                                     
-                                    {/* Badge - eski yoki yangi */}
                                     <div className="absolute top-3 left-3 px-2 py-1 rounded-md text-xs font-semibold bg-black/70 text-white">
                                         {typeof img === "string" ? "Eski" : "Yangi"}
                                     </div>
 
-                                    {/* O'chirish tugmasi */}
                                     <button
                                         onClick={() => handleDeleteImage(index)}
                                         className="absolute top-3 right-3 bg-warning hover:bg-error text-white rounded-full p-1.5 transition-all"
@@ -237,7 +232,6 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                                         <Trash2 size={16} />
                                     </button>
 
-                                    {/* Rasmni almashtirish */}
                                     <label className="mt-2 block">
                                         <span className="btn btn-warning btn-xs w-full cursor-pointer">
                                             Almashtirish
@@ -253,7 +247,6 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                             ))}
                         </div>
 
-                        {/* Yangi rasm qo'shish */}
                         <label className="btn btn-info w-full cursor-pointer">
                             Yangi rasm qo'shish
                             <input
@@ -270,19 +263,22 @@ export default function EditBooksModal({ open, onClose, onSubmit, form, setForm 
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
                             <FileText size={18} className="text-info" />
-                            <h3 className="text-sm font-semibold">PDF fayllar</h3>
+                            <h3 className="text-sm font-semibold">PDF fayl</h3>
                         </div>
 
-                        {form.mediaDocs?.length > 0 && (
+                        {form.mediaDocs && (
                             <div className="border-2 border-info p-3 rounded-lg mb-3 bg-info">
-                                <p className="font-medium">{form.mediaDocs.length} ta PDF yuklangan</p>
+                                <p className="font-medium">
+                                    {typeof form.mediaDocs === "string" 
+                                        ? "Hozirgi PDF: " + form.mediaDocs.split('/').pop()
+                                        : "Yangi PDF: " + form.mediaDocs.name}
+                                </p>
                             </div>
                         )}
 
                         <input
                             type="file"
                             accept=".pdf"
-                            multiple
                             className="file-input file-input-bordered file-input-info w-full"
                             onChange={handleDocReplace}
                         />

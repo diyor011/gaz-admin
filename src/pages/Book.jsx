@@ -29,7 +29,7 @@ const Book = () => {
         pages: "",
         year: "",
         mediaImages: [],
-        mediaDocs: [],
+        mediaDocs: null, // null yoki bitta file
     });
 
     const GetDocuments = async () => {
@@ -68,7 +68,7 @@ const Book = () => {
             pages: "",
             year: "",
             mediaImages: [],
-            mediaDocs: [],
+            mediaDocs: null,
         });
         setEditingId(null);
     }
@@ -95,9 +95,10 @@ const Book = () => {
             fd.append("mediaType", file);
         });
 
-        form.mediaDocs.forEach((file) => {
-            fd.append("mediaDocs", file);
-        });
+        // Faqat bitta PDF fayl
+        if (form.mediaDocs) {
+            fd.append("mediaDocs", form.mediaDocs);
+        }
 
         createDocuments(fd);
     };
@@ -133,7 +134,7 @@ const Book = () => {
 
     // Edit modal ochish
     const handleEditClick = (book) => {
-        console.log("Book data:", book); // Debug uchun
+        console.log("Book data:", book);
 
         setForm({
             titleUz: book.title?.uz || "",
@@ -151,15 +152,11 @@ const Book = () => {
             pages: book.pages || "",
             year: book.year || "",
 
-            // Barcha mediaType rasmlarini olish (type filter ishlatmasdan)
-            mediaImages: book.mediaType && Array.isArray(book.mediaType)
-                ? book.mediaType.map(item => item.url)
-                : [],
+            // mediaType endi object
+            mediaImages: book.mediaType ? [book.mediaType.url] : [],
 
-            // mediaDocs to'g'ri olish
-            mediaDocs: book.mediaDocs && Array.isArray(book.mediaDocs)
-                ? book.mediaDocs.map(doc => doc.url)
-                : [],
+            // mediaDocs endi object yoki null
+            mediaDocs: book.mediaDocs ? book.mediaDocs.url : null,
         });
 
         setEditingId(book._id);
@@ -189,19 +186,17 @@ const Book = () => {
         fd.append("pages", Number(form.pages));
         fd.append("year", Number(form.year));
 
-        // Faqat yangi yuklangan FILE larni yuboramiz (Backend "mediaType" kutadi!)
+        // Faqat yangi yuklangan FILE larni yuboramiz
         form.mediaImages.forEach((item) => {
             if (isFile(item)) {
                 fd.append("mediaType", item);
             }
         });
 
-        // Faqat FILE bo'lgan PDFlar
-        form.mediaDocs.forEach((file) => {
-            if (isFile(file)) {
-                fd.append("mediaDocs", file);
-            }
-        });
+        // Faqat yangi yuklangan PDF (File)
+        if (form.mediaDocs && isFile(form.mediaDocs)) {
+            fd.append("mediaDocs", form.mediaDocs);
+        }
 
         updateDocuments(editingId, fd);
     };
@@ -268,25 +263,29 @@ const Book = () => {
         }
     };
 
-    const handleDownload = async (file) => {
+    const handleDownload = async (fileUrl) => {
         try {
-            const response = await fetch(`${file}`);
+            const response = await fetch(fileUrl);
             if (!response.ok) {
-                toast.error(response.status)
-                throw new Error("Файл недоступен");
+                toast.error("Fayl topilmadi: " + response.status)
+                throw new Error("Fayl topilmadi");
             }
 
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
 
+            // Fayl nomini URL dan olish
+            const fileName = fileUrl.split('/').pop();
+
             const a = document.createElement("a");
             a.href = url;
-            a.download = file;
+            a.download = fileName;
             a.click();
 
             window.URL.revokeObjectURL(url);
+            toast.success("Fayl yuklab olindi!");
         } catch (err) {
-            toast.error("Download failed:", err);
+            toast.error("Yuklab olishda xatolik: " + err.message);
         }
     };
 
@@ -357,50 +356,11 @@ const Book = () => {
                                     >
                                         <td className="py-2 px-4">
                                             {document.mediaType ? (
-                                                Array.isArray(document.mediaType) ? (
-                                                    document.mediaType.length === 1 ? (
-                                                        <img
-                                                            src={document.mediaType[0].url}
-                                                            alt="media"
-                                                            className="w-20 h-20 object-cover rounded-2xl shadow-xl"
-                                                        />
-                                                    ) : (
-                                                        <div className="w-32 h-24">
-                                                            <Swiper
-                                                                modules={[Autoplay, Pagination]}
-                                                                spaceBetween={10}
-                                                                slidesPerView={1}
-                                                                autoplay={{
-                                                                    delay: 3000,
-                                                                    disableOnInteraction: false,
-                                                                }}
-                                                                pagination={{
-                                                                    clickable: true,
-                                                                    dynamicBullets: true,
-                                                                }}
-                                                                loop={true}
-                                                                className="w-full h-full rounded-xl shadow-xl"
-                                                            >
-                                                                {document.mediaType.map((m, index) => (
-                                                                    <SwiperSlide key={index}>
-                                                                        <img
-                                                                            src={m.url}
-                                                                            alt={`media-${index}`}
-                                                                            className="w-full h-full object-cover rounded-xl"
-                                                                        />
-                                                                    </SwiperSlide>
-                                                                ))}
-                                                            </Swiper>
-                                                        </div>
-                                                    )
-                                                ) : (
-                                                    // mediaType object bo‘lsa
-                                                    <img
-                                                        src={document.mediaType.url}
-                                                        alt="media"
-                                                        className="w-20 h-20 object-cover rounded-2xl shadow-xl"
-                                                    />
-                                                )
+                                                <img
+                                                    src={document.mediaType.url}
+                                                    alt="media"
+                                                    className="w-20 h-20 object-cover rounded-2xl shadow-xl"
+                                                />
                                             ) : (
                                                 <div className="w-20 h-20 bg-gray-200 rounded-2xl flex items-center justify-center shadow-xl">
                                                     <p className="text-gray-400 text-xs">Rasm yo'q</p>
@@ -408,11 +368,14 @@ const Book = () => {
                                             )}
                                         </td>
 
-
                                         <td className="px-4 py-2">
-                                            <button onClick={() => handleDownload(document.mediaDocs?.url)}>
-                                                <File />
-                                            </button>
+                                            {document.mediaDocs ? (
+                                                <button onClick={() => handleDownload(document.mediaDocs.url)}>
+                                                    <File />
+                                                </button>
+                                            ) : (
+                                                <span className="text-gray-400 text-xs">PDF yo'q</span>
+                                            )}
                                         </td>
                                         <td className="px-2 py-2 font-semibold whitespace-nowrap text-sm">
                                             {document.title?.uz}

@@ -2,8 +2,7 @@ import {
     X,
     User,
     FileText,
-    Image,
-    Plus
+    Image
 } from "lucide-react";
 
 export default function AddBooksModal({
@@ -20,27 +19,10 @@ export default function AddBooksModal({
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Rasmlar (bir nechta)
-    const handleImageChange = (e, index) => {
+    // PDF (faqat bitta fayl)
+    const handleDocChange = (e) => {
         const file = e.target.files[0];
-        setForm((prev) => {
-            const updatedImages = [...(prev.mediaImages || [])];
-            updatedImages[index] = file;
-            return { ...prev, mediaImages: updatedImages };
-        });
-    };
-
-    const handleAddImageInput = () => {
-        setForm((prev) => ({
-            ...prev,
-            mediaImages: [...(prev.mediaImages || []), null],
-        }));
-    };
-
-    // PDF (bir nechta)
-    const handleDocsChange = (e) => {
-        const files = Array.from(e.target.files);
-        setForm((prev) => ({ ...prev, mediaDocs: files }));
+        setForm((prev) => ({ ...prev, mediaDocs: file || null }));
     };
 
     return (
@@ -53,7 +35,7 @@ export default function AddBooksModal({
                         <div className="w-10 h-10 rounded-lg bg-base-100/20 flex items-center justify-center">
                             <User className="text-base-100" size={22} />
                         </div>
-                        <h2 className="text-2xl font-bold text-base-100">Kitob qo‘shish</h2>
+                        <h2 className="text-2xl font-bold text-base-100">Kitob qo'shish</h2>
                     </div>
                     <button onClick={onClose} className="w-9 h-9 rounded-lg bg-base-100/20 hover:bg-base-100/30 flex items-center justify-center">
                         <X size={20} className="text-base-100" />
@@ -174,7 +156,7 @@ export default function AddBooksModal({
                         />
                     </div>
 
-                    {/* Rasm yuklash */}
+                    {/* Rasm yuklash (faqat bitta) */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3">
                             <Image size={18} className="text-error" />
@@ -182,49 +164,48 @@ export default function AddBooksModal({
                                 Rasm Yuklash
                             </h3>
                         </div>
-                        <div className="space-y-3">
-                            {(form.mediaImages || [null]).map((img, index) => (
-                                <div key={index} className="relative">
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="hidden"
-                                        id={`image-upload-${index}`}
-                                        onChange={(e) => handleImageChange(e, index)}
-                                    />
-                                    <label
-                                        htmlFor={`image-upload-${index}`}
-                                        className="flex items-center justify-center gap-3 px-4 py-4 border-2 border-dashed border-base-300 rounded-lg hover:border-error hover:bg-base-200 transition-all duration-200 cursor-pointer group"
-                                    >
-                                        <Image size={20} className="text-base-300 group-hover:text-error transition-colors" />
-                                        <span className="text-base-300 group-hover:text-error font-medium">
-                                            {img ? img.name : "Rasm tanlash uchun bosing"}
-                                        </span>
-                                    </label>
-                                </div>
-                            ))}
+                        <div className="relative">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                id="image-upload"
+                                onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    if (file) {
+                                        setForm((prev) => ({ ...prev, mediaImages: [file] }));
+                                    }
+                                }}
+                            />
+                            <label
+                                htmlFor="image-upload"
+                                className="flex items-center justify-center gap-3 px-4 py-4 border-2 border-dashed border-base-300 rounded-lg hover:border-error hover:bg-base-200 transition-all duration-200 cursor-pointer group"
+                            >
+                                <Image size={20} className="text-base-300 group-hover:text-error transition-colors" />
+                                <span className="text-base-300 group-hover:text-error font-medium">
+                                    {form.mediaImages && form.mediaImages[0] ? form.mediaImages[0].name : "Rasm tanlash uchun bosing"}
+                                </span>
+                            </label>
                         </div>
-                        <button
-                            onClick={handleAddImageInput}
-                            className="flex items-center gap-2 text-info hover:text-blue-600 font-medium mt-3"
-                        >
-                            <Plus size={18} /> Yana rasm qo‘shish
-                        </button>
                     </div>
 
-                    {/* PDF yuklash */}
+                    {/* PDF yuklash (faqat bitta) */}
                     <div className="mb-6">
                         <div className="flex items-center gap-2 mb-2">
                             <FileText size={18} className="text-info" />
-                            <h3 className="text-sm font-semibold">PDF fayllar</h3>
+                            <h3 className="text-sm font-semibold">PDF fayl</h3>
                         </div>
                         <input
                             type="file"
-                            multiple
                             accept=".pdf"
-                            onChange={handleDocsChange}
+                            onChange={handleDocChange}
                             className="file-input file-input-bordered w-full"
                         />
+                        {form.mediaDocs && (
+                            <p className="text-sm text-success mt-2">
+                                ✓ {form.mediaDocs.name}
+                            </p>
+                        )}
                     </div>
 
                     {/* BUTTON */}
